@@ -37,7 +37,6 @@ package
 			tostringis.y = 200;*/
 			
 			var mcpst:MCPlaySpeedTest = new MCPlaySpeedTest();
-			mcpst.x = 0;
 			addChild(mcpst);
 		}
 	}

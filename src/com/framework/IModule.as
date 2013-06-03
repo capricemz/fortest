@@ -8,14 +8,11 @@ package com.framework
 	 */	
 	public interface IModule
 	{
-		public function IModule()
-		{
-		}
 		/**
 		 * 消息处理
 		 * @param msgId 消息id
 		 * @param msg 消息内容
 		 */		
-		public function handle(msgId:int,msg:ByteArray):void
+		function handle(msgId:int,msg:ByteArray):void
 	}
 }
