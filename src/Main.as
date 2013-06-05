@@ -36,8 +36,8 @@ package
 			tostringis.x = 200;
 			tostringis.y = 200;*/
 			
-			var mcpst:MCPlaySpeedTest = new MCPlaySpeedTest();
-			addChild(mcpst);
+			/*var mcpst:MCPlaySpeedTest = new MCPlaySpeedTest();
+			addChild(mcpst);*/
 		}
 	}
 }
