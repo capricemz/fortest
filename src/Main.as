@@ -3,6 +3,7 @@ package
 	import flash.display.Sprite;
 	
 	import tests.EventTest;
+	import tests.Frame1000Test;
 	import tests.MCPlaySpeed.MCPlaySpeedTest;
 	import tests.MouseOverOutTest;
 	import tests.RemoveTest;
@@ -10,7 +11,7 @@ package
 	import tests.Texttest;
 	import tests.ToString_IsTest;
 	
-	[SWF (width="1024", height="768", frameRate="30")]
+	[SWF (width="1024", height="768", frameRate="1000")]
 	public class Main extends Sprite
 	{
 		public function Main()
@@ -38,6 +39,9 @@ package
 			
 			/*var mcpst:MCPlaySpeedTest = new MCPlaySpeedTest();
 			addChild(mcpst);*/
+			
+			/*var f1000t:Frame1000Test = new Frame1000Test();
+			addChild(f1000t);*/
 		}
 	}
 }
