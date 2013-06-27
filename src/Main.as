@@ -8,6 +8,7 @@ package
 	import tests.MouseOverOutTest;
 	import tests.RemoveTest;
 	import tests.ScrollRectTest;
+	import tests.TestCW201;
 	import tests.Texttest;
 	import tests.ToString_IsTest;
 	
@@ -42,6 +43,9 @@ package
 			
 			/*var f1000t:Frame1000Test = new Frame1000Test();
 			addChild(f1000t);*/
+			
+			var tCW201:TestCW201 = new TestCW201();
+			tCW201.doChange("种族天赋：遗忘。。");
 		}
 	}
 }
