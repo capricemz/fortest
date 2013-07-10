@@ -3,6 +3,7 @@ package
 	import flash.display.Sprite;
 	
 	import tests.EventTest;
+	import tests.FlowGroupElement_addChildExample;
 	import tests.Frame1000Test;
 	import tests.MCPlaySpeed.MCPlaySpeedTest;
 	import tests.MouseOverOutTest;
@@ -22,18 +23,18 @@ package
 			var texttest:Texttest = new Texttest();
 			texttest.x = 50;
 			texttest.y = 220;
-			addChild(texttest);
+			addChild(texttest);*/
 			
-			var scrollrecttest:ScrollRectTest = new ScrollRectTest();
+			/*var scrollrecttest:ScrollRectTest = new ScrollRectTest();
 			scrollrecttest.x = 250;
-			addChild(scrollrecttest);
+			addChild(scrollrecttest);*/
 			
-			var moot:MouseOverOutTest = new MouseOverOutTest();
+			/*var moot:MouseOverOutTest = new MouseOverOutTest();
 			addChild(moot);
 			moot.x = 100;
-			moot.y = 300;
+			moot.y = 300;*/
 			
-			var tostringis:ToString_IsTest = new ToString_IsTest();
+			/*var tostringis:ToString_IsTest = new ToString_IsTest();
 			addChild(tostringis);
 			tostringis.x = 200;
 			tostringis.y = 200;*/
@@ -44,8 +45,11 @@ package
 			/*var f1000t:Frame1000Test = new Frame1000Test();
 			addChild(f1000t);*/
 			
-			var tCW201:TestCW201 = new TestCW201();
-			tCW201.doChange("种族天赋：遗忘。。");
+			/*var tCW201:TestCW201 = new TestCW201();
+			tCW201.doChange("种族天赋：遗忘。。");*/
+			
+			var t:FlowGroupElement_addChildExample = new FlowGroupElement_addChildExample();
+			addChild(t);
 		}
 	}
 }
