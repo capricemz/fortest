@@ -3,6 +3,8 @@ package tests
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.utils.clearInterval;
+	import flash.utils.setInterval;
 
 	/**
 	 * 鼠标移入移出事件测试类<br>
@@ -38,14 +40,16 @@ package tests
 			sp1.graphics.endFill();
 			
 			this.name = "《本类》";
-			addEventListener(Event.ENTER_FRAME,onFrame);
+			var timeId:uint,currentCount:int;
+			timeId = setInterval(function ():void
+			{
+				sp1.x -= 2;
+				++currentCount;
+				if(currentCount >= 250)
+					clearInterval(timeId);
+			},150);
 			addEventListener(MouseEvent.ROLL_OVER,onOver,true);
 			addEventListener(MouseEvent.ROLL_OUT,onOut,true);
-		}
-		
-		protected function onFrame(event:Event):void
-		{
-			sp1.x -= 2;
 		}
 		
 		protected function onOver(event:MouseEvent):void
