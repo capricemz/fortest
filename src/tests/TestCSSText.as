@@ -4,9 +4,13 @@ package tests
 	import flash.text.StyleSheet;
 	import flash.text.TextField;
 
-	public class Texttest extends Sprite
+	/**
+	 * css格式应用测试类<br>一个滑过字体变色的百度超链接
+	 * @author Administrator
+	 */	
+	public class TestCSSText extends Sprite
 	{
-		public function Texttest()
+		public function TestCSSText()
 		{
 			var text:TextField = new TextField();
 			text.autoSize = flash.text.TextFieldAutoSize.LEFT;
