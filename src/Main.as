@@ -1,20 +1,8 @@
 package
 {
-	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	
-	import tests.EventTest;
-	import tests.FlowGroupElement_addChildExample;
-	import tests.Frame1000Test;
-	import tests.MouseOverOutTest;
-	import tests.RemoveTest;
-	import tests.ScrollRectTest;
-	import tests.TestCSSText;
-	import tests.TestCW201;
 	import tests.TestMouseChildren;
-	import tests.TestCSSText;
-	import tests.ToString_IsTest;
-	import tests.MCPlaySpeed.MCPlaySpeedTest;
 	
 	[SWF (width="1024", height="768", frameRate="1000")]
 	public class Main extends Sprite
