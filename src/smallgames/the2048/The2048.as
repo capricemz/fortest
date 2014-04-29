@@ -1,8 +1,10 @@
 package smallgames.the2048
 {
 	import flash.display.Sprite;
-	import smallgames.the2048.view.Grid;
+	
+	import smallgames.the2048.ctrler.Operate;
 	import smallgames.the2048.view.BackDrop;
+	import smallgames.the2048.view.Grid;
 	
 	/**
 	 * 2048主程序类
@@ -19,22 +21,20 @@ package smallgames.the2048
 			_grids = new Vector.<Grid>();
 			var backDrop:BackDrop = new BackDrop();
 			addChild(backDrop);
+			var operate:Operate = new Operate();
 		}
 		
-		private function addGrid():void
+		private function get grid():Grid
 		{
 			var grid:Grid;
 			if(_grids.length)
+			{
 				grid = _grids.pop();
+				grid.reset();
+			}
 			else
 				grid = new Grid();
-			grid.setData(Math.random()*2);
-			
-		}
-		
-		private function rmvGird():void
-		{
-			
+			return grid;
 		}
 	}
 }

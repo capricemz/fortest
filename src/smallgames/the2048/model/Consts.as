@@ -12,7 +12,7 @@ package smallgames.the2048.model
 		private static const colors:Vector.<int>
 			= new Vector[0x59bbbb11,0x71eded11,0x97bb5911,0xbfed7111,0xd3bf6511,0xffe67a11,0xd3836511,0xff9d7a11,0xd3656511,0xff7a7a11,0xd3658d11];
 		private static var _bmpdts:Vector.<BitmapData>;
-		private static var _lctDtGrids:Vector.<Vector.<LctDtGrid>>;
+		private static var _gridLctDts:Vector.<Vector.<GridLctDt>>;
 		
 		public static function get bmpdts():Vector.<BitmapData>
 		{
@@ -28,31 +28,31 @@ package smallgames.the2048.model
 			return _bmpdts;
 		}
 		
-		public static function get lctDtGrids():Vector.<Vector.<LctDtGrid>>
+		public static function get gridLctDts():Vector.<Vector.<GridLctDt>>
 		{
-			if(!_lctDtGrids)
+			if(!_gridLctDts)
 			{
-				_lctDtGrids = new Vector.<Vector.<LctDtGrid>>();
-				var i:int,j:int,l:int = Consts.BACKDROP_LINES,lctDtGridLine:Vector.<LctDtGrid>,theX:int,theY:int;
+				_gridLctDts = new Vector.<Vector.<GridLctDt>>();
+				var i:int,j:int,l:int = Consts.BACKDROP_LINES,gridLctDtLine:Vector.<GridLctDt>,theX:int,theY:int;
 				for(;i<l:i++)
 				{
-					lctDtGridLine = new Vector.<LctDtGrid>();
+					gridLctDtLine = new Vector.<GridLctDt>();
 					for(;j<l;j++)
 					{
 						theX = 55*i+5;
 						theY = 55*j+5;
-						var lctDtGrid:LctDtGrid = new LctDtGrid();
-						lctDtGrid.thisLct = new Point(theX,theY);
-						lctDtGrid.aboveLct = theY - Consts.GRID_HEIGHT < 0 ? null : new Point(theX,theY - Consts.GRID_HEIGHT);
-						lctDtGrid.belowLct = theY + Consts.GRID_HEIGHT > BACKDROP_HEIGHT ? null : new Point(theX,theY + Consts.GRID_HEIGHT);
-						lctDtGrid.leftLct = theX - Consts.GRID_WIDTH < 0 ? null : new Point(theX - Consts.GRID_WIDTH,theY);
-						lctDtGrid.rightLct = theX + Consts.GRID_WIDTH > BACKDROP_WIDTH ? null : new Point(theX + Consts.GRID_WIDTH,theY);
-						lctDtGridLine.push(lctDtGrid);
+						var gridLctDt:GridLctDt = new GridLctDt();
+						gridLctDt.thisLct = new Point(theX,theY);
+						gridLctDt.aboveLct = theY - Consts.GRID_HEIGHT < 0 ? null : new Point(theX,theY - Consts.GRID_HEIGHT);
+						gridLctDt.belowLct = theY + Consts.GRID_HEIGHT > BACKDROP_HEIGHT ? null : new Point(theX,theY + Consts.GRID_HEIGHT);
+						gridLctDt.leftLct = theX - Consts.GRID_WIDTH < 0 ? null : new Point(theX - Consts.GRID_WIDTH,theY);
+						gridLctDt.rightLct = theX + Consts.GRID_WIDTH > BACKDROP_WIDTH ? null : new Point(theX + Consts.GRID_WIDTH,theY);
+						gridLctDtLine.push(gridLctDt);
 					}
 				}
-				_lctDtGrids.push(lctDtGridLine);
+				_gridLctDts.push(gridLctDtLine);
 			}
-			return _lctDtGrids;
+			return _gridLctDts;
 		}
 		
 		public function Consts()

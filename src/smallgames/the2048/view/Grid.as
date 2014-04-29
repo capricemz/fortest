@@ -39,5 +39,11 @@ package smallgames.the2048.view
 			_bmp.bitmapData = bmpdts[index];
 			_textField.text = Consts.nums[index]+"";
 		}
+		
+		public function reset():void
+		{
+			_bmp.bitmapData = null;
+			_textField.text = "";
+		}
 	}
 }
