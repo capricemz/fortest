@@ -21,7 +21,7 @@ package smallgames.the2048
 			_grids = new Vector.<Grid>();
 			var backDrop:BackDrop = new BackDrop();
 			addChild(backDrop);
-			var operate:Operate = new Operate();
+			var operate:Operate = new Operate(stage);
 		}
 		
 		private function get grid():Grid

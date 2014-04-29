@@ -1,5 +1,8 @@
 package smallgames.the2048.ctrler
 {
+	import flash.display.Stage;
+	import flash.events.KeyboardEvent;
+	
 	import smallgames.the2048.model.Consts;
 	import smallgames.the2048.model.GridLctDt;
 	import smallgames.the2048.view.Grid;
@@ -10,8 +13,9 @@ package smallgames.the2048.ctrler
 	 */	
 	public class Operate
 	{
-		public function Operate()
+		public function Operate(stage:Stage)
 		{
+			stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
 		}
 		/**添加格子*/
 		public function addGrid(grid:Grid):void
@@ -42,6 +46,11 @@ package smallgames.the2048.ctrler
 		public function rmvGrid(grid:Grid):void
 		{
 			
+		}
+		/***/
+		protected function onKeyUp(event:KeyboardEvent):void
+		{
+			switch()
 		}
 		/**取一个空格子位置数据对象*/
 		private function emptyGridLctDt():GridLctDt
