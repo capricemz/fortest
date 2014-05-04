@@ -5,7 +5,9 @@ package smallgames.the2048.view
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	
 	import smallgames.the2048.model.Consts;
+	import smallgames.the2048.model.GridLctDt;
 	
 	/**
 	 * 2048格子类
@@ -15,6 +17,7 @@ package smallgames.the2048.view
 	{
 		private var _bmp:Bitmap;
 		private var _textField:TextField;
+		private var _gridLctDt:GridLctDt;
 		
 		public function Grid()
 		{
@@ -44,6 +47,18 @@ package smallgames.the2048.view
 		{
 			_bmp.bitmapData = null;
 			_textField.text = "";
+		}
+
+		public function get gridLctDt():GridLctDt
+		{
+			return _gridLctDt;
+		}
+
+		public function set gridLctDt(value:GridLctDt):void
+		{
+			_gridLctDt = value;
+			x = _gridLctDt.thisLct.x;
+			y = _gridLctDt.thisLct.y;
 		}
 	}
 }

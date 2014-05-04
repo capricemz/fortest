@@ -1,5 +1,9 @@
 package smallgames.the2048.ctrler
 {
+	import flash.display.Stage;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
+	
 	import smallgames.the2048.model.Consts;
 	import smallgames.the2048.model.GridLctDt;
 	import smallgames.the2048.view.Grid;
@@ -10,8 +14,9 @@ package smallgames.the2048.ctrler
 	 */	
 	public class Operate
 	{
-		public function Operate()
+		public function Operate(stage:Stage)
 		{
+			stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
 		}
 		/**添加格子*/
 		public function addGrid(grid:Grid):void
@@ -20,8 +25,7 @@ package smallgames.the2048.ctrler
 			if(emptyGridLctDt)
 			{
 				grid.setData(Math.random()*2);
-				grid.x = emptyGridLctDt.thisLct.x;
-				grid.y = emptyGridLctDt.thisLct.y;
+				grid.gridLctDt = emptyGridLctDt;
 			}
 			else//已没有空的格子，游戏结束
 			{
@@ -43,7 +47,22 @@ package smallgames.the2048.ctrler
 		{
 			
 		}
-		/**取一个空格子位置数据对象*/
+		/***/
+		protected function onKeyUp(event:KeyboardEvent):void
+		{
+			switch(event.keyCode)
+			{
+				case Keyboard.UP:
+					break;
+				case Keyboard.DOWN:
+					break;
+				case Keyboard.LEFT:
+					break;
+				case Keyboard.RIGHT:
+					break;
+			}
+		}
+		/**随机取一个空格子位置数据对象*/
 		private function emptyGridLctDt():GridLctDt
 		{
 			var gridLctDtLine:Vector.<GridLctDt>,gridLctDt:GridLctDt,emptyGridLctDts:Vector.<GridLctDt> = new Vector.<GridLctDt>;
