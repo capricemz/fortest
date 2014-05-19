@@ -1,10 +1,11 @@
 package smallgames.the2048
 {
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	
 	import smallgames.the2048.ctrler.Operate;
 	import smallgames.the2048.view.BackDrop;
-	import smallgames.the2048.view.Grid;
 	
 	/**
 	 * 2048主程序类
@@ -12,29 +13,19 @@ package smallgames.the2048
 	 */	
 	public class The2048 extends Sprite
 	{
-
-		private var _grids:Vector.<Grid>;
-		
 		public function The2048()
 		{
 			super();
-			_grids = new Vector.<Grid>();
+			stage.align = StageAlign.LEFT;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.tabEnabled = false;
+			stage.tabChildren = false;
+			stage.focusRect = false;
+			stage.mouseEnabled = false;
+			stage.mouseChildren = false;
 			var backDrop:BackDrop = new BackDrop();
 			addChild(backDrop);
 			var operate:Operate = new Operate(stage);
-		}
-		
-		private function get grid():Grid
-		{
-			var grid:Grid;
-			if(_grids.length)
-			{
-				grid = _grids.pop();
-				grid.reset();
-			}
-			else
-				grid = new Grid();
-			return grid;
 		}
 	}
 }

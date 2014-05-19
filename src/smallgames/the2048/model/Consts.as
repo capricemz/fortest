@@ -34,7 +34,7 @@ package smallgames.the2048.model
 			{
 				_gridLctDts = new Vector.<Vector.<GridLctDt>>();
 				var i:int,j:int,l:int = Consts.BACKDROP_LINES,gridLctDtLine:Vector.<GridLctDt>,theX:int,theY:int;
-				for(;i<l:i++)
+				for(;i<l;i++)
 				{
 					gridLctDtLine = new Vector.<GridLctDt>();
 					for(;j<l;j++)
@@ -42,11 +42,11 @@ package smallgames.the2048.model
 						theX = 55*i+5;
 						theY = 55*j+5;
 						var gridLctDt:GridLctDt = new GridLctDt();
-						gridLctDt.thisLct = new Point(theX,theY);
-						gridLctDt.aboveLct = theY - Consts.GRID_HEIGHT < 0 ? null : new Point(theX,theY - Consts.GRID_HEIGHT);
-						gridLctDt.belowLct = theY + Consts.GRID_HEIGHT > BACKDROP_HEIGHT ? null : new Point(theX,theY + Consts.GRID_HEIGHT);
-						gridLctDt.leftLct = theX - Consts.GRID_WIDTH < 0 ? null : new Point(theX - Consts.GRID_WIDTH,theY);
-						gridLctDt.rightLct = theX + Consts.GRID_WIDTH > BACKDROP_WIDTH ? null : new Point(theX + Consts.GRID_WIDTH,theY);
+						gridLctDt._thisLct = new Point(theX,theY);
+						gridLctDt._aboveLct = theY - Consts.GRID_HEIGHT < 0 ? null : new Point(theX,theY - Consts.GRID_HEIGHT);
+						gridLctDt._belowLct = theY + Consts.GRID_HEIGHT > BACKDROP_HEIGHT ? null : new Point(theX,theY + Consts.GRID_HEIGHT);
+						gridLctDt._leftLct = theX - Consts.GRID_WIDTH < 0 ? null : new Point(theX - Consts.GRID_WIDTH,theY);
+						gridLctDt._rightLct = theX + Consts.GRID_WIDTH > BACKDROP_WIDTH ? null : new Point(theX + Consts.GRID_WIDTH,theY);
 						gridLctDtLine.push(gridLctDt);
 					}
 				}

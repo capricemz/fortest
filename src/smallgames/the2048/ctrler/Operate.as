@@ -14,38 +14,17 @@ package smallgames.the2048.ctrler
 	 */	
 	public class Operate
 	{
+		/**储存的格子*/
+		private var _memGrids:Vector.<Grid>;
+		/**显示的格子*/
+		private var _viewGrids:Vector.<Grid>;
+		
 		public function Operate(stage:Stage)
 		{
 			stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
-		}
-		/**添加格子*/
-		public function addGrid(grid:Grid):void
-		{
-			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
-			if(emptyGridLctDt)
-			{
-				grid.setData(Math.random()*2);
-				grid.gridLctDt = emptyGridLctDt;
-			}
-			else//已没有空的格子，游戏结束
-			{
-				
-			}
-		}
-		/**刷新格子*/
-		public function updGrid(grid:Grid):void
-		{
-			
-		}
-		/**移动格子*/
-		public function movGrid(grid:Grid):void
-		{
-			
-		}
-		/**移除格子*/
-		public function rmvGrid(grid:Grid):void
-		{
-			
+			_memGrids = new Vector.<Grid>();
+			_viewGrids = new Vector.<Grid>();
+			addGrid();
 		}
 		/***/
 		protected function onKeyUp(event:KeyboardEvent):void
@@ -62,7 +41,23 @@ package smallgames.the2048.ctrler
 					break;
 			}
 		}
-		/**随机取一个空格子位置数据对象*/
+		/**添加格子*/
+		private function addGrid():void
+		{
+			var grid:Grid = usableGrid();
+			_viewGrids.push(grid);
+			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
+			if(emptyGridLctDt)
+			{
+				grid.setData(Math.random()*2);
+				grid.gridLctDt = emptyGridLctDt;
+			}
+			else//已没有空的格子，游戏结束
+			{
+				
+			}
+		}
+		/**随机取一个空的位置数据对象*/
 		private function emptyGridLctDt():GridLctDt
 		{
 			var gridLctDtLine:Vector.<GridLctDt>,gridLctDt:GridLctDt,emptyGridLctDts:Vector.<GridLctDt> = new Vector.<GridLctDt>;
@@ -81,6 +76,34 @@ package smallgames.the2048.ctrler
 			}
 			else
 				return null;
+		}
+		/**取一个可用的格子类*/
+		private function usableGrid():Grid
+		{
+			var grid:Grid;
+			if(_memGrids.length)
+			{
+				grid = _memGrids.pop();
+				grid.reset();
+			}
+			else
+				grid = new Grid();
+			return grid;
+		}
+		/**刷新格子*/
+		private function updGrid(grid:Grid):void
+		{
+			
+		}
+		/**移动格子*/
+		private function movGrid(grid:Grid):void
+		{
+			
+		}
+		/**移除格子*/
+		private function rmvGrid(grid:Grid):void
+		{
+			
 		}
 	}
 }

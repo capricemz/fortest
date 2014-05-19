@@ -8,11 +8,36 @@ package smallgames.the2048.model
 	 */	
 	public class GridLctDt
 	{
-		public var thisLct:Point;
-		public var aboveLct:Point;
-		public var belowLct:Point;
-		public var leftLct:Point;
-		public var rightLct:Point;
+		var _thisLct:Point;
+		var _aboveLct:Point;
+		var _belowLct:Point;
+		var _leftLct:Point;
+		var _rightLct:Point;
 		public var isEmpty:Boolean = true;
+		
+		public function get thisLct():Point
+		{
+			return _thisLct;
+		}
+
+		public function get aboveLct():Point
+		{
+			return _aboveLct;
+		}
+
+		public function get belowLct():Point
+		{
+			return _belowLct;
+		}
+
+		public function get leftLct():Point
+		{
+			return _leftLct;
+		}
+
+		public function get rightLct():Point
+		{
+			return _rightLct;
+		}
 	}
 }
