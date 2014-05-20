@@ -1,14 +1,18 @@
 package
 {
+	import com.util.StatsFps;
+	
 	import flash.display.Sprite;
 	
 	import tests.TestMouseChildren;
 	
-	[SWF (width="1024", height="768", frameRate="1000")]
+	[SWF (width="1024", height="768", frameRate="30")]
 	public class Main extends Sprite
 	{
 		public function Main()
 		{
+			var statsFps:StatsFps = new StatsFps();
+			addChild(statsFps);
 			/*var removeTest:RemoveTest = new RemoveTest();
 			addChild(removeTest);*/
 			
