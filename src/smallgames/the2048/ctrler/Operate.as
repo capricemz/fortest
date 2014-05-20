@@ -1,5 +1,6 @@
 package smallgames.the2048.ctrler
 {
+	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
@@ -19,9 +20,9 @@ package smallgames.the2048.ctrler
 		/**显示的格子*/
 		private var _viewGrids:Vector.<Grid>;
 		
-		public function Operate(stage:Stage)
+		public function Operate(layer:Sprite)
 		{
-			stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
+			layer.stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
 			_memGrids = new Vector.<Grid>();
 			_viewGrids = new Vector.<Grid>();
 			addGrid();

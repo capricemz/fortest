@@ -1,8 +1,6 @@
 package smallgames.the2048
 {
 	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
 	
 	import smallgames.the2048.ctrler.Operate;
 	import smallgames.the2048.view.BackDrop;
@@ -16,16 +14,9 @@ package smallgames.the2048
 		public function The2048()
 		{
 			super();
-			stage.align = StageAlign.LEFT;
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.tabEnabled = false;
-			stage.tabChildren = false;
-			stage.focusRect = false;
-			stage.mouseEnabled = false;
-			stage.mouseChildren = false;
 			var backDrop:BackDrop = new BackDrop();
 			addChild(backDrop);
-			var operate:Operate = new Operate(stage);
+			var operate:Operate = new Operate(this);
 		}
 	}
 }
