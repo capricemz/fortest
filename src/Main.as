@@ -69,7 +69,7 @@ package
 			addChild(testCopyPixels);*/
 			
 			var the2048:The2048 = new The2048();
-			the2048.x = 80;
+			the2048.x = 90;
 			addChild(the2048);
 			var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);
