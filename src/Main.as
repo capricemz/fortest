@@ -3,16 +3,26 @@ package
 	import com.util.StatsFps;
 	
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	
-	import tests.TestMouseChildren;
+	import smallgames.the2048.The2048;
+	
+	import tests.copypixels.TestCopyPixels;
 	
 	[SWF (width="1024", height="768", frameRate="30")]
 	public class Main extends Sprite
 	{
 		public function Main()
 		{
-			var statsFps:StatsFps = new StatsFps();
-			addChild(statsFps);
+			stage.align = StageAlign.LEFT;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			/*stage.tabEnabled = false;
+			stage.tabChildren = false;
+			stage.focusRect = false;
+			stage.mouseEnabled = false;
+			stage.mouseChildren = false;*/
+			
 			/*var removeTest:RemoveTest = new RemoveTest();
 			addChild(removeTest);*/
 			
@@ -50,10 +60,20 @@ package
 			/*var t:FlowGroupElement_addChildExample = new FlowGroupElement_addChildExample();
 			addChild(t);*/
 			
-			var testMouseChildren:TestMouseChildren = new TestMouseChildren();
+			/*var testMouseChildren:TestMouseChildren = new TestMouseChildren();
 			addChild(testMouseChildren);
 			testMouseChildren.x = 100;
-			testMouseChildren.y = 100;
+			testMouseChildren.y = 100;*/
+			
+			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
+			addChild(testCopyPixels);*/
+			
+			var the2048:The2048 = new The2048();
+			the2048.x = 80;
+			addChild(the2048);
+			
+			var statsFps:StatsFps = new StatsFps();
+			addChild(statsFps);
 		}
 	}
 }

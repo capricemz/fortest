@@ -1,10 +1,10 @@
 package smallgames.the2048
 {
 	import flash.display.Sprite;
-	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	
 	import smallgames.the2048.ctrler.Operate;
+	import smallgames.the2048.model.Consts;
 	import smallgames.the2048.view.BackDrop;
 	
 	/**
@@ -16,16 +16,15 @@ package smallgames.the2048
 		public function The2048()
 		{
 			super();
-			stage.align = StageAlign.LEFT;
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.tabEnabled = false;
-			stage.tabChildren = false;
-			stage.focusRect = false;
-			stage.mouseEnabled = false;
-			stage.mouseChildren = false;
+			addEventListener(Event.ADDED_TO_STAGE,onAdded2Stage);
+		}
+		
+		protected function onAdded2Stage(event:Event):void
+		{
+			removeEventListener(Event.ADDED_TO_STAGE,onAdded2Stage);
 			var backDrop:BackDrop = new BackDrop();
 			addChild(backDrop);
-			var operate:Operate = new Operate(stage);
+			var operate:Operate = new Operate(this);
 		}
 	}
 }

@@ -17,9 +17,9 @@ package smallgames.the2048.view
 			graphics.drawRect(0,0,Consts.BACKDROP_WIDTH,Consts.BACKDROP_HEIGHT);
 			graphics.endFill();
 			var i:int,j:int,l:int = Consts.BACKDROP_LINES,theX:int,theY:int;
-			for(;i<l:i++)
+			for(i=0;i<l;i++)
 			{
-				for(;j<l;j++)
+				for(j=0;j<l;j++)
 				{
 					theX = 55*i+5;
 					theY = 55*j+5;

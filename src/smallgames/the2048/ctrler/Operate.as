@@ -1,5 +1,6 @@
 package smallgames.the2048.ctrler
 {
+	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
@@ -18,39 +19,53 @@ package smallgames.the2048.ctrler
 		private var _memGrids:Vector.<Grid>;
 		/**显示的格子*/
 		private var _viewGrids:Vector.<Grid>;
+		private var _layer:Sprite
 		
-		public function Operate(stage:Stage)
+		public function Operate(layer:Sprite)
 		{
-			stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
+			_layer = layer;
+			layer.stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
 			_memGrids = new Vector.<Grid>();
 			_viewGrids = new Vector.<Grid>();
-			addGrid();
+			addGrid(emptyGridLctDt());
+			addGrid(emptyGridLctDt());
 		}
 		/***/
 		protected function onKeyUp(event:KeyboardEvent):void
 		{
+			var drct:int;
 			switch(event.keyCode)
 			{
 				case Keyboard.UP:
+					drct = 0;
 					break;
 				case Keyboard.DOWN:
+					drct = 1;
 					break;
 				case Keyboard.LEFT:
+					drct = 2;
 					break;
 				case Keyboard.RIGHT:
+					drct = 3;
 					break;
 			}
+			refresh(drct);
 		}
-		/**添加格子*/
-		private function addGrid():void
+		/**
+		 * 刷新界面
+		 * @param drct 移动方向<br>0：上，1：下，2：左，3：右
+		 */		
+		private function refresh(drct:int):void
 		{
-			var grid:Grid = usableGrid();
-			_viewGrids.push(grid);
+			var grid:Grid;
+			for each(grid in _viewGrids)
+			{
+				movGrid(grid);
+			}
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
 			if(emptyGridLctDt)
 			{
-				grid.setData(Math.random()*2);
-				grid.gridLctDt = emptyGridLctDt;
+				addGrid(emptyGridLctDt)
 			}
 			else//已没有空的格子，游戏结束
 			{
@@ -77,7 +92,16 @@ package smallgames.the2048.ctrler
 			else
 				return null;
 		}
-		/**取一个可用的格子类*/
+		/**添加格子*/
+		private function addGrid(gridLctDt:GridLctDt):void
+		{
+			var grid:Grid = usableGrid();
+			_viewGrids.push(grid);
+			grid.setData(Math.random()*2);
+			grid.gridLctDt = gridLctDt;
+			_layer.addChild(grid);
+		}
+		/**取一个可用的格子对象*/
 		private function usableGrid():Grid
 		{
 			var grid:Grid;

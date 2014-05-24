@@ -29,10 +29,13 @@ package smallgames.the2048.view
 			_textField.mouseEnabled = false;
 			_textField.width = 27;
 			_textField.height = 50;
-			_textField.x = 16.5;
+			_textField.x = 14;
 			var textFormat:TextFormat = _textField.defaultTextFormat;
 			textFormat.font = "Bauhaus 93";
+			textFormat.bold = true;
 			textFormat.size = 40;
+			_textField.defaultTextFormat = textFormat;
+			_textField.setTextFormat(textFormat);
 			addChild(_textField);
 		}
 		
@@ -59,6 +62,7 @@ package smallgames.the2048.view
 			_gridLctDt = value;
 			x = _gridLctDt.thisLct.x;
 			y = _gridLctDt.thisLct.y;
+			_gridLctDt.isEmpty = false;
 		}
 	}
 }
