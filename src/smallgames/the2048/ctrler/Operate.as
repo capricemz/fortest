@@ -3,7 +3,9 @@ package smallgames.the2048.ctrler
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.KeyboardEvent;
+	import flash.geom.Point;
 	import flash.ui.Keyboard;
+	import flash.utils.Dictionary;
 	
 	import smallgames.the2048.model.Consts;
 	import smallgames.the2048.model.GridLctDt;
@@ -18,7 +20,7 @@ package smallgames.the2048.ctrler
 		/**储存的格子*/
 		private var _memGrids:Vector.<Grid>;
 		/**显示的格子*/
-		private var _viewGrids:Vector.<Grid>;
+		private var _viewGrids:Vector.<Grid>,_viewGridsDic:Dictionary;
 		private var _layer:Sprite
 		
 		public function Operate(layer:Sprite)
@@ -27,28 +29,14 @@ package smallgames.the2048.ctrler
 			layer.stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
 			_memGrids = new Vector.<Grid>();
 			_viewGrids = new Vector.<Grid>();
+			_viewGridsDic = new Dictionary();
 			addGrid(emptyGridLctDt());
 			addGrid(emptyGridLctDt());
 		}
 		/***/
 		protected function onKeyUp(event:KeyboardEvent):void
 		{
-			var drct:int;
-			switch(event.keyCode)
-			{
-				case Keyboard.UP:
-					drct = 0;
-					break;
-				case Keyboard.DOWN:
-					drct = 1;
-					break;
-				case Keyboard.LEFT:
-					drct = 2;
-					break;
-				case Keyboard.RIGHT:
-					drct = 3;
-					break;
-			}
+			var drct:int = event.keyCode;
 			refresh(drct);
 		}
 		/**
@@ -60,7 +48,8 @@ package smallgames.the2048.ctrler
 			var grid:Grid;
 			for each(grid in _viewGrids)
 			{
-				movGrid(grid);
+				if(movJudge(grid,drct))
+					movGrid(grid,drct);
 			}
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
 			if(emptyGridLctDt)
@@ -95,10 +84,15 @@ package smallgames.the2048.ctrler
 		/**添加格子*/
 		private function addGrid(gridLctDt:GridLctDt):void
 		{
-			var grid:Grid = usableGrid();
+			var grid:Grid,dic:Dictionary;
+			grid= usableGrid();
 			_viewGrids.push(grid);
 			grid.setData(Math.random()*2);
 			grid.gridLctDt = gridLctDt;
+			if(!_viewGridsDic[gridLctDt.thisLct.x])
+				_viewGridsDic[gridLctDt.thisLct.x] = new Dictionary();
+			dic = _viewGridsDic[gridLctDt.thisLct.x];
+			dic[gridLctDt.thisLct.y] = grid;
 			_layer.addChild(grid);
 		}
 		/**取一个可用的格子对象*/
@@ -119,8 +113,33 @@ package smallgames.the2048.ctrler
 		{
 			
 		}
+		/**移动判断*/
+		private function movJudge(grid:Grid,drct:int):Boolean
+		{
+			var lct:Point,grid2:Grid;
+			switch(drct)
+			{
+				case Keyboard.UP:
+					lct = grid.gridLctDt.aboveLct;
+					break;
+				case Keyboard.DOWN:
+					lct = grid.gridLctDt.belowLct;
+					break;
+				case Keyboard.LEFT:
+					lct = grid.gridLctDt.leftLct;
+					break;
+				case Keyboard.RIGHT:
+					lct = grid.gridLctDt.rightLct;
+					break;
+			}
+			grid2 = _viewGridsDic[lct.x][lct.y] as Grid;
+			if(grid2)
+				return false;
+			else
+				return true;
+		}
 		/**移动格子*/
-		private function movGrid(grid:Grid):void
+		private function movGrid(grid:Grid,drct:int):void
 		{
 			
 		}
