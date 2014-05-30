@@ -21,7 +21,7 @@ package smallgames.the2048.ctrler
 		private var _memGrids:Vector.<Grid>;
 		/**显示的格子*/
 		private var _viewGrids:Vector.<Grid>,_viewGridsDic:Dictionary;
-		private var _layer:Sprite
+		private var _layer:Sprite;
 		
 		public function Operate(layer:Sprite)
 		{
@@ -48,8 +48,8 @@ package smallgames.the2048.ctrler
 			var grid:Grid;
 			for each(grid in _viewGrids)
 			{
-				if(movJudge(grid,drct))
-					movGrid(grid,drct);
+				if(movJudge(grid.gridLctDt,drct))
+					movGrid(grid,drct,5);
 			}
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
 			if(emptyGridLctDt)
@@ -114,32 +114,31 @@ package smallgames.the2048.ctrler
 			
 		}
 		/**移动判断*/
-		private function movJudge(grid:Grid,drct:int):Boolean
+		private function movJudge(gridLctDt:GridLctDt,drct:int):Boolean
 		{
-			var lct:Point,grid2:Grid;
+			var gridLctDtTemp:GridLctDt;
 			switch(drct)
 			{
 				case Keyboard.UP:
-					lct = grid.gridLctDt.aboveLct;
+					gridLctDtTemp = gridLctDt.aboveLct;
 					break;
 				case Keyboard.DOWN:
-					lct = grid.gridLctDt.belowLct;
+					gridLctDtTemp = gridLctDt.belowLct;
 					break;
 				case Keyboard.LEFT:
-					lct = grid.gridLctDt.leftLct;
+					gridLctDtTemp = gridLctDt.leftLct;
 					break;
 				case Keyboard.RIGHT:
-					lct = grid.gridLctDt.rightLct;
+					gridLctDtTemp = gridLctDt.rightLct;
 					break;
 			}
-			grid2 = _viewGridsDic[lct.x][lct.y] as Grid;
-			if(grid2)
-				return false;
+			if(gridLctDtTemp.isEmpty)
+				return movJudge(gridLctDtTemp,drct);
 			else
-				return true;
+				return false;
 		}
 		/**移动格子*/
-		private function movGrid(grid:Grid,drct:int):void
+		private function movGrid(grid:Grid,drct:int,dstc:int):void
 		{
 			
 		}

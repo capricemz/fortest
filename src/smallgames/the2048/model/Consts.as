@@ -43,10 +43,18 @@ package smallgames.the2048.model
 						theY = 55*j+5;
 						var gridLctDt:GridLctDt = new GridLctDt();
 						gridLctDt._thisLct = new Point(theX,theY);
-						gridLctDt._aboveLct = theY - Consts.GRID_HEIGHT < 0 ? null : new Point(theX,theY - Consts.GRID_HEIGHT);
-						gridLctDt._belowLct = theY + Consts.GRID_HEIGHT > BACKDROP_HEIGHT ? null : new Point(theX,theY + Consts.GRID_HEIGHT);
-						gridLctDt._leftLct = theX - Consts.GRID_WIDTH < 0 ? null : new Point(theX - Consts.GRID_WIDTH,theY);
-						gridLctDt._rightLct = theX + Consts.GRID_WIDTH > BACKDROP_WIDTH ? null : new Point(theX + Consts.GRID_WIDTH,theY);
+						gridLctDt._aboveLct = theY - Consts.GRID_HEIGHT < 0 ? null : _gridLctDts[theX][theY - Consts.GRID_HEIGHT] ? _gridLctDts[theX][theY - Consts.GRID_HEIGHT] : null;
+						if(gridLctDt._aboveLct)
+							gridLctDt._aboveLct._belowLct = gridLctDt;
+						gridLctDt._belowLct = theY + Consts.GRID_HEIGHT > BACKDROP_HEIGHT ? null : _gridLctDts[theX][theY + Consts.GRID_HEIGHT] ? _gridLctDts[theX][theY + Consts.GRID_HEIGHT] : null;
+						if(gridLctDt._belowLct)
+							gridLctDt._belowLct._aboveLct = gridLctDt;
+						gridLctDt._leftLct = theX - Consts.GRID_WIDTH < 0 ? null : _gridLctDts[theX - Consts.GRID_WIDTH][theY] ? _gridLctDts[theX - Consts.GRID_WIDTH][theY] : null;
+						if(gridLctDt._leftLct)
+							gridLctDt._leftLct._rightLct = gridLctDt;
+						gridLctDt._rightLct = theX + Consts.GRID_WIDTH > BACKDROP_WIDTH ? null : _gridLctDts[theX + Consts.GRID_WIDTH][theY] ? _gridLctDts[theX + Consts.GRID_WIDTH][theY] : null;
+						if(gridLctDt._rightLct)
+							gridLctDt._rightLct._leftLct = gridLctDt;
 						tempVct.push(gridLctDt);
 					}
 					_gridLctDts.push(tempVct);
