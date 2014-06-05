@@ -6,9 +6,7 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
-	import smallgames.the2048.The2048;
-	
-	import tests.copypixels.TestCopyPixels;
+	import tests.objectassign.ObjectAssignTest;
 	
 	[SWF (width="1024", height="768", frameRate="30")]
 	public class Main extends Sprite
@@ -68,11 +66,20 @@ package
 			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
 			
-			var the2048:The2048 = new The2048();
+			/*var the2048:The2048 = new The2048();
 			the2048.x = 90;
 			addChild(the2048);
 			var testCopyPixels:TestCopyPixels = new TestCopyPixels();
-			addChild(testCopyPixels);
+			addChild(testCopyPixels);*/
+			
+			/*var pathSearchDoc:PathSearchDoc = new PathSearchDoc();
+			pathSearchDoc.x = 50;
+			addChild(pathSearchDoc);*/
+			
+			var objectAssignTest:ObjectAssignTest = new ObjectAssignTest();
+			objectAssignTest.initData();
+			objectAssignTest.x = 50;
+			addChild(objectAssignTest);
 			
 			var statsFps:StatsFps = new StatsFps();
 			addChild(statsFps);
