@@ -1,9 +1,7 @@
 package smallgames.the2048.ctrler
 {
 	import flash.display.Sprite;
-	import flash.display.Stage;
 	import flash.events.KeyboardEvent;
-	import flash.geom.Point;
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
 	
@@ -48,8 +46,8 @@ package smallgames.the2048.ctrler
 			var grid:Grid;
 			for each(grid in _viewGrids)
 			{
-				if(movJudge(grid.gridLctDt,drct))
-					movGrid(grid,drct,5);
+				var movTgt:GridLctDt = movTgt(grid.gridLctDt,drct);
+				movGrid(grid,movTgt);
 			}
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
 			if(emptyGridLctDt)
@@ -113,8 +111,13 @@ package smallgames.the2048.ctrler
 		{
 			
 		}
-		/**移动判断*/
-		private function movJudge(gridLctDt:GridLctDt,drct:int):Boolean
+		/**
+		 * 计算移动目标
+		 * @param gridLctDt 当前格子位置信息
+		 * @param drct 方向
+		 * @return 目标格子位置信息
+		 */		
+		private function movTgt(gridLctDt:GridLctDt,drct:int):GridLctDt
 		{
 			var gridLctDtTemp:GridLctDt;
 			switch(drct)
@@ -132,15 +135,17 @@ package smallgames.the2048.ctrler
 					gridLctDtTemp = gridLctDt.rightLct;
 					break;
 			}
+			if(!gridLctDtTemp)
+				return gridLctDt;
 			if(gridLctDtTemp.isEmpty)
-				return movJudge(gridLctDtTemp,drct);
+				return movTgt(gridLctDtTemp,drct);
 			else
-				return false;
+				return gridLctDtTemp;
 		}
 		/**移动格子*/
-		private function movGrid(grid:Grid,drct:int,dstc:int):void
+		private function movGrid(grid:Grid,tgt:GridLctDt):void
 		{
-			
+			grid.gridLctDt = tgt;
 		}
 		/**移除格子*/
 		private function rmvGrid(grid:Grid):void

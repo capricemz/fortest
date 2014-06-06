@@ -6,6 +6,8 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
+	import smallgames.the2048.The2048;
+	
 	import tests.InternalClassBuildingVectorTest;
 	import tests.objectassign.ObjectAssignTest;
 	
@@ -67,10 +69,11 @@ package
 			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
 			
-			/*var the2048:The2048 = new The2048();
+			var the2048:The2048 = new The2048();
 			the2048.x = 90;
 			addChild(the2048);
-			var testCopyPixels:TestCopyPixels = new TestCopyPixels();
+			
+			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
 			
 			/*var pathSearchDoc:PathSearchDoc = new PathSearchDoc();
@@ -82,8 +85,8 @@ package
 			objectAssignTest.x = 50;
 			addChild(objectAssignTest);*/
 			
-			var internalClassBuildingVectorTest:InternalClassBuildingVectorTest = new InternalClassBuildingVectorTest();
-			addChild(internalClassBuildingVectorTest);
+			/*var internalClassBuildingVectorTest:InternalClassBuildingVectorTest = new InternalClassBuildingVectorTest();
+			addChild(internalClassBuildingVectorTest);*/
 			
 			var statsFps:StatsFps = new StatsFps();
 			addChild(statsFps);

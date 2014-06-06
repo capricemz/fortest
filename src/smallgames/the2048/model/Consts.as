@@ -32,32 +32,51 @@ package smallgames.the2048.model
 		{
 			if(_gridLctDts == null)
 			{
-				_gridLctDts = new Vector.<Vector.<GridLctDt>>();
-				var i:int,j:int,l:int = Consts.BACKDROP_LINES,tempVct:Vector.<GridLctDt>,theX:int,theY:int;
+				var i:int,j:int,l:int = Consts.BACKDROP_LINES,tempVct:Vector.<GridLctDt>,theX:int,theY:int,gridLctDt:GridLctDt,gridLctDt2:GridLctDt;
+				_gridLctDts = new Vector.<Vector.<GridLctDt>>(l,true);
 				for(i=0;i<l;i++)
 				{
-					tempVct = new Vector.<GridLctDt>();
+					tempVct = new Vector.<GridLctDt>(l,true);
 					for(j=0;j<l;j++)
 					{
 						theX = 55*i+5;
 						theY = 55*j+5;
-						var gridLctDt:GridLctDt = new GridLctDt();
+						gridLctDt = new GridLctDt();
 						gridLctDt._thisLct = new Point(theX,theY);
-						gridLctDt._aboveLct = theY - Consts.GRID_HEIGHT < 0 ? null : _gridLctDts[theX][theY - Consts.GRID_HEIGHT] ? _gridLctDts[theX][theY - Consts.GRID_HEIGHT] : null;
-						if(gridLctDt._aboveLct)
-							gridLctDt._aboveLct._belowLct = gridLctDt;
-						gridLctDt._belowLct = theY + Consts.GRID_HEIGHT > BACKDROP_HEIGHT ? null : _gridLctDts[theX][theY + Consts.GRID_HEIGHT] ? _gridLctDts[theX][theY + Consts.GRID_HEIGHT] : null;
-						if(gridLctDt._belowLct)
-							gridLctDt._belowLct._aboveLct = gridLctDt;
-						gridLctDt._leftLct = theX - Consts.GRID_WIDTH < 0 ? null : _gridLctDts[theX - Consts.GRID_WIDTH][theY] ? _gridLctDts[theX - Consts.GRID_WIDTH][theY] : null;
-						if(gridLctDt._leftLct)
-							gridLctDt._leftLct._rightLct = gridLctDt;
-						gridLctDt._rightLct = theX + Consts.GRID_WIDTH > BACKDROP_WIDTH ? null : _gridLctDts[theX + Consts.GRID_WIDTH][theY] ? _gridLctDts[theX + Consts.GRID_WIDTH][theY] : null;
-						if(gridLctDt._rightLct)
-							gridLctDt._rightLct._leftLct = gridLctDt;
-						tempVct.push(gridLctDt);
+						tempVct[j] = gridLctDt;
 					}
-					_gridLctDts.push(tempVct);
+					_gridLctDts[i] = tempVct;
+				}
+				for(i=0;i<l;i++)
+				{
+					for(j=0;j<l;j++)
+					{
+						gridLctDt = _gridLctDts[i][j];
+						if(i>0)
+						{
+							gridLctDt2 = _gridLctDts[i-1][j];
+							gridLctDt._leftLct = gridLctDt2;
+							gridLctDt2._rightLct = gridLctDt;
+						}
+						if(i<l-1)
+						{
+							gridLctDt2 = _gridLctDts[i+1][j];
+							gridLctDt._rightLct = gridLctDt2;
+							gridLctDt2._leftLct = gridLctDt;
+						}
+						if(j>0)
+						{
+							gridLctDt2 = _gridLctDts[i][j-1];
+							gridLctDt._aboveLct = gridLctDt2;
+							gridLctDt2._belowLct = gridLctDt;
+						}
+						if(j<l-1)
+						{
+							gridLctDt2 = _gridLctDts[i][j+1];
+							gridLctDt._belowLct = gridLctDt2;
+							gridLctDt2._aboveLct = gridLctDt;
+						}
+					}
 				}
 			}
 			return _gridLctDts;
