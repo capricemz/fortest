@@ -6,6 +6,7 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
+	import tests.InternalClassBuildingVectorTest;
 	import tests.objectassign.ObjectAssignTest;
 	
 	[SWF (width="1024", height="768", frameRate="30")]
@@ -76,10 +77,13 @@ package
 			pathSearchDoc.x = 50;
 			addChild(pathSearchDoc);*/
 			
-			var objectAssignTest:ObjectAssignTest = new ObjectAssignTest();
+			/*var objectAssignTest:ObjectAssignTest = new ObjectAssignTest();
 			objectAssignTest.initData();
 			objectAssignTest.x = 50;
-			addChild(objectAssignTest);
+			addChild(objectAssignTest);*/
+			
+			var internalClassBuildingVectorTest:InternalClassBuildingVectorTest = new InternalClassBuildingVectorTest();
+			addChild(internalClassBuildingVectorTest);
 			
 			var statsFps:StatsFps = new StatsFps();
 			addChild(statsFps);
