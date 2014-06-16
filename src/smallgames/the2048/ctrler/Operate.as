@@ -2,6 +2,7 @@ package smallgames.the2048.ctrler
 {
 	import flash.display.Sprite;
 	import flash.events.KeyboardEvent;
+	import flash.geom.Point;
 	import flash.ui.Keyboard;
 	import flash.utils.Dictionary;
 	
@@ -46,7 +47,7 @@ package smallgames.the2048.ctrler
 			var grid:Grid;
 			for each(grid in _viewGrids)
 			{
-				var movTgt:GridLctDt = movTgt(grid.gridLctDt,drct);
+				var movTgt:GridLctDt = movTgt(grid,grid.gridLctDt,drct);
 				movGrid(grid,movTgt);
 			}
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
@@ -90,7 +91,7 @@ package smallgames.the2048.ctrler
 			if(!_viewGridsDic[gridLctDt.thisLct.x])
 				_viewGridsDic[gridLctDt.thisLct.x] = new Dictionary();
 			dic = _viewGridsDic[gridLctDt.thisLct.x];
-			dic[gridLctDt.thisLct.y] = grid;
+			dic[gridLctDt.thisLct.y] = _viewGrids.length-1;
 			_layer.addChild(grid);
 		}
 		/**取一个可用的格子对象*/
@@ -113,13 +114,14 @@ package smallgames.the2048.ctrler
 		}
 		/**
 		 * 计算移动目标
+		 * @param grid 当前格子
 		 * @param gridLctDt 当前格子位置信息
 		 * @param drct 方向
 		 * @return 目标格子位置信息
-		 */		
-		private function movTgt(gridLctDt:GridLctDt,drct:int):GridLctDt
+		 */
+		private function movTgt(grid:Grid,gridLctDt:GridLctDt,drct:int):GridLctDt
 		{
-			var gridLctDtTemp:GridLctDt;
+			var gridLctDtTemp:GridLctDt;//下一格
 			switch(drct)
 			{
 				case Keyboard.UP:
@@ -138,19 +140,47 @@ package smallgames.the2048.ctrler
 			if(!gridLctDtTemp)
 				return gridLctDt;
 			if(gridLctDtTemp.isEmpty)
-				return movTgt(gridLctDtTemp,drct);
+			{
+				return movTgt(grid,gridLctDtTemp,drct);
+			}
 			else
-				return gridLctDtTemp;
+			{
+				var thisLct:Point = gridLctDtTemp.thisLct;
+				if(_viewGridsDic[thisLct.x])//防报空
+				{
+					var tgtGridIndex:int = _viewGridsDic[thisLct.x][thisLct.y] as int;
+					var tgtGrid:Grid = _viewGrids[tgtGridIndex];
+					if(tgtGrid && tgtGrid.num == grid.num)//值相等
+					{
+						grid.grow();
+						rmvGrid(tgtGrid,tgtGridIndex);
+						return gridLctDtTemp;
+					}
+					else
+					{
+						return gridLctDt;
+					}
+				}
+				else
+				{
+					return gridLctDt;
+				}
+			}
 		}
 		/**移动格子*/
 		private function movGrid(grid:Grid,tgt:GridLctDt):void
 		{
+			grid.gridLctDt.isEmpty = true;
 			grid.gridLctDt = tgt;
 		}
 		/**移除格子*/
-		private function rmvGrid(grid:Grid):void
+		private function rmvGrid(grid:Grid,index:int):void
 		{
-			
+			if(grid.parent)
+				grid.parent.removeChild(grid);
+			_viewGrids.splice(index,1);
+			var thisLct:Point = grid.gridLctDt.thisLct;
+			delete _viewGridsDic[thisLct.x][thisLct.y];
 		}
 	}
 }

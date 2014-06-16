@@ -15,6 +15,7 @@ package smallgames.the2048.view
 	 */	
 	public class Grid extends Sprite
 	{
+		private var _index:int;
 		private var _bmp:Bitmap;
 		private var _textField:TextField;
 		private var _gridLctDt:GridLctDt;
@@ -41,9 +42,20 @@ package smallgames.the2048.view
 		
 		public function setData(index:int):void
 		{
+			_index = index;
 			var bmpdts:Vector.<BitmapData> = Consts.bmpdts;
 			_bmp.bitmapData = bmpdts[index];
 			_textField.text = Consts.nums[index]+"";
+		}
+		
+		public function grow():void
+		{
+			setData(_index++);
+		}
+		
+		public function get num():int
+		{
+			return int(_textField.text);
 		}
 		
 		public function reset():void
