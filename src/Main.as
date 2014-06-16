@@ -5,6 +5,8 @@ package
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.MouseEvent;
+	import flash.text.TextField;
 	
 	import tests.testconstructor.TestConstructor;
 	
@@ -86,11 +88,27 @@ package
 			addChild(internalClassBuildingVectorTest);*/
 			
 			var testConstructor:TestConstructor = new TestConstructor();
-			testConstructor.doTest();
+			/*testConstructor.doTest();*/
 			addChild(testConstructor);
 			
 			var statsFps:StatsFps = new StatsFps();
 			addChild(statsFps);
+			var btn:Sprite = new Sprite();
+			btn.buttonMode = true;
+			var textField:TextField = new TextField();
+			textField.text = "测试";
+			textField.y = statsFps.height;
+			textField.mouseEnabled = false;
+			textField.height = 18;
+			textField.width = 50;
+			btn.addChild(textField);
+			btn.addEventListener(MouseEvent.CLICK,
+				function (event:MouseEvent):void
+				{
+					testConstructor.doTest();
+				}
+			);
+			addChild(btn);
 		}
 	}
 }

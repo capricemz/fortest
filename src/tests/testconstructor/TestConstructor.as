@@ -16,13 +16,21 @@ package tests.testconstructor
 		
 		public function doTest():void
 		{
+			while(numChildren)
+			{
+				removeChildAt(0);
+			}
 			var i:int,l:int = 5000,time1:int,time2:int;
+			var sprite:Sprite = new Sprite();
+			sprite.graphics.beginFill(0x000000);
+			sprite.graphics.drawRect(0,0,50,50);
+			sprite.graphics.endFill();
 			time1 = getTimer();
 			for(i=0;i<l;i++)
 			{
-				var classUseConstructor:ClassUseConstructor = new ClassUseConstructor();
-				/*classUseConstructor.x = Math.random()*750;
-				classUseConstructor.y = Math.random()*550;*/
+				var classUseConstructor:ClassUseConstructor = new ClassUseConstructor(sprite,sprite,sprite,sprite,sprite);
+				classUseConstructor.x = Math.random()*750;
+				classUseConstructor.y = Math.random()*550;
 				addChild(classUseConstructor);
 			}
 			time2 = getTimer();
@@ -31,9 +39,9 @@ package tests.testconstructor
 			for(i=0;i<l;i++)
 			{
 				var classUseFunction:ClassUseFunction = new ClassUseFunction();
-				classUseFunction.init();
-				/*classUseFunction.x = Math.random()*750;
-				classUseFunction.y = Math.random()*550;*/
+				classUseFunction.init(sprite,sprite,sprite,sprite,sprite);
+				classUseFunction.x = Math.random()*750;
+				classUseFunction.y = Math.random()*550;
 				addChild(classUseFunction);
 			}
 			time2 = getTimer();
