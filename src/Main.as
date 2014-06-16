@@ -6,10 +6,7 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
-	import smallgames.the2048.The2048;
-	
-	import tests.InternalClassBuildingVectorTest;
-	import tests.objectassign.ObjectAssignTest;
+	import tests.testconstructor.TestConstructor;
 	
 	[SWF (width="1024", height="768", frameRate="30")]
 	public class Main extends Sprite
@@ -69,9 +66,9 @@ package
 			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
 			
-			var the2048:The2048 = new The2048();
+			/*var the2048:The2048 = new The2048();
 			the2048.x = 90;
-			addChild(the2048);
+			addChild(the2048);*/
 			
 			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
@@ -87,6 +84,10 @@ package
 			
 			/*var internalClassBuildingVectorTest:InternalClassBuildingVectorTest = new InternalClassBuildingVectorTest();
 			addChild(internalClassBuildingVectorTest);*/
+			
+			var testConstructor:TestConstructor = new TestConstructor();
+			testConstructor.doTest();
+			addChild(testConstructor);
 			
 			var statsFps:StatsFps = new StatsFps();
 			addChild(statsFps);

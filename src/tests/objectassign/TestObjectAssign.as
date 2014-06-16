@@ -5,16 +5,16 @@ package tests.objectassign
 	import flash.events.MouseEvent;
 	
 	/**
-	 * 传对象赋值测试
+	 * 传对象赋值测试<br>赋值后传递的是引用，可以对其内容修改来改变原内容，要改变其本身需要改变其引用者的引用
 	 * @author Administrator
 	 */	
-	public class ObjectAssignTest extends Sprite
+	public class TestObjectAssign extends Sprite
 	{
 		private var mc:MovieClip;
 
 		private var mcTest:McTest;
 		
-		public function ObjectAssignTest()
+		public function TestObjectAssign()
 		{
 			super();
 		}
