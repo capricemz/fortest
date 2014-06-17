@@ -8,21 +8,27 @@ package
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
-	import tests.testconstructor.TestConstructor;
+	import smallgames.the2048.The2048;
 	
 	[SWF (width="1024", height="768", frameRate="30")]
 	public class Main extends Sprite
 	{
+		private var _fpsH:Number = 70;
+		private var _fpsW:Number = 100;
 		public function Main()
 		{
 			stage.align = StageAlign.LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
-			/*stage.tabEnabled = false;
-			stage.tabChildren = false;
-			stage.focusRect = false;
-			stage.mouseEnabled = false;
-			stage.mouseChildren = false;*/
 			
+			initTests();
+			initSmallGames();
+			
+			var statsFps:StatsFps = new StatsFps();
+			addChild(statsFps);
+		}
+		
+		private function initTests():void
+		{
 			/*var removeTest:RemoveTest = new RemoveTest();
 			addChild(removeTest);*/
 			
@@ -68,10 +74,6 @@ package
 			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
 			
-			/*var the2048:The2048 = new The2048();
-			the2048.x = 90;
-			addChild(the2048);*/
-			
 			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
 			
@@ -87,17 +89,14 @@ package
 			/*var internalClassBuildingVectorTest:InternalClassBuildingVectorTest = new InternalClassBuildingVectorTest();
 			addChild(internalClassBuildingVectorTest);*/
 			
-			var testConstructor:TestConstructor = new TestConstructor();
-			/*testConstructor.doTest();*/
-			addChild(testConstructor);
+			/*var testConstructor:TestConstructor = new TestConstructor();
+			addChild(testConstructor);*/
 			
-			var statsFps:StatsFps = new StatsFps();
-			addChild(statsFps);
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
 			var textField:TextField = new TextField();
 			textField.text = "测试";
-			textField.y = statsFps.height;
+			textField.y = _fpsH;
 			textField.mouseEnabled = false;
 			textField.height = 18;
 			textField.width = 50;
@@ -105,10 +104,17 @@ package
 			btn.addEventListener(MouseEvent.CLICK,
 				function (event:MouseEvent):void
 				{
-					testConstructor.doTest();
+					/*testConstructor.doTest();*/
 				}
 			);
 			addChild(btn);
+		}
+		
+		private function initSmallGames():void
+		{
+			var the2048:The2048 = new The2048();
+			the2048.x = _fpsW;
+			addChild(the2048);
 		}
 	}
 }
