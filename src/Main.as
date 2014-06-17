@@ -10,7 +10,7 @@ package
 	
 	import smallgames.the2048.The2048;
 	
-	[SWF (width="1024", height="768", frameRate="30")]
+	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
 	{
 		private var _fpsH:Number = 70;
