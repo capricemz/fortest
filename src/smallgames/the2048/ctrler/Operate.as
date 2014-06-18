@@ -19,7 +19,7 @@ package smallgames.the2048.ctrler
 		/**储存的格子*/
 		private var _memGrids:Vector.<Grid>;
 		/**显示的格子*/
-		private var _viewGrids:Vector.<Grid>,_viewGridsDic:Dictionary;
+		private var _viewGridsDic:Dictionary;
 		private var _layer:Sprite;
 		
 		public function Operate(layer:Sprite)
@@ -27,7 +27,6 @@ package smallgames.the2048.ctrler
 			_layer = layer;
 			layer.stage.addEventListener(KeyboardEvent.KEY_UP,onKeyUp);
 			_memGrids = new Vector.<Grid>();
-			_viewGrids = new Vector.<Grid>();
 			_viewGridsDic = new Dictionary();
 			addGrid(emptyGridLctDt());
 			addGrid(emptyGridLctDt());
@@ -44,12 +43,13 @@ package smallgames.the2048.ctrler
 		 */		
 		private function refresh(drct:int):void
 		{
-			var grid:Grid;
+			/*var grid:Grid;
 			for each(grid in _viewGrids)
 			{
 				var movTgt:GridLctDt = movTgt(grid,grid.gridLctDt,drct);
 				movGrid(grid,movTgt);
-			}
+			}*/
+			traversalByDrct(drct);
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
 			if(emptyGridLctDt)
 			{
@@ -60,6 +60,50 @@ package smallgames.the2048.ctrler
 				
 			}
 		}
+		/**根据方向遍历格子*/
+		private function traversalByDrct(drct:int):void
+		{
+			var gridLctDts:Vector.<Vector.<GridLctDt>>,gridLctDt:GridLctDt,index:int,grid:Grid,movTgtDt:GridLctDt;
+			gridLctDts = Consts.gridLctDts;
+			var i:int,il:int,ii:int,j:int,jl:int,jj:int;
+			il = Consts.BACKDROP_LINES;
+			jl = Consts.BACKDROP_LINES;
+			for(i=0;i<il;i++)
+			{
+				for(j=0;j<jl;j++)
+				{
+					switch(drct)
+					{
+						case Keyboard.UP:
+							ii = j;
+							jj = i;
+							break;
+						case Keyboard.DOWN:
+							ii = j;
+							jj = il-1-i;
+							break;
+						case Keyboard.LEFT:
+							ii = i;
+							jj = j;
+							break;
+						case Keyboard.RIGHT:
+							ii = il-1-i;
+							jj = j;
+							break;
+					}
+					trace(ii+","+jj);
+					gridLctDt = gridLctDts[ii][jj];
+					if(!gridLctDt.isEmpty)
+					{
+						grid = _viewGridsDic[gridLctDt.thisLct.x][gridLctDt.thisLct.y] as Grid;
+						/*movTgt = movTgt(grid,grid.gridLctDt,drct);*/
+						movTgtDt = movTgt(grid,grid.gridLctDt,drct);
+						movGrid(grid,movTgtDt);
+					}
+				}
+			}
+		}
+		
 		/**随机取一个空的位置数据对象*/
 		private function emptyGridLctDt():GridLctDt
 		{
@@ -84,14 +128,13 @@ package smallgames.the2048.ctrler
 		private function addGrid(gridLctDt:GridLctDt):void
 		{
 			var grid:Grid,dic:Dictionary;
-			grid= usableGrid();
-			_viewGrids.push(grid);
+			grid = usableGrid();
 			grid.setData(Math.random()*2);
 			grid.gridLctDt = gridLctDt;
 			if(!_viewGridsDic[gridLctDt.thisLct.x])
 				_viewGridsDic[gridLctDt.thisLct.x] = new Dictionary();
 			dic = _viewGridsDic[gridLctDt.thisLct.x];
-			dic[gridLctDt.thisLct.y] = _viewGrids.length-1;
+			dic[gridLctDt.thisLct.y] = grid;
 			_layer.addChild(grid);
 		}
 		/**取一个可用的格子对象*/
@@ -146,14 +189,13 @@ package smallgames.the2048.ctrler
 			else
 			{
 				var thisLct:Point = gridLctDtTemp.thisLct;
-				if(_viewGridsDic[thisLct.x])//防报空
+				if(_viewGridsDic[thisLct.x] && _viewGridsDic[thisLct.x][thisLct.y])//防报空
 				{
-					var tgtGridIndex:int = _viewGridsDic[thisLct.x][thisLct.y] as int;
-					var tgtGrid:Grid = _viewGrids[tgtGridIndex];
+					var tgtGrid:Grid = _viewGridsDic[thisLct.x][thisLct.y] as Grid;
 					if(tgtGrid && tgtGrid.num == grid.num)//值相等
 					{
 						grid.grow();
-						rmvGrid(tgtGrid,tgtGridIndex);
+						rmvGrid(tgtGrid);
 						return gridLctDtTemp;
 					}
 					else
@@ -170,17 +212,26 @@ package smallgames.the2048.ctrler
 		/**移动格子*/
 		private function movGrid(grid:Grid,tgt:GridLctDt):void
 		{
+			var dic:Dictionary,thisLct:Point,tgtGrid:Grid;
+			thisLct = grid.gridLctDt.thisLct;
+			if(_viewGridsDic[thisLct.x] && _viewGridsDic[thisLct.x][thisLct.y])//防报空
+				_viewGridsDic[thisLct.x][thisLct.y] = null;
 			grid.gridLctDt.isEmpty = true;
 			grid.gridLctDt = tgt;
+			if(!_viewGridsDic[tgt.thisLct.x])
+				_viewGridsDic[tgt.thisLct.x] = new Dictionary();
+			dic = _viewGridsDic[tgt.thisLct.x];
+			dic[tgt.thisLct.y] = grid;
 		}
 		/**移除格子*/
-		private function rmvGrid(grid:Grid,index:int):void
+		private function rmvGrid(grid:Grid):void
 		{
+			var thisLct:Point = grid.gridLctDt.thisLct;
+			_viewGridsDic[thisLct.x][thisLct.y] = null;
+			grid.gridLctDt = null;
 			if(grid.parent)
 				grid.parent.removeChild(grid);
-			_viewGrids.splice(index,1);
-			var thisLct:Point = grid.gridLctDt.thisLct;
-			delete _viewGridsDic[thisLct.x][thisLct.y];
+			_memGrids.push(grid);
 		}
 	}
 }

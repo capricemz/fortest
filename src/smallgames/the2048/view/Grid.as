@@ -4,6 +4,7 @@ package smallgames.the2048.view
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	
 	import smallgames.the2048.model.Consts;
@@ -28,9 +29,9 @@ package smallgames.the2048.view
 			_textField = new TextField();
 			_textField.multiline = false;
 			_textField.mouseEnabled = false;
-			_textField.width = 27;
+			_textField.width = 50;
 			_textField.height = 50;
-			_textField.x = 14;
+			_textField.autoSize = TextFieldAutoSize.CENTER;
 			var textFormat:TextFormat = _textField.defaultTextFormat;
 			textFormat.font = "Bauhaus 93";
 			textFormat.bold = true;
@@ -50,7 +51,8 @@ package smallgames.the2048.view
 		
 		public function grow():void
 		{
-			setData(_index++);
+			_index++;
+			setData(_index);
 		}
 		
 		public function get num():int
@@ -71,10 +73,18 @@ package smallgames.the2048.view
 
 		public function set gridLctDt(value:GridLctDt):void
 		{
-			_gridLctDt = value;
-			x = _gridLctDt.thisLct.x;
-			y = _gridLctDt.thisLct.y;
-			_gridLctDt.isEmpty = false;
+			if(value)
+			{
+				_gridLctDt = value;
+				x = _gridLctDt.thisLct.x;
+				y = _gridLctDt.thisLct.y;
+				_gridLctDt.isEmpty = false;
+			}
+			else
+			{
+				_gridLctDt.isEmpty = true;
+				_gridLctDt = null;
+			}
 		}
 	}
 }
