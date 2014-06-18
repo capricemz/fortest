@@ -43,12 +43,6 @@ package smallgames.the2048.ctrler
 		 */		
 		private function refresh(drct:int):void
 		{
-			/*var grid:Grid;
-			for each(grid in _viewGrids)
-			{
-				var movTgt:GridLctDt = movTgt(grid,grid.gridLctDt,drct);
-				movGrid(grid,movTgt);
-			}*/
 			traversalByDrct(drct);
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
 			if(emptyGridLctDt)
@@ -96,7 +90,6 @@ package smallgames.the2048.ctrler
 					if(!gridLctDt.isEmpty)
 					{
 						grid = _viewGridsDic[gridLctDt.thisLct.x][gridLctDt.thisLct.y] as Grid;
-						/*movTgt = movTgt(grid,grid.gridLctDt,drct);*/
 						movTgtDt = movTgt(grid,grid.gridLctDt,drct);
 						movGrid(grid,movTgtDt);
 					}
