@@ -8,13 +8,14 @@ package
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
-	import smallgames.the2048.The2048;
+	import tests.testglass.TestCleanGlass;
+	import tests.testglass.TestGlassBall;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
 	{
-		private var _fpsH:Number = 70;
-		private var _fpsW:Number = 100;
+		private var _fpsH:Number = 100;
+		private var _fpsW:Number = 70;
 		public function Main()
 		{
 			stage.align = StageAlign.LEFT;
@@ -92,19 +93,27 @@ package
 			/*var testConstructor:TestConstructor = new TestConstructor();
 			addChild(testConstructor);*/
 			
+			var testGlassBall:TestGlassBall = new TestGlassBall();
+			testGlassBall.x = _fpsW;
+			addChild(testGlassBall);
+			
+			var testCleanGlass:TestCleanGlass = new TestCleanGlass();
+			addChild(testCleanGlass);
+			
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
 			var textField:TextField = new TextField();
 			textField.text = "测试";
-			textField.y = _fpsH;
 			textField.mouseEnabled = false;
 			textField.height = 18;
 			textField.width = 50;
 			btn.addChild(textField);
+			btn.y = _fpsH;
 			btn.addEventListener(MouseEvent.CLICK,
 				function (event:MouseEvent):void
 				{
 					/*testConstructor.doTest();*/
+					testGlassBall.addBall();
 				}
 			);
 			addChild(btn);
@@ -112,9 +121,9 @@ package
 		
 		private function initSmallGames():void
 		{
-			var the2048:The2048 = new The2048();
+			/*var the2048:The2048 = new The2048();
 			the2048.x = _fpsW;
-			addChild(the2048);
+			addChild(the2048);*/
 		}
 	}
 }
