@@ -8,6 +8,8 @@ package
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
+	import smallgames.the2048.The2048;
+	
 	import tests.testglass.TestCleanGlass;
 	import tests.testglass.TestGlassBall;
 	
@@ -121,9 +123,9 @@ package
 		
 		private function initSmallGames():void
 		{
-			/*var the2048:The2048 = new The2048();
+			var the2048:The2048 = new The2048();
 			the2048.x = _fpsW;
-			addChild(the2048);*/
+			addChild(the2048);
 		}
 	}
 }

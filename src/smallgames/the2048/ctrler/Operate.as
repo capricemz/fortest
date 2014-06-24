@@ -21,6 +21,8 @@ package smallgames.the2048.ctrler
 		/**显示的格子*/
 		private var _viewGridsDic:Dictionary;
 		private var _layer:Sprite;
+
+		private var _isMoved:Boolean;
 		
 		public function Operate(layer:Sprite)
 		{
@@ -45,9 +47,10 @@ package smallgames.the2048.ctrler
 		{
 			traversalByDrct(drct);
 			var emptyGridLctDt:GridLctDt = emptyGridLctDt();
-			if(emptyGridLctDt)
+			if(emptyGridLctDt && _isMoved)
 			{
-				addGrid(emptyGridLctDt)
+				_isMoved = false;
+				addGrid(emptyGridLctDt);
 			}
 			else//已没有空的格子，游戏结束
 			{
@@ -207,6 +210,9 @@ package smallgames.the2048.ctrler
 		{
 			var dic:Dictionary,thisLct:Point,tgtGrid:Grid;
 			thisLct = grid.gridLctDt.thisLct;
+			if(thisLct.x == tgt.thisLct.x && thisLct.y == tgt.thisLct.y)
+				return;
+			_isMoved = true;
 			if(_viewGridsDic[thisLct.x] && _viewGridsDic[thisLct.x][thisLct.y])//防报空
 				_viewGridsDic[thisLct.x][thisLct.y] = null;
 			grid.gridLctDt.isEmpty = true;
