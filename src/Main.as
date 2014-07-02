@@ -10,8 +10,7 @@ package
 	
 	import smallgames.the2048.The2048;
 	
-	import tests.testglass.TestCleanGlass;
-	import tests.testglass.TestGlassBall;
+	import tests.testGreenSock.TestGreenSock;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
@@ -95,12 +94,16 @@ package
 			/*var testConstructor:TestConstructor = new TestConstructor();
 			addChild(testConstructor);*/
 			
-			var testGlassBall:TestGlassBall = new TestGlassBall();
+			/*var testGlassBall:TestGlassBall = new TestGlassBall();
 			testGlassBall.x = _fpsW;
-			addChild(testGlassBall);
+			addChild(testGlassBall);*/
 			
-			var testCleanGlass:TestCleanGlass = new TestCleanGlass();
-			addChild(testCleanGlass);
+			/*var testCleanGlass:TestCleanGlass = new TestCleanGlass();
+			addChild(testCleanGlass);*/
+			
+			var testGreenSock:TestGreenSock = new TestGreenSock();
+			testGreenSock.x = _fpsW;
+			addChild(testGreenSock);
 			
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
@@ -115,7 +118,8 @@ package
 				function (event:MouseEvent):void
 				{
 					/*testConstructor.doTest();*/
-					testGlassBall.addBall();
+					/*testGlassBall.addBall();*/
+					testGreenSock.doTween();
 				}
 			);
 			addChild(btn);
@@ -123,9 +127,9 @@ package
 		
 		private function initSmallGames():void
 		{
-			var the2048:The2048 = new The2048();
+			/*var the2048:The2048 = new The2048();
 			the2048.x = _fpsW;
-			addChild(the2048);
+			addChild(the2048);*/
 		}
 	}
 }
