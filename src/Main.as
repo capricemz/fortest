@@ -8,6 +8,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
+	import smallgames.autoFight.AutoFight;
 	import smallgames.the2048.The2048;
 	
 	import tests.testGreenSock.TestGreenSock;
@@ -130,6 +131,10 @@ package
 			/*var the2048:The2048 = new The2048();
 			the2048.x = _fpsW;
 			addChild(the2048);*/
+			
+			var autoFight:AutoFight = new AutoFight();
+			autoFight.x = _fpsW;
+			addChild(autoFight);
 		}
 	}
 }
