@@ -12,6 +12,7 @@ package
 	import smallgames.the2048.The2048;
 	
 	import tests.testGreenSock.TestGreenSock;
+	import tests.testglass.TestGlassBall;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
