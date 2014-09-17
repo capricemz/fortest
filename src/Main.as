@@ -9,10 +9,8 @@ package
 	import flash.text.TextField;
 	
 	import smallgames.autoFight.AutoFight;
-	import smallgames.the2048.The2048;
 	
 	import tests.testGreenSock.TestGreenSock;
-	import tests.testglass.TestGlassBall;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
@@ -78,8 +76,6 @@ package
 			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
 			addChild(testCopyPixels);*/
 			
-			/*var testCopyPixels:TestCopyPixels = new TestCopyPixels();
-			addChild(testCopyPixels);*/
 			
 			/*var pathSearchDoc:PathSearchDoc = new PathSearchDoc();
 			pathSearchDoc.x = 50;
