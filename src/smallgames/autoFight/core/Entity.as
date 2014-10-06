@@ -1,4 +1,4 @@
-package smallgames.autoFight
+package smallgames.autoFight.core
 {
 	public class Entity
 	{

@@ -41,6 +41,9 @@
             // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
             var xiSwfUrlStr = "${expressInstallSwf}";
             var flashvars = {};
+            flashvars.serverip = "192.168.1.109";
+            flashvars.port = "443";
+			flashvars.respath = "http://192.168.1.109/res/";
             var params = {};
             params.quality = "high";
             params.bgcolor = "${bgcolor}";
