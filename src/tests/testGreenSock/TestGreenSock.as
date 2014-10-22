@@ -1,8 +1,7 @@
 package tests.testGreenSock
 {
+	import com.greensock.TweenLite;
 	import com.greensock.TweenMax;
-	import com.greensock.easing.Bounce;
-	import com.greensock.easing.Linear;
 	
 	import flash.display.Sprite;
 	
@@ -29,6 +28,13 @@ package tests.testGreenSock
 		{
 			/*TweenMax.to(mc,3,{x:300,ease:Linear.easeNone});*///横向运动不带加速度
 			TweenMax.to(mc,.5,{y:100,repeat:1,yoyo:true});//纵向运行是有加速度的
+			
+			TweenLite.fromTo(mc,1,{x:0,y:0},{x:100,y:100,onComplete:onComplete});
+		}
+		
+		private function onComplete():void
+		{
+			trace("TestGreenSock.onComplete() 缓动完成");
 		}
 	}
 }
