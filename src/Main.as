@@ -10,7 +10,7 @@ package
 	
 	import smallgames.autoFight.AutoFight;
 	
-	import tests.testGreenSock.TestGreenSock;
+	import tests.testUseWeakReference.TestUseWeakReference;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
@@ -99,9 +99,14 @@ package
 			/*var testCleanGlass:TestCleanGlass = new TestCleanGlass();
 			addChild(testCleanGlass);*/
 			
-			var testGreenSock:TestGreenSock = new TestGreenSock();
+			var testUseWeakReference:TestUseWeakReference = new TestUseWeakReference();
+			testUseWeakReference.x = 50;
+			testUseWeakReference.y = 50;
+			addChild(testUseWeakReference);
+			
+			/*var testGreenSock:TestGreenSock = new TestGreenSock();
 			testGreenSock.x = _fpsW;
-			addChild(testGreenSock);
+			addChild(testGreenSock);*/
 			
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
@@ -117,7 +122,7 @@ package
 				{
 					/*testConstructor.doTest();*/
 					/*testGlassBall.addBall();*/
-					testGreenSock.doTween();
+					/*testGreenSock.doTween();*/
 				}
 			);
 			addChild(btn);
