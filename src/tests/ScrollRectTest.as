@@ -1,11 +1,12 @@
 package tests
 {
 	import flash.display.Sprite;
-	import flash.geom.Rectangle;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	
 	/**
-	 * ScrollRect滚动测试类
+	 * ScrollRect滚动测试类<br>
+	 * 效果类似遮罩需重绘整张位图
 	 * @author Administrator
 	 */	
 	public class ScrollRectTest extends Sprite
@@ -25,7 +26,7 @@ package tests
 		{
 			var rect:Rectangle = event.target.scrollRect;
 			rect.y -= 5;
-			event.target.scrollRect = rect;
+			(event.target as Sprite).scrollRect = rect;
 		}
 	}
 }
