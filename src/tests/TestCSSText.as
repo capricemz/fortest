@@ -20,5 +20,26 @@ package tests
 			text.styleSheet = sheet;
 			text.htmlText = "<a href='http://www.baidu.com'>http://www.baidu.com</a>";
 		}
+		
+		/**文字溢出省略号表示*/
+		public function get ellipsesStyleSheet():StyleSheet
+		{
+			var sheet:StyleSheet = new StyleSheet();
+			var str:String = ".css1
+			{
+			color:#6699ff;border:1px #ff8000 dashed;
+			margin-bottom:20px;
+			width: 20em;/*不允许出现半汉字截断*/
+			}
+			.css2 {
+			overflow: hidden; /*自动隐藏文字*/
+			text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+			white-space: nowrap;/*强制不换行*/
+			width: 20em;/*不允许出现半汉字截断*/
+			color:#6699ff;border:1px #ff8000 dashed;
+			}"
+			sheet.parseCSS(str);
+			return 
+		}
 	}
 }
