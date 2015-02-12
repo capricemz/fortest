@@ -2,6 +2,9 @@ package smallgames.autoFight
 {
 	import flash.display.Sprite;
 	
+	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.data.ManagerData;
+	
 	/**
 	 * 自动战斗游戏
 	 * @author Administrator
@@ -11,12 +14,12 @@ package smallgames.autoFight
 		public function AutoFight()
 		{
 			super();
-			initData();
+			initialize();
 		}
 		
-		private function initData():void
+		private function initialize():void
 		{
-			
+			ManagerBase.instance
 		}
 	}
 }
