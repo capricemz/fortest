@@ -1,4 +1,4 @@
-package smallgames.autoFight.common.observer
+package tests.textVectorPushSplice.observer
 {
 	public class Subject
 	{
@@ -11,7 +11,11 @@ package smallgames.autoFight.common.observer
 		
 		public function attach(observer:IObserver):void
 		{
-			_observers.push(observer);
+			var indexOf:int = _observers.indexOf(observer);
+			if(indexOf == -1)
+			{
+				_observers.push(observer);
+			}
 		}
 		
 		public function detach(observer:IObserver):void

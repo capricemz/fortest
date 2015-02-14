@@ -1,4 +1,4 @@
-package smallgames.autoFight.common.observer
+package tests.textVectorPushSplice.observer
 {
 	public interface IObserver
 	{
