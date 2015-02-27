@@ -4,6 +4,7 @@ package
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
+	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
@@ -18,10 +19,14 @@ package
 	{
 		private var _fpsH:Number = 100;
 		private var _fpsW:Number = 70;
+		
 		public function Main()
 		{
-			stage.align = StageAlign.LEFT;
+			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.quality = StageQuality.BEST;
+			stage.frameRate = 60;//帧频
+			stage.stageFocusRect = false;//tab键不会出现黄色的框框
 			
 			initTests();
 			initSmallGames();
