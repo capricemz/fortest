@@ -1,4 +1,4 @@
-package smallgames.autoFight.core.entitys.interfaces
+package smallgames.autoFight.core.entity.entitys.interfaces
 {
 	public interface IEntity
 	{

@@ -1,4 +1,4 @@
-package smallgames.autoFight.core.entitys
+package smallgames.autoFight.core.entity
 {
 	import smallgames.autoFight.common.ManagerBase;
 	
