@@ -1,5 +1,11 @@
 package smallgames.autoFight.core.time
 {
+	import flash.display.Stage;
+	import flash.events.Event;
+	import flash.events.IEventDispatcher;
+	import flash.utils.Timer;
+	import flash.utils.getTimer;
+	
 	import smallgames.autoFight.common.ManagerBase;
 
 	/**
@@ -15,6 +21,8 @@ package smallgames.autoFight.core.time
 		}
 		private static function privateFunc():void{}
 		
+		private var _timeLast:int;
+		
 		public function ManagerTime(func:Function)
 		{
 			if(func != privateFunc)
@@ -22,11 +30,20 @@ package smallgames.autoFight.core.time
 				throw new Error("该类使用单例模式");
 			}
 			_instance = this;
-			initialize();
 		}
 		
-		override protected function initialize():void
+		public function initialize(dispatcher:IEventDispatcher):void
 		{
+			dispatcher.addEventListener(Event.ENTER_FRAME,onEnterFrame);
+			_timeLast = getTimer();
+		}
+		
+		protected function onEnterFrame(event:Event):void
+		{
+			var timeNow:int = getTimer();
+			var timeDiff:int = timeNow - _timeLast;
+			_timeLast = timeNow;
+			//
 			
 		}
 	}

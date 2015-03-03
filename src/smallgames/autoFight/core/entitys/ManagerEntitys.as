@@ -25,7 +25,12 @@ package smallgames.autoFight.core.entitys
 			initialize();
 		}
 		
-		override protected function initialize():void
+		private function initialize():void
+		{
+			
+		}
+		
+		public function updateByFrame():void
 		{
 			
 		}

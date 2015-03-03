@@ -5,7 +5,8 @@ package smallgames.autoFight
 	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	import flash.utils.getTimer;
+	
+	import smallgames.autoFight.core.time.ManagerTime;
 	
 	/**
 	 * 自动战斗游戏
@@ -13,8 +14,6 @@ package smallgames.autoFight
 	 */	
 	public class AutoFight extends Sprite
 	{
-		private var _timeLast:int;
-		
 		public function AutoFight()
 		{
 			super();
@@ -34,17 +33,7 @@ package smallgames.autoFight
 		
 		private function initialize():void
 		{
-			stage.addEventListener(Event.ENTER_FRAME,onEnterFrame);
-			_timeLast = getTimer();
-		}
-		
-		protected function onEnterFrame(event:Event):void
-		{
-			var timeNow:int = getTimer();
-			var timeDiff:int = timeNow - _timeLast;
-			_timeLast = timeNow;
-			//
-			
+			ManagerTime.instance.initialize(stage);
 		}
 	}
 }
