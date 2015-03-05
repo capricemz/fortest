@@ -1,7 +1,5 @@
 package smallgames.autoFight.core.entity
 {
-	import flash.utils.Dictionary;
-	
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.entitys.Entity;
 	import smallgames.autoFight.core.entity.entitys.interfaces.IEntity;
@@ -19,8 +17,8 @@ package smallgames.autoFight.core.entity
 		}
 		private static function privateFunc():void{}
 		
-		private var _entity:Entity;
-		private var _entitys:Dictionary;
+		private var _listScene:Entity;
+		private var _listUnit:Entity;
 		
 		public function ManagerEntitys(func:Function)
 		{
@@ -34,13 +32,43 @@ package smallgames.autoFight.core.entity
 		
 		private function initialize():void
 		{
-			_entitys = new Dictionary();
+			
+		}
+		
+		private function entityListLast(list:IEntity):IEntity
+		{
+			var entityNext:IEntity = list;
+			while(entityNext)
+			{
+				entityNext = entityNext.next;
+			}
+			return entityNext;
+		}
+		
+		private function entityListBefore(list:IEntity,entity:IEntity):IEntity
+		{
+			var entityNext:IEntity = list;
+			while(entityNext)
+			{
+				entityNext = entityNext.next;
+				if(entityNext == entity)
+				{
+					return entityNext;
+				}
+			}
+			return null;
 		}
 		
 		public function updateByFrame(timeDiff:int):void
 		{
+			updateList(_listScene,timeDiff);
+			updateList(_listUnit,timeDiff);
+		}
+		
+		private function updateList(list:IEntity,timeDiff:int):void
+		{
 			var entity:IEntity;
-			var entityNext:IEntity = _entity;
+			var entityNext:IEntity = list;
 			while(entityNext)
 			{
 				entity = entityNext;

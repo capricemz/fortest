@@ -1,12 +1,11 @@
 package smallgames.autoFight.core.time
 {
-	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
-	import flash.utils.Timer;
 	import flash.utils.getTimer;
 	
 	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.core.entity.ManagerEntitys;
 
 	/**
 	 * 时间管理类
@@ -32,7 +31,7 @@ package smallgames.autoFight.core.time
 			_instance = this;
 		}
 		
-		public function initialize(dispatcher:IEventDispatcher):void
+		public function addFrame(dispatcher:IEventDispatcher):void
 		{
 			dispatcher.addEventListener(Event.ENTER_FRAME,onEnterFrame);
 			_timeLast = getTimer();
@@ -44,7 +43,7 @@ package smallgames.autoFight.core.time
 			var timeDiff:int = timeNow - _timeLast;
 			_timeLast = timeNow;
 			//
-			
+			ManagerEntitys.instance.updateByFrame(timeDiff);
 		}
 	}
 }

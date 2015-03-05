@@ -33,7 +33,7 @@ package smallgames.autoFight
 		
 		private function initialize():void
 		{
-			ManagerTime.instance.initialize(stage);
+			ManagerTime.instance.addFrame(stage);
 		}
 	}
 }
