@@ -1,8 +1,14 @@
 package smallgames.autoFight.core.entity
 {
+	import flash.utils.Dictionary;
+	
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.entitys.Entity;
+	import smallgames.autoFight.core.entity.entitys.Scene;
+	import smallgames.autoFight.core.entity.entitys.Unit;
 	import smallgames.autoFight.core.entity.entitys.interfaces.IEntity;
+	import smallgames.autoFight.core.entity.entitys.interfaces.IScene;
+	import smallgames.autoFight.core.entity.entitys.interfaces.IUnit;
 	
 	/**
 	 * 实体管理类
@@ -17,6 +23,7 @@ package smallgames.autoFight.core.entity
 		}
 		private static function privateFunc():void{}
 		
+		private var _entitys:Dictionary;
 		private var _listScene:Entity;
 		private var _listUnit:Entity;
 		
@@ -32,31 +39,30 @@ package smallgames.autoFight.core.entity
 		
 		private function initialize():void
 		{
-			
+			_entitys = new Dictionary();
 		}
 		
-		private function entityListLast(list:IEntity):IEntity
+		public function createEntity(type:int):IEntity
 		{
+			var list:IEntity;
+			var entity:IEntity;
+			if(type == 1)
+			{
+				list = _listScene;
+				entity = new Scene();
+			}
+			else if(type == 2)
+			{
+				list = _listUnit;
+				entity = new Unit();
+			}
 			var entityNext:IEntity = list;
 			while(entityNext)
 			{
 				entityNext = entityNext.next;
 			}
-			return entityNext;
-		}
-		
-		private function entityListBefore(list:IEntity,entity:IEntity):IEntity
-		{
-			var entityNext:IEntity = list;
-			while(entityNext)
-			{
-				entityNext = entityNext.next;
-				if(entityNext == entity)
-				{
-					return entityNext;
-				}
-			}
-			return null;
+			entityNext.next = entity;
+			return entity;
 		}
 		
 		public function updateByFrame(timeDiff:int):void
@@ -75,6 +81,38 @@ package smallgames.autoFight.core.entity
 				entityNext = entityNext.next;
 				entity.updateByTime(timeDiff);
 			}
+		}
+		
+		public function destroyEntity(entity:IEntity):void
+		{
+			var listBefore:IEntity;
+			if(entity is IScene)
+			{
+				listBefore = entityListBefore(_listScene,entity);
+			}
+			else if(entity is IUnit)
+			{
+				listBefore = entityListBefore(_listUnit,entity);
+			}
+			if(!listBefore)
+			{
+				throw new Error("销毁的对象不在列表中");
+			}
+			listBefore.next = entity.next;
+		}
+		
+		private function entityListBefore(list:IEntity,entity:IEntity):IEntity
+		{
+			var entityNext:IEntity = list;
+			while(entityNext)
+			{
+				entityNext = entityNext.next;
+				if(entityNext == entity)
+				{
+					return entityNext;
+				}
+			}
+			return null;
 		}
 	}
 }
