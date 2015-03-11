@@ -26,7 +26,7 @@ package smallgames.autoFight.core.entity
 		private var _entitys:Dictionary;
 		private var _listScene:Entity;
 		private var _listUnit:Entity;
-		
+
 		public function ManagerEntitys(func:Function)
 		{
 			if(func != privateFunc)

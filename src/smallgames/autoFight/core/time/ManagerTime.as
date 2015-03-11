@@ -20,6 +20,7 @@ package smallgames.autoFight.core.time
 		}
 		private static function privateFunc():void{}
 		
+		private var _handleCreateWorld:HandleCreateWorld;
 		private var _timeLast:int;
 		
 		public function ManagerTime(func:Function)
@@ -29,6 +30,11 @@ package smallgames.autoFight.core.time
 				throw new Error("该类使用单例模式");
 			}
 			_instance = this;
+		}
+		
+		private function initialize():void
+		{
+			_handleCreateWorld = new HandleCreateWorld();
 		}
 		
 		public function addFrame(dispatcher:IEventDispatcher):void
@@ -43,6 +49,7 @@ package smallgames.autoFight.core.time
 			var timeDiff:int = timeNow - _timeLast;
 			_timeLast = timeNow;
 			//
+			_handleCreateWorld.execute(timeDiff);
 			ManagerEntitys.instance.updateByFrame(timeDiff);
 		}
 	}
