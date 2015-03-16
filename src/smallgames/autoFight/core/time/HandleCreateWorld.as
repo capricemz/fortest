@@ -15,7 +15,7 @@ package smallgames.autoFight.core.time
 		
 		public function execute(...args):void
 		{
-			ManagerEntitys.instance.createEntity();
+			ManagerEntitys.instance.createEntity(1);
 		}
 	}
 }
