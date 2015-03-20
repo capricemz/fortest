@@ -42,6 +42,11 @@ package smallgames.autoFight.core.entity
 			_entitys = new Dictionary();
 		}
 		
+		public function createScene(scene:IScene):void
+		{
+			
+		}
+		
 		public function createEntity(type:int):IEntity
 		{
 			var list:IEntity;

@@ -15,6 +15,7 @@ package smallgames.autoFight.core.time
 		
 		public function execute(...args):void
 		{
+			var timeDiff:int = args[0] as int;
 			ManagerEntitys.instance.createEntity(1);
 		}
 	}
