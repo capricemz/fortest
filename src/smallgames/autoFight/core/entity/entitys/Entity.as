@@ -16,7 +16,7 @@ package smallgames.autoFight.core.entity.entitys
 		
 		public function Entity()
 		{
-			throw new Error("该类不能初始化，请使用子类");
+			/*throw new Error("该类不能初始化，请使用子类");*/
 		}
 		
 		public function updateByTime(timeDiff:int):void

@@ -6,7 +6,13 @@ package smallgames.autoFight.core.entity.entitys
 	{
 		public function Unit()
 		{
-			super();
+			
+		}
+		
+		override public function updateByTime(timeDiff:int):void
+		{
+			super.updateByTime(timeDiff);
+			trace("Unit.updateByTime(timeDiff) 单位："+this);
 		}
 	}
 }

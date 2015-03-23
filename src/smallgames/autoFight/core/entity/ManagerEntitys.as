@@ -3,9 +3,6 @@ package smallgames.autoFight.core.entity
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.common.ManagerBase;
-	import smallgames.autoFight.core.entity.entitys.Entity;
-	import smallgames.autoFight.core.entity.entitys.Scene;
-	import smallgames.autoFight.core.entity.entitys.Unit;
 	import smallgames.autoFight.core.entity.entitys.interfaces.IEntity;
 	import smallgames.autoFight.core.entity.entitys.interfaces.IScene;
 	import smallgames.autoFight.core.entity.entitys.interfaces.IUnit;
@@ -24,8 +21,8 @@ package smallgames.autoFight.core.entity
 		private static function privateFunc():void{}
 		
 		private var _entitys:Dictionary;
-		private var _listScene:Entity;
-		private var _listUnit:Entity;
+		private var _listScene:IEntity;
+		private var _listUnit:IEntity;
 
 		public function ManagerEntitys(func:Function)
 		{
@@ -42,32 +39,52 @@ package smallgames.autoFight.core.entity
 			_entitys = new Dictionary();
 		}
 		
-		public function createScene(scene:IScene):void
+		public function createEntity(eneity:IEntity):void
 		{
-			
+			if(eneity is IScene)
+			{
+				createScene(eneity as IScene);
+			}
+			else if(eneity is IUnit)
+			{
+				createUnit(eneity as IUnit);
+			}
 		}
 		
-		public function createEntity(type:int):IEntity
+		public function createScene(scene:IScene):void
 		{
-			var list:IEntity;
-			var entity:IEntity;
-			if(type == 1)
+			if(!_listScene)
 			{
-				list = _listScene;
-				entity = new Scene();
+				_listScene = scene as IEntity;
 			}
-			else if(type == 2)
+			else
 			{
-				list = _listUnit;
-				entity = new Unit();
+				var listLast:IEntity = entityListLast(_listScene);
+				listLast.next = scene;
 			}
+		}
+		
+		public function createUnit(unit:IUnit):void
+		{
+			if(!_listUnit)
+			{
+				_listUnit = unit as IEntity;
+			}
+			else
+			{
+				var listLast:IEntity = entityListLast(_listUnit);
+				listLast.next = unit;
+			}
+		}
+		
+		private function entityListLast(list:IEntity):IEntity
+		{
 			var entityNext:IEntity = list;
-			while(entityNext)
+			while (entityNext && entityNext.next)
 			{
 				entityNext = entityNext.next;
 			}
-			entityNext.next = entity;
-			return entity;
+			return entityNext;
 		}
 		
 		public function updateByFrame(timeDiff:int):void

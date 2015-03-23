@@ -30,6 +30,7 @@ package smallgames.autoFight.core.time
 				throw new Error("该类使用单例模式");
 			}
 			_instance = this;
+			initialize();
 		}
 		
 		private function initialize():void
