@@ -11,8 +11,8 @@ package
 	
 	import smallgames.autoFight.AutoFight;
 	
+	import tests.testCpBmpWithAddBmp.TestCpBmpWithAddBmp;
 	import tests.testUseWeakReference.TestUseWeakReference;
-	import tests.textVectorPushSplice.TestVectorPushSplice;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
@@ -114,8 +114,11 @@ package
 			testGreenSock.x = _fpsW;
 			addChild(testGreenSock);*/
 			
-			var testVectorPushSplice:TestVectorPushSplice = new TestVectorPushSplice();
-			addChild(testVectorPushSplice);
+			/*var testVectorPushSplice:TestVectorPushSplice = new TestVectorPushSplice();
+			addChild(testVectorPushSplice);*/
+			
+			var testCpBmpWithAddBmp:TestCpBmpWithAddBmp = new TestCpBmpWithAddBmp();
+			addChild(testCpBmpWithAddBmp);
 			
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
@@ -132,7 +135,8 @@ package
 					/*testConstructor.doTest();*/
 					/*testGlassBall.addBall();*/
 					/*testGreenSock.doTween();*/
-					testVectorPushSplice.doTest();
+					/*testVectorPushSplice.doTest();*/
+					testCpBmpWithAddBmp.doTest();
 				}
 			);
 			addChild(btn);
