@@ -14,7 +14,7 @@ package tests.testCpBmpWithAddBmp
 	public class TestCpBmpWithAddBmp extends Sprite
 	{
 		private var _type:int = 1;
-		private var TOTAL:int = 100;
+		private var TOTAL:int = 500;
 		
 		private var _timeLast:int;
 		private var _numAdd:int;
@@ -52,7 +52,7 @@ package tests.testCpBmpWithAddBmp
 					var theY:Number = (bitmap.y + bitmap.height*.5 - stage.stageHeight*.5);
 					var R:Number = Math.sqrt(theX * theX + theY * theY);
 					viewItem.R = R;
-					viewItem.timeStart = Math.asin(x/R);
+					viewItem.angleRadians = Math.atan2(theX,theY);
 					addChild(bitmap);
 					_viewItems[_numAdd] = viewItem;
 				}
@@ -72,11 +72,11 @@ package tests.testCpBmpWithAddBmp
 				_timeLast = timeNow;
 				if(_type == 1)
 				{
-					var viewItem:ViewItem;
 					for each(viewItem in _viewItems)
 					{
-						viewItem.bmp.x = stage.stageWidth*.5 + Math.sin(timeNow)*viewItem.R;
-						viewItem.bmp.y = stage.stageHeight*.5 + Math.cos(timeNow)*viewItem.R;
+						viewItem.angleRadians += Math.PI*.1;
+						viewItem.bmp.x = stage.stageWidth*.5 + Math.sin(viewItem.angleRadians)*viewItem.R;
+						viewItem.bmp.y = stage.stageHeight*.5 + Math.cos(viewItem.angleRadians)*viewItem.R;
 					}
 				}
 				else if(_type == 2)
@@ -98,7 +98,7 @@ class ViewItem
 {
 	public var bmp:Bitmap;
 	public var R:Number;
-	public var timeStart:Number;
+	public var angleRadians:Number;
 	
 	public function ViewItem()
 	{
