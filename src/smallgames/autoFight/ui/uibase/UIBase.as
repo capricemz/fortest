@@ -1,4 +1,4 @@
-package smallgames.autoFight.ui
+package smallgames.autoFight.ui.uibase
 {
 	import flash.display.Sprite;
 	

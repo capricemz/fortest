@@ -1,7 +1,8 @@
 package smallgames.autoFight.ui
 {
 	import smallgames.autoFight.common.ManagerBase;
-	import smallgames.autoFight.ui.subui.UIMainTrace;
+	import smallgames.autoFight.ui.uisub.UIMainTrace;
+	import smallgames.autoFight.ui.uibase.UIBase;
 
 	public class ManagerUI extends ManagerBase
 	{

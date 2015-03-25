@@ -1,6 +1,6 @@
-package smallgames.autoFight.ui.subui
+package smallgames.autoFight.ui.uisub
 {
-	import smallgames.autoFight.ui.UIMainBase;
+	import smallgames.autoFight.ui.uibase.UIMainBase;
 	
 	/**
 	 * 信息输出框

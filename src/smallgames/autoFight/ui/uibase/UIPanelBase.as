@@ -1,4 +1,4 @@
-package smallgames.autoFight.ui
+package smallgames.autoFight.ui.uibase
 {
 	/**
 	 * 面板基础类
