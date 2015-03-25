@@ -11,6 +11,8 @@ package smallgames.autoFight.ui.subui
 		public function UITrace()
 		{
 			super();
+			var skin:McUITrace = new McUITrace();
+			addChild(skin);
 		}
 	}
 }

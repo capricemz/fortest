@@ -7,6 +7,7 @@ package smallgames.autoFight
 	import flash.events.Event;
 	
 	import smallgames.autoFight.core.time.ManagerTime;
+	import smallgames.autoFight.core.time.HandleCreateWorld;
 	
 	/**
 	 * 自动战斗游戏
@@ -33,6 +34,9 @@ package smallgames.autoFight
 		
 		private function initialize():void
 		{
+			var handleCreateWorld:HandleCreateWorld = new HandleCreateWorld();
+			ManagerTime.instance.addHandle(handleCreateWorld);
+			//
 			ManagerTime.instance.addFrame(stage);
 		}
 	}

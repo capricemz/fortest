@@ -25,7 +25,7 @@ package smallgames.autoFight.core.time
 			datas.push(new Unit());
 		}
 		
-		public function execute(...args):void
+		public function execute(...args):Boolean
 		{
 			var timeDiff:int = args[0] as int;
 			if(datas && datas.length)
@@ -33,7 +33,9 @@ package smallgames.autoFight.core.time
 				var data:IEntity = datas.pop();
 				var manager:ManagerEntitys = ManagerEntitys.instance;
 				manager.createEntity(data);
+				return false;
 			}
+			return true;
 		}
 	}
 }
