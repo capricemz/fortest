@@ -1,14 +1,14 @@
 package smallgames.autoFight.ui.subui
 {
-	import smallgames.autoFight.ui.UIBase;
+	import smallgames.autoFight.ui.UIMainBase;
 	
 	/**
 	 * 信息输出框
 	 * @author Administrator
 	 */	
-	public class UITrace extends UIBase
+	public class UIMainTrace extends UIMainBase
 	{
-		public function UITrace()
+		public function UIMainTrace()
 		{
 			super();
 			var skin:McUITrace = new McUITrace();

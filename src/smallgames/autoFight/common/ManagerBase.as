@@ -1,6 +1,8 @@
 package smallgames.autoFight.common
 {
-	public class ManagerBase
+	import smallgames.autoFight.common.observer.Subject;
+
+	public class ManagerBase extends Subject
 	{
 		public function ManagerBase()
 		{
