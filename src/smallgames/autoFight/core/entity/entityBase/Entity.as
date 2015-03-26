@@ -1,6 +1,5 @@
-package smallgames.autoFight.core.entity.entitys
+package smallgames.autoFight.core.entity.entityBase
 {
-	import smallgames.autoFight.core.entity.entitys.interfaces.IEntity;
 
 	public class Entity implements IEntity
 	{

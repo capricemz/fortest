@@ -3,9 +3,9 @@ package smallgames.autoFight.core.entity
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.common.ManagerBase;
-	import smallgames.autoFight.core.entity.entitys.interfaces.IEntity;
-	import smallgames.autoFight.core.entity.entitys.interfaces.IScene;
-	import smallgames.autoFight.core.entity.entitys.interfaces.IUnit;
+	import smallgames.autoFight.core.entity.entityBase.IEntity;
+	import smallgames.autoFight.core.entity.entityBase.IScene;
+	import smallgames.autoFight.core.entity.entityBase.IUnit;
 	
 	/**
 	 * 实体管理类
@@ -39,19 +39,19 @@ package smallgames.autoFight.core.entity
 			_entitys = new Dictionary();
 		}
 		
-		public function createEntity(eneity:IEntity):void
+		public function addEntity(eneity:IEntity):void
 		{
 			if(eneity is IScene)
 			{
-				createScene(eneity as IScene);
+				addScene(eneity as IScene);
 			}
 			else if(eneity is IUnit)
 			{
-				createUnit(eneity as IUnit);
+				addUnit(eneity as IUnit);
 			}
 		}
 		
-		public function createScene(scene:IScene):void
+		private function addScene(scene:IScene):void
 		{
 			if(!_listScene)
 			{
@@ -64,7 +64,7 @@ package smallgames.autoFight.core.entity
 			}
 		}
 		
-		public function createUnit(unit:IUnit):void
+		private function addUnit(unit:IUnit):void
 		{
 			if(!_listUnit)
 			{
