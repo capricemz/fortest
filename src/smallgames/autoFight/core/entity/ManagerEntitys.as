@@ -3,6 +3,7 @@ package smallgames.autoFight.core.entity
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.core.entity.data.DataEntity;
 	import smallgames.autoFight.core.entity.entityBase.IEntity;
 	import smallgames.autoFight.core.entity.entityBase.IScene;
 	import smallgames.autoFight.core.entity.entityBase.IUnit;
@@ -39,8 +40,9 @@ package smallgames.autoFight.core.entity
 			_entitys = new Dictionary();
 		}
 		
-		public function addEntity(eneity:IEntity):void
+		public function addEntity(data:DataEntity):void
 		{
+			_handles
 			if(eneity is IScene)
 			{
 				addScene(eneity as IScene);

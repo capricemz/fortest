@@ -2,6 +2,7 @@ package smallgames.autoFight.core.entity
 {
 	import smallgames.autoFight.common.IHandle;
 	import smallgames.autoFight.core.entity.entityBase.IEntity;
+	import smallgames.autoFight.core.entity.entitysub.Forest;
 	
 	/**
 	 * 构造实体处理类
@@ -15,13 +16,24 @@ package smallgames.autoFight.core.entity
 		
 		public function execute(...args):Boolean
 		{
-			ManagerEntitys.instance.addEntity();
-			return false;
+			var type:int = args[0] as int;
+			var entity:IEntity = args[1] as IEntity;
+			entity = createEntity(type);
+			return true;
 		}
 		
-		private function createEntity():IEntity
+		private function createEntity(type:int):IEntity
 		{
-			switch()
+			var entity:IEntity;
+			switch(type)
+			{
+				case ConstEntity.ENTITY_SCENE_FOREST:
+					entity = new Forest();
+					break;
+				default:
+					break;
+			}
+			return entity;
 		}
 		
 		public function get isOverRemove():Boolean

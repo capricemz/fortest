@@ -1,16 +1,29 @@
 package smallgames.autoFight.core.entity.entityBase
 {
+	import smallgames.autoFight.core.entity.data.DataEntity;
 
 	public class Entity implements IEntity
 	{
 		private var _next:IEntity;
+		
 		public function get next():IEntity
 		{
 			return _next;
 		}
+		
 		public function set next(value:IEntity):void
 		{
 			_next = value;
+		}
+		
+		public function get data():DataEntity
+		{
+			return null;
+		}
+		
+		public function set data(value:DataEntity):void
+		{
+			
 		}
 		
 		public function Entity()
