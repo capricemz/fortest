@@ -2,6 +2,8 @@ package smallgames.autoFight.common.observer
 {
 	public interface IObserver
 	{
-		function update(...args):void
+		function get id():int;
+		function set id(value:int):void;
+		function update(...args):*;
 	}
 }
