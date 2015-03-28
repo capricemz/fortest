@@ -1,6 +1,6 @@
 package smallgames.autoFight.core.entity.entityBase
 {
-	import smallgames.autoFight.core.entity.data.DataEntity;
+	import smallgames.autoFight.core.entity.data.IDataEntity;
 
 	public class Entity implements IEntity
 	{
@@ -16,12 +16,12 @@ package smallgames.autoFight.core.entity.entityBase
 			_next = value;
 		}
 		
-		public function get data():DataEntity
+		public function get data():IDataEntity
 		{
 			return null;
 		}
 		
-		public function set data(value:DataEntity):void
+		public function set data(value:IDataEntity):void
 		{
 			
 		}

@@ -6,8 +6,12 @@ package smallgames.autoFight
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	
-	import smallgames.autoFight.core.time.ManagerTime;
+	import smallgames.autoFight.core.entity.ConstEntity;
+	import smallgames.autoFight.core.entity.HandleCreateEntity;
+	import smallgames.autoFight.core.entity.ManagerEntity;
+	import smallgames.autoFight.core.time.ConstTime;
 	import smallgames.autoFight.core.time.HandleCreateWorld;
+	import smallgames.autoFight.core.time.ManagerTime;
 	
 	/**
 	 * 自动战斗游戏
@@ -34,8 +38,11 @@ package smallgames.autoFight
 		
 		private function initialize():void
 		{
+			var handleCreateEntity:HandleCreateEntity = new HandleCreateEntity();
+			ManagerEntity.instance.addHandle(ConstEntity.HANDLE_CREATE,handleCreateEntity);
+			//
 			var handleCreateWorld:HandleCreateWorld = new HandleCreateWorld();
-			ManagerTime.instance.addHandle(handleCreateWorld);
+			ManagerTime.instance.addHandle(ConstTime.HANDLE_CREATE,handleCreateWorld);
 			//
 			ManagerTime.instance.addFrame(stage);
 		}

@@ -2,6 +2,8 @@ package smallgames.autoFight.common
 {
 	public interface IHandle
 	{
+		function get id():int;
+		function set id(value:int):void;
 		/**
 		 * 执行
 		 * @param args 需要的参数

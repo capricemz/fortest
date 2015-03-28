@@ -3,7 +3,7 @@ package smallgames.autoFight.core.entity
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.common.ManagerBase;
-	import smallgames.autoFight.core.entity.data.DataEntity;
+	import smallgames.autoFight.core.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.entityBase.IEntity;
 	import smallgames.autoFight.core.entity.entityBase.IScene;
 	import smallgames.autoFight.core.entity.entityBase.IUnit;
@@ -12,12 +12,12 @@ package smallgames.autoFight.core.entity
 	 * 实体管理类
 	 * @author Administrator
 	 */	
-	public class ManagerEntitys extends ManagerBase
+	public class ManagerEntity extends ManagerBase
 	{
-		private static var _instance:ManagerEntitys;
-		public static function get instance():ManagerEntitys
+		private static var _instance:ManagerEntity;
+		public static function get instance():ManagerEntity
 		{
-			return _instance || new ManagerEntitys(privateFunc);
+			return _instance || new ManagerEntity(privateFunc);
 		}
 		private static function privateFunc():void{}
 		
@@ -25,7 +25,7 @@ package smallgames.autoFight.core.entity
 		private var _listScene:IEntity;
 		private var _listUnit:IEntity;
 
-		public function ManagerEntitys(func:Function)
+		public function ManagerEntity(func:Function)
 		{
 			if(func != privateFunc)
 			{
@@ -40,16 +40,17 @@ package smallgames.autoFight.core.entity
 			_entitys = new Dictionary();
 		}
 		
-		public function addEntity(data:DataEntity):void
+		public function addEntity(data:IDataEntity):void
 		{
-			_handles
-			if(eneity is IScene)
+			var entity:IEntity;
+			doExecute(ConstEntity.HANDLE_CREATE,data,entity);
+			if(entity is IScene)
 			{
-				addScene(eneity as IScene);
+				addScene(entity as IScene);
 			}
-			else if(eneity is IUnit)
+			else if(entity is IUnit)
 			{
-				addUnit(eneity as IUnit);
+				addUnit(entity as IUnit);
 			}
 		}
 		

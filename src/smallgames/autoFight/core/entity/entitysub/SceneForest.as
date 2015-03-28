@@ -6,9 +6,9 @@ package smallgames.autoFight.core.entity.entitysub
 	 * 森林场景类
 	 * @author Administrator
 	 */	
-	public class Forest extends Scene implements IForest
+	public class SceneForest extends Scene implements ISceneForest
 	{
-		public function Forest()
+		public function SceneForest()
 		{
 			super();
 		}

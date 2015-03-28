@@ -1,13 +1,13 @@
 package smallgames.autoFight.core.entity.entityBase
 {
-	import smallgames.autoFight.core.entity.data.DataEntity;
+	import smallgames.autoFight.core.entity.data.IDataEntity;
 
 	public interface IEntity
 	{
 		function get next():IEntity;
 		function set next(value:IEntity):void;
-		function get data():DataEntity;
-		function set data(value:DataEntity):void;
+		function get data():IDataEntity;
+		function set data(value:IDataEntity):void;
 		function updateByTime(timeDiff:int):void;
 	}
 }

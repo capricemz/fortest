@@ -1,8 +1,9 @@
 package smallgames.autoFight.core.entity
 {
 	import smallgames.autoFight.common.IHandle;
+	import smallgames.autoFight.core.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.entityBase.IEntity;
-	import smallgames.autoFight.core.entity.entitysub.Forest;
+	import smallgames.autoFight.core.entity.entitysub.SceneForest;
 	
 	/**
 	 * 构造实体处理类
@@ -10,15 +11,25 @@ package smallgames.autoFight.core.entity
 	 */	
 	public class HandleCreateEntity implements IHandle
 	{
+		private var _id:int;
+		public function get id():int
+		{
+			return _id;
+		}
+		public function set id(value:int):void
+		{
+			_id = value;
+		}
+		
 		public function HandleCreateEntity()
 		{
 		}
 		
 		public function execute(...args):Boolean
 		{
-			var type:int = args[0] as int;
+			var data:IDataEntity = args[0] as IDataEntity;
 			var entity:IEntity = args[1] as IEntity;
-			entity = createEntity(type);
+			entity = createEntity(data.type);
 			return true;
 		}
 		
@@ -28,7 +39,7 @@ package smallgames.autoFight.core.entity
 			switch(type)
 			{
 				case ConstEntity.ENTITY_SCENE_FOREST:
-					entity = new Forest();
+					entity = new SceneForest();
 					break;
 				default:
 					break;

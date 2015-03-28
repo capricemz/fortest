@@ -5,7 +5,7 @@ package smallgames.autoFight.core.time
 	import flash.utils.getTimer;
 	
 	import smallgames.autoFight.common.ManagerBase;
-	import smallgames.autoFight.core.entity.ManagerEntitys;
+	import smallgames.autoFight.core.entity.ManagerEntity;
 
 	/**
 	 * 时间管理类
@@ -49,9 +49,9 @@ package smallgames.autoFight.core.time
 			var timeDiff:int = timeNow - _timeLast;
 			_timeLast = timeNow;
 			//
-			doHandlesExecute(timeDiff);
+			doAllExecute(timeDiff);
 			//
-			ManagerEntitys.instance.updateByFrame(timeDiff);
+			ManagerEntity.instance.updateByFrame(timeDiff);
 		}
 	}
 }
