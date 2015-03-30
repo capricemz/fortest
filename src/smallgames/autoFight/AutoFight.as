@@ -6,11 +6,7 @@ package smallgames.autoFight
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	
-	import smallgames.autoFight.core.entity.ConstEntity;
-	import smallgames.autoFight.core.entity.HandleCreateEntity;
-	import smallgames.autoFight.core.entity.ManagerEntity;
-	import smallgames.autoFight.core.time.ConstTime;
-	import smallgames.autoFight.core.time.HandleCreateWorld;
+	import smallgames.autoFight.common.MediatorHandle;
 	import smallgames.autoFight.core.time.ManagerTime;
 	
 	/**
@@ -38,11 +34,7 @@ package smallgames.autoFight
 		
 		private function initialize():void
 		{
-			var handleCreateEntity:HandleCreateEntity = new HandleCreateEntity();
-			ManagerEntity.instance.addHandle(ConstEntity.HANDLE_CREATE,handleCreateEntity);
-			//
-			var handleCreateWorld:HandleCreateWorld = new HandleCreateWorld();
-			ManagerTime.instance.addHandle(ConstTime.HANDLE_CREATE,handleCreateWorld);
+			MediatorHandle.instance.attachAll();
 			//
 			ManagerTime.instance.addFrame(stage);
 		}

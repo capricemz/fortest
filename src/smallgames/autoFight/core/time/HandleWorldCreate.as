@@ -1,6 +1,6 @@
 package smallgames.autoFight.core.time
 {
-	import smallgames.autoFight.common.IHandle;
+	import smallgames.autoFight.common.observer.IObserver;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.data.DataEntity;
@@ -10,7 +10,7 @@ package smallgames.autoFight.core.time
 	 * 构造世界处理类
 	 * @author Administrator
 	 */	
-	public class HandleCreateWorld implements IHandle
+	public class HandleWorldCreate implements IObserver
 	{
 		private var _id:int;
 		public function get id():int
@@ -24,8 +24,10 @@ package smallgames.autoFight.core.time
 		
 		private var datas:Vector.<IDataEntity>;
 		
-		public function HandleCreateWorld()
+		public function HandleWorldCreate()
 		{
+			ManagerTime.instance.attach(this);
+			//
 			datas = new Vector.<IDataEntity>();
 			var dataEntity:DataEntity = new DataEntity();
 			dataEntity.id = 0;
@@ -41,7 +43,7 @@ package smallgames.autoFight.core.time
 			datas.push(dataEntity);
 		}
 		
-		public function execute(...args):Boolean
+		public function update(...args):*
 		{
 			var timeDiff:int = args[0] as int;
 			if(datas && datas.length)
@@ -50,11 +52,6 @@ package smallgames.autoFight.core.time
 				ManagerEntity.instance.addEntity(data);
 				return false;
 			}
-			return true;
-		}
-		
-		public function get isOverRemove():Boolean
-		{
 			return true;
 		}
 	}

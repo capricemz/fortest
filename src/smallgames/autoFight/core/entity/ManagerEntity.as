@@ -42,8 +42,7 @@ package smallgames.autoFight.core.entity
 		
 		public function addEntity(data:IDataEntity):void
 		{
-			var entity:IEntity;
-			doExecute(ConstEntity.HANDLE_CREATE,data,entity);
+			var entity:IEntity = notify(ConstEntity.HANDLE_CREATE,data) as IEntity;
 			if(entity is IScene)
 			{
 				addScene(entity as IScene);

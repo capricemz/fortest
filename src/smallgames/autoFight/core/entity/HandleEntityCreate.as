@@ -1,15 +1,16 @@
 package smallgames.autoFight.core.entity
 {
-	import smallgames.autoFight.common.IHandle;
+	import smallgames.autoFight.common.observer.IObserver;
 	import smallgames.autoFight.core.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.entityBase.IEntity;
 	import smallgames.autoFight.core.entity.entitysub.SceneForest;
+	import smallgames.autoFight.core.entity.entitysub.UnitSlime;
 	
 	/**
 	 * 构造实体处理类
 	 * @author Administrator
 	 */	
-	public class HandleCreateEntity implements IHandle
+	public class HandleEntityCreate implements IObserver
 	{
 		private var _id:int;
 		public function get id():int
@@ -21,16 +22,17 @@ package smallgames.autoFight.core.entity
 			_id = value;
 		}
 		
-		public function HandleCreateEntity()
+		public function HandleEntityCreate()
 		{
+			ManagerEntity.instance.attach(this);
 		}
 		
-		public function execute(...args):Boolean
+		public function update(...args):*
 		{
 			var data:IDataEntity = args[0] as IDataEntity;
-			var entity:IEntity = args[1] as IEntity;
-			entity = createEntity(data.type);
-			return true;
+			var entity:IEntity = createEntity(data.type);
+			entity.data = data;
+			return entity;
 		}
 		
 		private function createEntity(type:int):IEntity
@@ -41,15 +43,12 @@ package smallgames.autoFight.core.entity
 				case ConstEntity.ENTITY_SCENE_FOREST:
 					entity = new SceneForest();
 					break;
+				case ConstEntity.ENTITY_UNIT_SLIME:
+					entity = new UnitSlime();
 				default:
 					break;
 			}
 			return entity;
-		}
-		
-		public function get isOverRemove():Boolean
-		{
-			return false;
 		}
 	}
 }

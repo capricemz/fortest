@@ -9,7 +9,7 @@ package smallgames.autoFight.ui
 	 * 构造UI处理类
 	 * @author Administrator
 	 */	
-	public class HandleCreateUI implements IHandle
+	public class HandleUICreate implements IHandle
 	{
 		private var _id:int;
 		public function get id():int
@@ -21,7 +21,7 @@ package smallgames.autoFight.ui
 			_id = value;
 		}
 		
-		public function HandleCreateUI()
+		public function HandleUICreate()
 		{
 			
 		}
