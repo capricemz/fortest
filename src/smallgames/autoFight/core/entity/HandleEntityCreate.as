@@ -20,11 +20,12 @@ package smallgames.autoFight.core.entity
 		public function set id(value:int):void
 		{
 			_id = value;
+			ManagerEntity.instance.attach(this);
 		}
 		
 		public function HandleEntityCreate()
 		{
-			ManagerEntity.instance.attach(this);
+			
 		}
 		
 		public function update(...args):*

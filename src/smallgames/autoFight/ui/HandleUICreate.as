@@ -1,7 +1,6 @@
 package smallgames.autoFight.ui
 {
-	import smallgames.autoFight.common.IHandle;
-	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.common.observer.IObserver;
 	import smallgames.autoFight.ui.uibase.UIBase;
 	import smallgames.autoFight.ui.uisub.UIMainTrace;
 	
@@ -9,7 +8,7 @@ package smallgames.autoFight.ui
 	 * 构造UI处理类
 	 * @author Administrator
 	 */	
-	public class HandleUICreate implements IHandle
+	public class HandleUICreate implements IObserver
 	{
 		private var _id:int;
 		public function get id():int
@@ -26,15 +25,14 @@ package smallgames.autoFight.ui
 			
 		}
 		
-		public function execute(...args):Boolean
+		public function update(...args):*
 		{
 			var type:int = args[0] as int;
-			var uiBase:UIBase = newUI(type);
-			ManagerUI.instance.
+			var uiBase:UIBase = createUI(type);
 			return false;
 		}
 		
-		private function newUI(type:int):UIBase
+		private function createUI(type:int):UIBase
 		{
 			var uiBase:UIBase;
 			switch(type)

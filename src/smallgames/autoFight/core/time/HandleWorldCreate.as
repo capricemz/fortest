@@ -20,14 +20,13 @@ package smallgames.autoFight.core.time
 		public function set id(value:int):void
 		{
 			_id = value;
+			ManagerTime.instance.attach(this);
 		}
 		
 		private var datas:Vector.<IDataEntity>;
 		
 		public function HandleWorldCreate()
 		{
-			ManagerTime.instance.attach(this);
-			//
 			datas = new Vector.<IDataEntity>();
 			var dataEntity:DataEntity = new DataEntity();
 			dataEntity.id = 0;
