@@ -47,7 +47,7 @@ package smallgames.autoFight.core.time
 			var timeDiff:int = args[0] as int;
 			if(datas && datas.length)
 			{
-				var data:IDataEntity = datas.pop();
+				var data:IDataEntity = datas.shift();
 				ManagerEntity.instance.addEntity(data);
 				return false;
 			}

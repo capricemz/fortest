@@ -6,6 +6,8 @@ package smallgames.autoFight.core.entity.entityBase
 	{
 		private var _next:IEntity;
 		
+		protected var _data:IDataEntity;
+		
 		public function get next():IEntity
 		{
 			return _next;
@@ -18,12 +20,12 @@ package smallgames.autoFight.core.entity.entityBase
 		
 		public function get data():IDataEntity
 		{
-			return null;
+			return _data;
 		}
 		
 		public function set data(value:IDataEntity):void
 		{
-			
+			_data = value;
 		}
 		
 		public function Entity()
