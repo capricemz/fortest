@@ -18,6 +18,7 @@ package smallgames.autoFight.ui
 		public function set id(value:int):void
 		{
 			_id = value;
+			ManagerUI.instance.attach(this);
 		}
 		
 		public function HandleUICreate()
@@ -29,7 +30,7 @@ package smallgames.autoFight.ui
 		{
 			var type:int = args[0] as int;
 			var uiBase:UIBase = createUI(type);
-			return false;
+			return uiBase;
 		}
 		
 		private function createUI(type:int):UIBase

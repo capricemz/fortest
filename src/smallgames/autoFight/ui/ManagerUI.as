@@ -2,8 +2,6 @@ package smallgames.autoFight.ui
 {
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.ui.uibase.IUIBase;
-	import smallgames.autoFight.ui.uibase.UIBase;
-	import smallgames.autoFight.ui.uisub.UIMainTrace;
 
 	public class ManagerUI extends ManagerBase
 	{
@@ -24,19 +22,20 @@ package smallgames.autoFight.ui
 			initialize();
 		}
 		
-		override protected function initialize():void
+		protected function initialize():void
 		{
 			
 		}
 		
 		public function openUIBase(type:int):IUIBase
 		{
-			
+			var uiBase:IUIBase = notify(ConstUI.HANDLE_CREATE,type) as IUIBase;
+			return uiBase;
 		}
 		
 		public function getUIBase(type:int):IUIBase
 		{
-			
+			return null;
 		}
 		
 		public function closeUIBase(type:int):void
