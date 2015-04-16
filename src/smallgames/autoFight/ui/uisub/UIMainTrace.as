@@ -16,3 +16,12 @@ package smallgames.autoFight.ui.uisub
 		}
 	}
 }
+import flash.display.DisplayObjectContainer;
+
+class ResUIMainTrace extends DisplayObjectContainer
+{
+	public function ResUIMainTrace()
+	{
+		
+	}
+}
