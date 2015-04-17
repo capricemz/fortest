@@ -21,7 +21,7 @@ import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;
 
-import smallgames.autoFight.common.filter.FiltersUtil;
+import smallgames.autoFight.common.filter.UtilFilters;
 
 class ResUIMainTrace extends DisplayObjectContainer
 {
@@ -45,7 +45,7 @@ class ResUIMainTrace extends DisplayObjectContainer
 		rim.graphics.lineTo(0,240);
 		rim.graphics.lineTo(0,0);
 		rim.graphics.endFill();
-		rim.filters = [FiltersUtil.FILTER_DROP_SHADOW];
+		rim.filters = [UtilFilters.FILTER_DROP_SHADOW];
 		addChild(rim);
 		//
 		txtTime = new TextField();
@@ -56,7 +56,7 @@ class ResUIMainTrace extends DisplayObjectContainer
 		txtTime.textColor = 0xffe1aa;
 		txtTime.multiline = false;
 		txtTime.wordWrap = false;
-		txtTime.filters = [FiltersUtil.FILTER_GLOW_BLACK];
+		txtTime.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtTime);
 		//
 		txtPlace = new TextField();
@@ -67,7 +67,7 @@ class ResUIMainTrace extends DisplayObjectContainer
 		txtPlace.textColor = 0xffe1aa;
 		txtPlace.multiline = false;
 		txtPlace.wordWrap = false;
-		txtPlace.filters = [FiltersUtil.FILTER_GLOW_BLACK];
+		txtPlace.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtPlace);
 		//
 		txtUnit = new TextField();
@@ -78,7 +78,7 @@ class ResUIMainTrace extends DisplayObjectContainer
 		txtUnit.textColor = 0xffe1aa;
 		txtUnit.multiline = false;
 		txtUnit.wordWrap = false;
-		txtUnit.filters = [FiltersUtil.FILTER_GLOW_BLACK];
+		txtUnit.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtUnit);
 		//
 		txtPlot = new TextField();
@@ -93,7 +93,7 @@ class ResUIMainTrace extends DisplayObjectContainer
 		defaultTextFormat.leading = 4;
 		txtPlot.defaultTextFormat = defaultTextFormat;
 		txtPlot.setTextFormat(defaultTextFormat);
-		txtPlot.filters = [FiltersUtil.FILTER_GLOW_BLACK];
+		txtPlot.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtPlot);
 		
 	}
