@@ -8,6 +8,8 @@ package smallgames.autoFight
 	
 	import smallgames.autoFight.common.MediatorHandle;
 	import smallgames.autoFight.core.time.ManagerTime;
+	import smallgames.autoFight.ui.ConstUI;
+	import smallgames.autoFight.ui.ManagerUI;
 	
 	/**
 	 * 自动战斗游戏
@@ -37,6 +39,8 @@ package smallgames.autoFight
 			MediatorHandle.instance.attachAll();
 			//
 			ManagerTime.instance.addFrame(stage);
+			//
+			ManagerUI.instance.showUIBase(ConstUI.UI_MAIN_TRACE);
 		}
 	}
 }

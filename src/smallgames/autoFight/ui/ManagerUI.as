@@ -1,5 +1,7 @@
 package smallgames.autoFight.ui
 {
+	import flash.utils.Dictionary;
+	
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.ui.uibase.IUIBase;
 
@@ -11,6 +13,8 @@ package smallgames.autoFight.ui
 			return _instance || new ManagerUI(privateFunc);
 		}
 		private static function privateFunc():void{}
+		
+		public var _uiBases:Dictionary;
 		
 		public function ManagerUI(func:Function)
 		{
@@ -24,23 +28,45 @@ package smallgames.autoFight.ui
 		
 		protected function initialize():void
 		{
-			
+			_uiBases = new Dictionary();
 		}
 		
-		public function openUIBase(type:int):IUIBase
+		public function showUIBase(type:int):IUIBase
+		{
+			var uiBase:IUIBase;
+			uiBase = _uiBases[type] as IUIBase;
+			if(!uiBase)
+			{
+				uiBase = createUIBase(type);
+			}
+			return uiBase;
+		}
+		
+		public function createUIBase(type:int):IUIBase
 		{
 			var uiBase:IUIBase = notify(ConstUI.HANDLE_CREATE,type) as IUIBase;
+			_uiBases[type] = uiBase;
 			return uiBase;
+		}
+		
+		public function hideUIBase(type:int):void
+		{
+			var uiBase:IUIBase;
+			uiBase = _uiBases[type] as IUIBase;
+			if(uiBase)
+			{
+				destoryUIBase(type);
+			}
+		}
+		
+		public function destoryUIBase(type:int):void
+		{
+			delete _uiBases[type];
 		}
 		
 		public function getUIBase(type:int):IUIBase
 		{
-			return null;
-		}
-		
-		public function closeUIBase(type:int):void
-		{
-			
+			return _uiBases[type];
 		}
 	}
 }
