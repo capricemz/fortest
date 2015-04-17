@@ -1,6 +1,7 @@
 package smallgames.autoFight.ui.uibase
 {
-	import flash.display.Sprite;
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	
 	import smallgames.autoFight.common.observer.IObserver;
 	
@@ -8,7 +9,7 @@ package smallgames.autoFight.ui.uibase
 	 * 用户界面基础类
 	 * @author Administrator
 	 */	
-	public class UIBase extends Sprite implements IUIBase,IObserver
+	public class UIBase implements IUIBase,IObserver
 	{
 		public function get id():int
 		{
@@ -20,9 +21,37 @@ package smallgames.autoFight.ui.uibase
 			
 		}
 		
+		public function get skin():DisplayObject
+		{
+			return null;
+		}
+		
 		public function UIBase()
 		{
-			super();
+			
+		}
+		
+		public function show(layer:DisplayObjectContainer):void
+		{
+			if(skin && !skin.parent)
+			{
+				setPosition(layer);
+				layer.addChild(skin);
+			}
+		}
+		
+		public function setPosition(layer:DisplayObjectContainer):void
+		{
+			skin.x = (layer.stage.stageWidth - skin.width)*.5;
+			skin.y = (layer.stage.stageHeight - skin.height)*.5;
+		}
+		
+		public function hide():void
+		{
+			if(skin && skin.parent)
+			{
+				skin.parent.removeChild(skin);
+			}
 		}
 		
 		public function update(...args):*

@@ -1,5 +1,6 @@
 package smallgames.autoFight.ui
 {
+	import flash.display.Sprite;
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.common.ManagerBase;
@@ -14,7 +15,8 @@ package smallgames.autoFight.ui
 		}
 		private static function privateFunc():void{}
 		
-		public var _uiBases:Dictionary;
+		private var _layer:Sprite;
+		private var _uiBases:Dictionary;
 		
 		public function ManagerUI(func:Function)
 		{
@@ -23,11 +25,11 @@ package smallgames.autoFight.ui
 				throw new Error("该类使用单例模式");
 			}
 			_instance = this;
-			initialize();
 		}
 		
-		protected function initialize():void
+		public function initialize(layer:Sprite):void
 		{
+			_layer = layer;
 			_uiBases = new Dictionary();
 		}
 		
@@ -39,6 +41,7 @@ package smallgames.autoFight.ui
 			{
 				uiBase = createUIBase(type);
 			}
+			uiBase.show(_layer);
 			return uiBase;
 		}
 		
@@ -64,7 +67,7 @@ package smallgames.autoFight.ui
 			delete _uiBases[type];
 		}
 		
-		public function getUIBase(type:int):IUIBase
+		public function getUIBase(type:String):IUIBase
 		{
 			return _uiBases[type];
 		}

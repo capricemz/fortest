@@ -40,6 +40,12 @@ package smallgames.autoFight
 			//
 			ManagerTime.instance.addFrame(stage);
 			//
+			var layerUI:Sprite = new Sprite();
+			layerUI.mouseChildren = false;
+			layerUI.mouseEnabled = false;
+			addChild(layerUI);
+			ManagerUI.instance.initialize(layerUI);
+			//
 			ManagerUI.instance.showUIBase(ConstUI.UI_MAIN_TRACE);
 		}
 	}

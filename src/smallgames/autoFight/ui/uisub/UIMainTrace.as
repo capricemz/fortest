@@ -1,5 +1,8 @@
 package smallgames.autoFight.ui.uisub
 {
+	import flash.display.DisplayObject;
+	import flash.display.Sprite;
+	
 	import smallgames.autoFight.ui.uibase.UIMainBase;
 	
 	/**
@@ -8,22 +11,27 @@ package smallgames.autoFight.ui.uisub
 	 */	
 	public class UIMainTrace extends UIMainBase
 	{
+		private var _skin:ResUIMainTrace;
+		
+		override public function get skin():DisplayObject
+		{
+			return _skin;
+		}
+		
 		public function UIMainTrace()
 		{
 			super();
-			var skin:ResUIMainTrace = new ResUIMainTrace();
-			addChild(skin);
+			_skin = new ResUIMainTrace();
 		}
 	}
 }
-import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;
 
 import smallgames.autoFight.common.filter.UtilFilters;
 
-class ResUIMainTrace extends DisplayObjectContainer
+class ResUIMainTrace extends Sprite
 {
 	public var txtTime:TextField;
 	public var txtPlace:TextField;
