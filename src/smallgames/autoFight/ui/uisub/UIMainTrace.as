@@ -3,13 +3,15 @@ package smallgames.autoFight.ui.uisub
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	
+	import smallgames.autoFight.core.entity.ManagerEntity;
+	import smallgames.autoFight.core.time.ManagerTime;
 	import smallgames.autoFight.ui.uibase.UIMainBase;
 	
 	/**
 	 * 信息输出框
 	 * @author Administrator
 	 */	
-	public class UIMainTrace extends UIMainBase
+	public class UIMainTrace extends UIMainBase implements IUIMainTrace
 	{
 		private var _skin:ResUIMainTrace;
 		
@@ -22,6 +24,14 @@ package smallgames.autoFight.ui.uisub
 		{
 			super();
 			_skin = new ResUIMainTrace();
+			ManagerTime.instance.attach(this);
+		}
+		
+		override public function update(...args):*
+		{
+			var timeDiff:int = args[0] as int;
+			_skin.txtTime.htmlText = "";
+			_skin.txtPlace.htmlText = "";
 		}
 	}
 }

@@ -49,9 +49,9 @@ package smallgames.autoFight.core.time
 			var timeDiff:int = timeNow - _timeLast;
 			_timeLast = timeNow;
 			//
-			notifyAll(timeDiff);
-			//
 			ManagerEntity.instance.updateByFrame(timeDiff);
+			//
+			notifyAll(timeDiff);
 		}
 	}
 }

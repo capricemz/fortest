@@ -67,7 +67,7 @@ package smallgames.autoFight.ui
 			delete _uiBases[type];
 		}
 		
-		public function getUIBase(type:String):IUIBase
+		public function getUIBase(type:int):IUIBase
 		{
 			return _uiBases[type];
 		}
