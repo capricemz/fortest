@@ -30,6 +30,7 @@ package smallgames.autoFight.ui
 		{
 			var type:int = args[0] as int;
 			var uiBase:UIBase = createUI(type);
+			uiBase.id = type;
 			return uiBase;
 		}
 		

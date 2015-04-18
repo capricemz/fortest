@@ -6,6 +6,7 @@ package smallgames.autoFight.core.time
 	
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.ManagerEntity;
+	import smallgames.autoFight.ui.ConstUI;
 
 	/**
 	 * 时间管理类
@@ -49,9 +50,11 @@ package smallgames.autoFight.core.time
 			var timeDiff:int = timeNow - _timeLast;
 			_timeLast = timeNow;
 			//
+			notify(ConstTime.HANDLE_CREATE);
+			//
 			ManagerEntity.instance.updateByFrame(timeDiff);
 			//
-			notifyAll(timeDiff);
+			notify(ConstUI.UI_MAIN_TRACE);
 		}
 	}
 }

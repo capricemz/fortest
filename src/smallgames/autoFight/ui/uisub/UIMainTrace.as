@@ -4,6 +4,7 @@ package smallgames.autoFight.ui.uisub
 	import flash.display.Sprite;
 	
 	import smallgames.autoFight.core.entity.ManagerEntity;
+	import smallgames.autoFight.core.entity.entityBase.IEntity;
 	import smallgames.autoFight.core.time.ManagerTime;
 	import smallgames.autoFight.ui.uibase.UIMainBase;
 	
@@ -13,6 +14,11 @@ package smallgames.autoFight.ui.uisub
 	 */	
 	public class UIMainTrace extends UIMainBase implements IUIMainTrace
 	{
+		override public function set id(value:int):void
+		{
+			super.id = value;
+			ManagerTime.instance.attach(this);
+		}
 		private var _skin:ResUIMainTrace;
 		
 		override public function get skin():DisplayObject
@@ -24,14 +30,61 @@ package smallgames.autoFight.ui.uisub
 		{
 			super();
 			_skin = new ResUIMainTrace();
-			ManagerTime.instance.attach(this);
 		}
 		
 		override public function update(...args):*
 		{
 			var timeDiff:int = args[0] as int;
+			clearTxtAll();
+			updateTxtTime();
+			updateTxtPlace();
+			updateTxtUnit();
+			updateTxtPlot();
+		}
+		
+		private function clearTxtAll():void
+		{
+			_skin.txtTime.text = "";
+			_skin.txtPlace.text = "";
+			_skin.txtUnit.text = "";
+			_skin.txtPlot.text = "";
+		}
+		
+		private function updateTxtTime():void
+		{
+			
 			_skin.txtTime.htmlText = "";
-			_skin.txtPlace.htmlText = "";
+		}
+		
+		private function updateTxtPlace():void
+		{
+			var manager:ManagerEntity = ManagerEntity.instance;
+			var entity:IEntity = manager.listScene;
+			while(entity)
+			{
+				_skin.txtPlace.appendText(entity.name);
+				entity = entity.next;
+			}
+		}
+		
+		private function updateTxtUnit():void
+		{
+			var manager:ManagerEntity = ManagerEntity.instance;
+			var entity:IEntity = manager.listUnit;
+			while(entity)
+			{
+				if(_skin.txtUnit.text != "")
+				{
+					_skin.txtUnit.appendText(",");
+				}
+				_skin.txtUnit.appendText(entity.name);
+				entity = entity.next;
+			}
+		}
+		
+		private function updateTxtPlot():void
+		{
+			
 		}
 	}
 }
@@ -74,6 +127,7 @@ class ResUIMainTrace extends Sprite
 		txtTime.textColor = 0xffe1aa;
 		txtTime.multiline = false;
 		txtTime.wordWrap = false;
+		txtTime.selectable = false;
 		txtTime.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtTime);
 		//
@@ -85,6 +139,7 @@ class ResUIMainTrace extends Sprite
 		txtPlace.textColor = 0xffe1aa;
 		txtPlace.multiline = false;
 		txtPlace.wordWrap = false;
+		txtPlace.selectable = false;
 		txtPlace.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtPlace);
 		//
@@ -96,6 +151,7 @@ class ResUIMainTrace extends Sprite
 		txtUnit.textColor = 0xffe1aa;
 		txtUnit.multiline = false;
 		txtUnit.wordWrap = false;
+		txtUnit.selectable = false;
 		txtUnit.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtUnit);
 		//
@@ -107,6 +163,7 @@ class ResUIMainTrace extends Sprite
 		txtPlot.textColor = 0xffe1aa;
 		txtPlot.multiline = true;
 		txtPlot.wordWrap = true;
+		txtPlot.selectable = false;
 		var defaultTextFormat:TextFormat = txtPlot.defaultTextFormat;
 		defaultTextFormat.leading = 4;
 		txtPlot.defaultTextFormat = defaultTextFormat;

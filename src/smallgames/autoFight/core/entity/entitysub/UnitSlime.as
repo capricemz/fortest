@@ -4,6 +4,11 @@ package smallgames.autoFight.core.entity.entitysub
 	
 	public class UnitSlime extends Unit implements IUnitSlime
 	{
+		override public function get name():String
+		{
+			return "史莱姆"+data.id;
+		}
+		
 		public function UnitSlime()
 		{
 			super();

@@ -11,14 +11,15 @@ package smallgames.autoFight.ui.uibase
 	 */	
 	public class UIBase implements IUIBase,IObserver
 	{
+		protected var _id:int;
 		public function get id():int
 		{
-			return 0;
+			return _id;
 		}
 		
 		public function set id(value:int):void
 		{
-			
+			_id = value;
 		}
 		
 		public function get skin():DisplayObject

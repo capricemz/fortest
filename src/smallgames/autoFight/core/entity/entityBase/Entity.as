@@ -28,6 +28,11 @@ package smallgames.autoFight.core.entity.entityBase
 			_data = value;
 		}
 		
+		public function get name():String
+		{
+			return "";
+		}
+		
 		public function Entity()
 		{
 			/*throw new Error("该类不能初始化，请使用子类");*/

@@ -5,6 +5,8 @@ package smallgames.autoFight.ui
 	
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.ui.uibase.IUIBase;
+	import smallgames.autoFight.ui.uibase.IUIMainBase;
+	import smallgames.autoFight.ui.uibase.IUIPanelBase;
 
 	public class ManagerUI extends ManagerBase
 	{
@@ -16,6 +18,9 @@ package smallgames.autoFight.ui
 		private static function privateFunc():void{}
 		
 		private var _layer:Sprite;
+		private var _layerUIMain:Sprite;
+		private var _layerUIPanel:Sprite;
+		//
 		private var _uiBases:Dictionary;
 		
 		public function ManagerUI(func:Function)
@@ -30,6 +35,13 @@ package smallgames.autoFight.ui
 		public function initialize(layer:Sprite):void
 		{
 			_layer = layer;
+			_layerUIMain = new Sprite();
+			_layerUIMain.mouseEnabled = false;
+			_layer.addChild(_layerUIMain);
+			_layerUIPanel = new Sprite();
+			_layerUIPanel.mouseEnabled = false;
+			_layer.addChild(_layerUIPanel);
+			//
 			_uiBases = new Dictionary();
 		}
 		
@@ -41,7 +53,8 @@ package smallgames.autoFight.ui
 			{
 				uiBase = createUIBase(type);
 			}
-			uiBase.show(_layer);
+			var layer:Sprite = uiBase is IUIMainBase ? _layerUIMain : (uiBase is IUIPanelBase ? _layerUIPanel : _layer);
+			uiBase.show(layer);
 			return uiBase;
 		}
 		

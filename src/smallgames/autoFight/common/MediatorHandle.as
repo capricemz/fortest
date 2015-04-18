@@ -2,6 +2,7 @@ package smallgames.autoFight.common
 {
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.HandleEntityCreate;
+	import smallgames.autoFight.core.time.ConstTime;
 	import smallgames.autoFight.core.time.HandleWorldCreate;
 	import smallgames.autoFight.ui.ConstUI;
 	import smallgames.autoFight.ui.HandleUICreate;
@@ -28,9 +29,9 @@ package smallgames.autoFight.common
 		{
 			var handleEntityCreate:HandleEntityCreate = new HandleEntityCreate();
 			handleEntityCreate.id = ConstEntity.HANDLE_CREATE;
+			//
 			var handleWorldCreate:HandleWorldCreate = new HandleWorldCreate();
-			handleWorldCreate.id = ConstEntity.HANDLE_CREATE;
-			
+			handleWorldCreate.id = ConstTime.HANDLE_CREATE;
 			//
 			var handleUICreate:HandleUICreate = new HandleUICreate();
 			handleUICreate.id = ConstUI.HANDLE_CREATE;

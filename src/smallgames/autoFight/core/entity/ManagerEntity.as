@@ -21,10 +21,18 @@ package smallgames.autoFight.core.entity
 		}
 		private static function privateFunc():void{}
 		
-		private var _entitys:Dictionary;
 		private var _listScene:IEntity;
+		public function get listScene():IEntity
+		{
+			return _listScene;
+		}
+		
 		private var _listUnit:IEntity;
-
+		public function get listUnit():IEntity
+		{
+			return _listUnit;
+		}
+		
 		public function ManagerEntity(func:Function)
 		{
 			if(func != privateFunc)
@@ -37,7 +45,7 @@ package smallgames.autoFight.core.entity
 		
 		private function initialize():void
 		{
-			_entitys = new Dictionary();
+			
 		}
 		
 		public function addEntity(data:IDataEntity):void

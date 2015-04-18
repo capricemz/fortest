@@ -8,6 +8,7 @@ package smallgames.autoFight.core.entity.entityBase
 		function set next(value:IEntity):void;
 		function get data():IDataEntity;
 		function set data(value:IDataEntity):void;
+		function get name():String;
 		function updateByTime(timeDiff:int):void;
 	}
 }
