@@ -1,7 +1,5 @@
 package smallgames.autoFight.core.entity
 {
-	import flash.utils.Dictionary;
-	
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.entityBase.IEntity;
@@ -47,62 +45,55 @@ package smallgames.autoFight.core.entity
 		{
 			
 		}
-		
+		/**
+		 * 添加实体
+		 * @param data 要添加实体的数据
+		 */		
 		public function addEntity(data:IDataEntity):void
 		{
 			var entity:IEntity = notify(ConstEntity.HANDLE_CREATE,data) as IEntity;
+			var list:IEntity;
 			if(entity is IScene)
 			{
-				addScene(entity as IScene);
+				list = _listScene;
 			}
 			else if(entity is IUnit)
 			{
-				addUnit(entity as IUnit);
+				list = _listUnit;
 			}
+			addToList(list,entity);
 		}
-		
-		private function addScene(scene:IScene):void
+		/**
+		 * 添加进列表
+		 * @param list 列表
+		 * @param entity 需添加的实体
+		 */		
+		private function addToList(list:IEntity,entity:IEntity):void
 		{
-			if(!_listScene)
+			if(!list)
 			{
-				_listScene = scene as IEntity;
+				list = entity;
 			}
 			else
 			{
-				var listLast:IEntity = entityListLast(_listScene);
-				listLast.next = scene;
+				var listLast:IEntity = UtilEnitySearch.entityListLast(list);
+				listLast.next = entity;
 			}
 		}
-		
-		private function addUnit(unit:IUnit):void
-		{
-			if(!_listUnit)
-			{
-				_listUnit = unit as IEntity;
-			}
-			else
-			{
-				var listLast:IEntity = entityListLast(_listUnit);
-				listLast.next = unit;
-			}
-		}
-		
-		private function entityListLast(list:IEntity):IEntity
-		{
-			var entityNext:IEntity = list;
-			while (entityNext && entityNext.next)
-			{
-				entityNext = entityNext.next;
-			}
-			return entityNext;
-		}
-		
+		/**
+		 * 跟新所有列表
+		 * @param timeDiff
+		 */		
 		public function updateByFrame(timeDiff:int):void
 		{
 			updateList(_listScene,timeDiff);
 			updateList(_listUnit,timeDiff);
 		}
-		
+		/**
+		 * 跟新列表
+		 * @param list 对应的列表
+		 * @param timeDiff
+		 */		
 		private function updateList(list:IEntity,timeDiff:int):void
 		{
 			var entity:IEntity;
@@ -114,17 +105,20 @@ package smallgames.autoFight.core.entity
 				entity.updateByTime(timeDiff);
 			}
 		}
-		
+		/**
+		 * 摧毁实体
+		 * @param entity 要摧毁的实体
+		 */		
 		public function destroyEntity(entity:IEntity):void
 		{
 			var listBefore:IEntity;
 			if(entity is IScene)
 			{
-				listBefore = entityListBefore(_listScene,entity);
+				listBefore = UtilEnitySearch.entityListBefore(_listScene,entity);
 			}
 			else if(entity is IUnit)
 			{
-				listBefore = entityListBefore(_listUnit,entity);
+				listBefore = UtilEnitySearch.entityListBefore(_listUnit,entity);
 			}
 			if(!listBefore)
 			{
@@ -133,18 +127,65 @@ package smallgames.autoFight.core.entity
 			listBefore.next = entity.next;
 		}
 		
-		private function entityListBefore(list:IEntity,entity:IEntity):IEntity
+		public function textPlace():String
 		{
-			var entityNext:IEntity = list;
-			while(entityNext)
+			var text:String = "";
+			var entity:IEntity = listScene;
+			while(entity)
 			{
-				entityNext = entityNext.next;
-				if(entityNext == entity)
-				{
-					return entityNext;
-				}
+				text += entity.name;
+				entity = entity.next;
 			}
-			return null;
+			return text;
 		}
+		
+		public function textUnit():String
+		{
+			var text:String = "";
+			var entity:IEntity = listUnit;
+			while(entity)
+			{
+				if(text != "")
+				{
+					text += ",";
+				}
+				text += entity.name;
+				entity = entity.next;
+			}
+			return text;
+		}
+	}
+}
+import smallgames.autoFight.core.entity.entityBase.IEntity;
+
+class UtilEnitySearch
+{
+	public static function entityListLast(list:IEntity):IEntity
+	{
+		var entityNext:IEntity = list;
+		while (entityNext && entityNext.next)
+		{
+			entityNext = entityNext.next;
+		}
+		return entityNext;
+	}
+	
+	public static function entityListBefore(list:IEntity,entity:IEntity):IEntity
+	{
+		var entityNext:IEntity = list;
+		while(entityNext)
+		{
+			entityNext = entityNext.next;
+			if(entityNext == entity)
+			{
+				return entityNext;
+			}
+		}
+		return null;
+	}
+	
+	public function UtilEnitySearch()
+	{
+		
 	}
 }

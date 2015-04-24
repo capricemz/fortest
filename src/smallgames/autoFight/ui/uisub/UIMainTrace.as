@@ -4,7 +4,6 @@ package smallgames.autoFight.ui.uisub
 	import flash.display.Sprite;
 	
 	import smallgames.autoFight.core.entity.ManagerEntity;
-	import smallgames.autoFight.core.entity.entityBase.IEntity;
 	import smallgames.autoFight.core.time.ManagerTime;
 	import smallgames.autoFight.ui.uibase.UIMainBase;
 	
@@ -36,10 +35,13 @@ package smallgames.autoFight.ui.uisub
 		{
 			var timeDiff:int = args[0] as int;
 			clearTxtAll();
-			updateTxtTime();
-			updateTxtPlace();
-			updateTxtUnit();
-			updateTxtPlot();
+			//
+			_skin.txtTime.htmlText = "";
+			var textPlace:String = ManagerEntity.instance.textPlace();
+			_skin.txtPlace.htmlText = textPlace;
+			var textUnit:String = ManagerEntity.instance.textUnit();
+			_skin.txtUnit.htmlText = textUnit;
+			_skin.txtPlot.htmlText = "";
 		}
 		
 		private function clearTxtAll():void
@@ -48,43 +50,6 @@ package smallgames.autoFight.ui.uisub
 			_skin.txtPlace.text = "";
 			_skin.txtUnit.text = "";
 			_skin.txtPlot.text = "";
-		}
-		
-		private function updateTxtTime():void
-		{
-			
-			_skin.txtTime.htmlText = "";
-		}
-		
-		private function updateTxtPlace():void
-		{
-			var manager:ManagerEntity = ManagerEntity.instance;
-			var entity:IEntity = manager.listScene;
-			while(entity)
-			{
-				_skin.txtPlace.appendText(entity.name);
-				entity = entity.next;
-			}
-		}
-		
-		private function updateTxtUnit():void
-		{
-			var manager:ManagerEntity = ManagerEntity.instance;
-			var entity:IEntity = manager.listUnit;
-			while(entity)
-			{
-				if(_skin.txtUnit.text != "")
-				{
-					_skin.txtUnit.appendText(",");
-				}
-				_skin.txtUnit.appendText(entity.name);
-				entity = entity.next;
-			}
-		}
-		
-		private function updateTxtPlot():void
-		{
-			
 		}
 	}
 }
