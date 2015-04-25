@@ -36,8 +36,9 @@ package smallgames.autoFight.ui.uisub
 			var timeDiff:int = args[0] as int;
 			clearTxtAll();
 			//
+			var textTime:String = ManagerTime.instance.textTime();
+			_skin.txtTime.htmlText = textTime;
 			var managerEntity:ManagerEntity = ManagerEntity.instance;
-			_skin.txtTime.htmlText = "";
 			var textPlace:String = managerEntity.textPlace();
 			_skin.txtPlace.htmlText = textPlace;
 			var textUnit:String = managerEntity.textUnit();
@@ -95,6 +96,10 @@ class ResUIMainTrace extends Sprite
 		txtTime.multiline = false;
 		txtTime.wordWrap = false;
 		txtTime.selectable = false;
+		var defaultTextFormat:TextFormat = txtTime.defaultTextFormat;
+		defaultTextFormat.font = "SimSun";
+		txtTime.defaultTextFormat = defaultTextFormat;
+		txtTime.setTextFormat(defaultTextFormat);
 		txtTime.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtTime);
 		//
@@ -107,6 +112,10 @@ class ResUIMainTrace extends Sprite
 		txtPlace.multiline = false;
 		txtPlace.wordWrap = false;
 		txtPlace.selectable = false;
+		defaultTextFormat = txtPlace.defaultTextFormat;
+		defaultTextFormat.font = "SimSun";
+		txtPlace.defaultTextFormat = defaultTextFormat;
+		txtPlace.setTextFormat(defaultTextFormat);
 		txtPlace.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtPlace);
 		//
@@ -119,6 +128,10 @@ class ResUIMainTrace extends Sprite
 		txtUnit.multiline = false;
 		txtUnit.wordWrap = false;
 		txtUnit.selectable = false;
+		defaultTextFormat = txtUnit.defaultTextFormat;
+		defaultTextFormat.font = "SimSun";
+		txtUnit.defaultTextFormat = defaultTextFormat;
+		txtUnit.setTextFormat(defaultTextFormat);
 		txtUnit.filters = [UtilFilters.FILTER_GLOW_BLACK];
 		addChild(txtUnit);
 		//
@@ -131,8 +144,9 @@ class ResUIMainTrace extends Sprite
 		txtPlot.multiline = true;
 		txtPlot.wordWrap = true;
 		txtPlot.selectable = false;
-		var defaultTextFormat:TextFormat = txtPlot.defaultTextFormat;
+		defaultTextFormat = txtPlot.defaultTextFormat;
 		defaultTextFormat.leading = 4;
+		defaultTextFormat.font = "SimSum";
 		txtPlot.defaultTextFormat = defaultTextFormat;
 		txtPlot.setTextFormat(defaultTextFormat);
 		txtPlot.filters = [UtilFilters.FILTER_GLOW_BLACK];

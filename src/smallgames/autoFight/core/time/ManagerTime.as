@@ -22,6 +22,8 @@ package smallgames.autoFight.core.time
 		private static function privateFunc():void{}
 		
 		private var _timeLast:int;
+
+		private var _date:Date;
 		
 		public function ManagerTime(func:Function)
 		{
@@ -35,7 +37,7 @@ package smallgames.autoFight.core.time
 		
 		private function initialize():void
 		{
-			
+			_date = new Date();
 		}
 		
 		public function addFrame(dispatcher:IEventDispatcher):void
@@ -50,11 +52,18 @@ package smallgames.autoFight.core.time
 			var timeDiff:int = timeNow - _timeLast;
 			_timeLast = timeNow;
 			//
+			_date.time += timeDiff;
+			//
 			notify(ConstTime.HANDLE_CREATE);
 			//
 			ManagerEntity.instance.updateByFrame(timeDiff);
 			//
 			notify(ConstUI.UI_MAIN_TRACE);
+		}
+		
+		public function textTime():String
+		{
+			return _date.toString();
 		}
 	}
 }
