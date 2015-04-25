@@ -9,6 +9,12 @@ package smallgames.autoFight.core.entity.entitysub
 			return "史莱姆"+data.id;
 		}
 		
+		private var _action:String = "";
+		override public function get action():String
+		{
+			return _action;
+		}
+		
 		public function UnitSlime()
 		{
 			super();
@@ -17,7 +23,8 @@ package smallgames.autoFight.core.entity.entitysub
 		override public function updateByTime(timeDiff:int):void
 		{
 			super.updateByTime(timeDiff);
-			trace("UnitSlime.updateByTime(timeDiff) 我是一只史莱姆，"+data.id);
+			/*trace("UnitSlime.updateByTime(timeDiff) 我是一只史莱姆，"+data.id);*/
+			_action = "移动";
 		}
 	}
 }

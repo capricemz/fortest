@@ -52,23 +52,21 @@ package smallgames.autoFight.core.entity
 		public function addEntity(data:IDataEntity):void
 		{
 			var entity:IEntity = notify(ConstEntity.HANDLE_CREATE,data) as IEntity;
-			var list:IEntity;
 			if(entity is IScene)
 			{
-				list = _listScene;
+				_listScene = addToList(_listScene,entity);
 			}
 			else if(entity is IUnit)
 			{
-				list = _listUnit;
+				_listUnit = addToList(_listUnit,entity);
 			}
-			addToList(list,entity);
 		}
 		/**
 		 * 添加进列表
 		 * @param list 列表
 		 * @param entity 需添加的实体
 		 */		
-		private function addToList(list:IEntity,entity:IEntity):void
+		private function addToList(list:IEntity,entity:IEntity):IEntity
 		{
 			if(!list)
 			{
@@ -79,6 +77,7 @@ package smallgames.autoFight.core.entity
 				var listLast:IEntity = UtilEnitySearch.entityListLast(list);
 				listLast.next = entity;
 			}
+			return list;
 		}
 		/**
 		 * 跟新所有列表
@@ -150,6 +149,22 @@ package smallgames.autoFight.core.entity
 					text += ",";
 				}
 				text += entity.name;
+				entity = entity.next;
+			}
+			return text;
+		}
+		
+		public function textPlot():String
+		{
+			var text:String = "";
+			var entity:IEntity = listUnit;
+			while(entity)
+			{
+				if(text != "")
+				{
+					text += "\n";
+				}
+				text += entity.name + "执行" + (entity as IUnit).action;
 				entity = entity.next;
 			}
 			return text;

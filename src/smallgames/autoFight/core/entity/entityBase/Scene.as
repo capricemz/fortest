@@ -11,7 +11,7 @@ package smallgames.autoFight.core.entity.entityBase
 		override public function updateByTime(timeDiff:int):void
 		{
 			super.updateByTime(timeDiff);
-			trace("Scene.updateByTime(timeDiff)场景："+this);
+			/*trace("Scene.updateByTime(timeDiff)场景："+this);*/
 		}
 	}
 }

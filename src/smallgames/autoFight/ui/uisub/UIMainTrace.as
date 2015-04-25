@@ -36,12 +36,14 @@ package smallgames.autoFight.ui.uisub
 			var timeDiff:int = args[0] as int;
 			clearTxtAll();
 			//
+			var managerEntity:ManagerEntity = ManagerEntity.instance;
 			_skin.txtTime.htmlText = "";
-			var textPlace:String = ManagerEntity.instance.textPlace();
+			var textPlace:String = managerEntity.textPlace();
 			_skin.txtPlace.htmlText = textPlace;
-			var textUnit:String = ManagerEntity.instance.textUnit();
+			var textUnit:String = managerEntity.textUnit();
 			_skin.txtUnit.htmlText = textUnit;
-			_skin.txtPlot.htmlText = "";
+			var textPlot:String = managerEntity.textPlot();
+			_skin.txtPlot.htmlText = textPlot;
 		}
 		
 		private function clearTxtAll():void
