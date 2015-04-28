@@ -1,4 +1,4 @@
-package smallgames.autoFight.core.entity.entityBase
+package smallgames.autoFight.core.entity.base
 {
 
 	public class Scene extends Entity implements IScene

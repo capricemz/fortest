@@ -2,9 +2,9 @@ package smallgames.autoFight.core.entity
 {
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.data.IDataEntity;
-	import smallgames.autoFight.core.entity.entityBase.IEntity;
-	import smallgames.autoFight.core.entity.entityBase.IScene;
-	import smallgames.autoFight.core.entity.entityBase.IUnit;
+	import smallgames.autoFight.core.entity.base.IEntity;
+	import smallgames.autoFight.core.entity.base.IScene;
+	import smallgames.autoFight.core.entity.base.IUnit;
 	
 	/**
 	 * 实体管理类
@@ -171,7 +171,7 @@ package smallgames.autoFight.core.entity
 		}
 	}
 }
-import smallgames.autoFight.core.entity.entityBase.IEntity;
+import smallgames.autoFight.core.entity.base.IEntity;
 
 class UtilEnitySearch
 {

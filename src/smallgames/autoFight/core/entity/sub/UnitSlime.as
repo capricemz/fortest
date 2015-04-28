@@ -1,7 +1,7 @@
-package smallgames.autoFight.core.entity.entitysub
+package smallgames.autoFight.core.entity.sub
 {
 	import smallgames.autoFight.core.entity.StringEntity;
-	import smallgames.autoFight.core.entity.entityBase.Unit;
+	import smallgames.autoFight.core.entity.base.Unit;
 	
 	public class UnitSlime extends Unit implements IUnitSlime
 	{
