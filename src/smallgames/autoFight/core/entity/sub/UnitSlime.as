@@ -10,12 +10,6 @@ package smallgames.autoFight.core.entity.sub
 			return StringEntity.UNIT_SLIME+data.id;
 		}
 		
-		private var _action:String = "";
-		override public function get action():String
-		{
-			return _action;
-		}
-		
 		public function UnitSlime()
 		{
 			super();
@@ -25,11 +19,6 @@ package smallgames.autoFight.core.entity.sub
 		{
 			super.updateByTime(timeDiff);
 			/*trace("UnitSlime.updateByTime(timeDiff) 我是一只史莱姆，"+data.id);*/
-		}
-		
-		override public function actionSet(value:int):void
-		{
-			_action = StringEntity.action(value);
 		}
 	}
 }

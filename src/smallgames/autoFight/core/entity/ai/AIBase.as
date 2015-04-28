@@ -1,6 +1,6 @@
 package smallgames.autoFight.core.entity.ai
 {
-	import smallgames.autoFight.core.entity.base.IUnit;
+	
 
 	public class AIBase
 	{
@@ -8,7 +8,7 @@ package smallgames.autoFight.core.entity.ai
 		private const SPACING_INTERVAL:int = 3000;
 		
 		private var _timeNow:int;
-		private var _timeLast:int;
+		private var _timeNext:int = -SPACING_INTERVAL;
 		private var _user:IAIUser;
 		
 		public function AIBase(user:IAIUser)
@@ -19,9 +19,9 @@ package smallgames.autoFight.core.entity.ai
 		public function think(timeDiff:int):void
 		{
 			_timeNow += timeDiff;
-			if(_timeNow > _timeLast + SPACING_INTERVAL)
+			if(_timeNow > _timeNext)
 			{
-				_timeLast = _timeNow;
+				_timeNext = _timeNow + SPACING_INTERVAL*Math.random();
 				var value:int = int(Math.random()*3);
 				_user.actionSet(value);
 			}
