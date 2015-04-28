@@ -25,8 +25,11 @@ package smallgames.autoFight.core.entity.sub
 		{
 			super.updateByTime(timeDiff);
 			/*trace("UnitSlime.updateByTime(timeDiff) 我是一只史莱姆，"+data.id);*/
-			
-			_action = "移动";
+		}
+		
+		override public function actionSet(value:int):void
+		{
+			_action = StringEntity.action(value);
 		}
 	}
 }

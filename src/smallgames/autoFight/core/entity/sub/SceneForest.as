@@ -1,5 +1,6 @@
 package smallgames.autoFight.core.entity.sub
 {
+	import smallgames.autoFight.core.entity.StringEntity;
 	import smallgames.autoFight.core.entity.base.Scene;
 	
 	/**
@@ -10,7 +11,7 @@ package smallgames.autoFight.core.entity.sub
 	{
 		override public function get name():String
 		{
-			return "森林";
+			return StringEntity.SCENE_FOREST;
 		}
 		
 		public function SceneForest()
