@@ -29,15 +29,12 @@ package smallgames.autoFight.core.time
 		{
 			datas = new Vector.<IDataEntity>();
 			var dataEntity:DataEntity = new DataEntity();
-			dataEntity.id = 1;
 			dataEntity.type = ConstEntity.ENTITY_SCENE_FOREST;
 			datas.push(dataEntity);
 			dataEntity = new DataEntity();
-			dataEntity.id = 1;
 			dataEntity.type = ConstEntity.ENTITY_UNIT_SLIME;
 			datas.push(dataEntity);
 			dataEntity = new DataEntity();
-			dataEntity.id = 2;
 			dataEntity.type = ConstEntity.ENTITY_UNIT_SLIME;
 			datas.push(dataEntity);
 		}

@@ -5,24 +5,20 @@ package smallgames.autoFight.core.entity.base
 	public class Entity implements IEntity
 	{
 		private var _next:IEntity;
-		
-		protected var _data:IDataEntity;
-		
 		public function get next():IEntity
 		{
 			return _next;
 		}
-		
 		public function set next(value:IEntity):void
 		{
 			_next = value;
 		}
 		
+		private var _data:IDataEntity;
 		public function get data():IDataEntity
 		{
 			return _data;
 		}
-		
 		public function set data(value:IDataEntity):void
 		{
 			_data = value;

@@ -56,7 +56,7 @@ package smallgames.autoFight.core.time
 			//
 			notify(ConstTime.HANDLE_CREATE);
 			//
-			ManagerEntity.instance.updateByFrame(timeDiff);
+			ManagerEntity.instance.updateByTime(timeDiff);
 			//
 			notify(ConstUI.UI_MAIN_TRACE);
 		}

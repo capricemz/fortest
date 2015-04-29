@@ -1,10 +1,10 @@
 package smallgames.autoFight.core.entity
 {
 	import smallgames.autoFight.common.ManagerBase;
-	import smallgames.autoFight.core.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.base.IEntity;
 	import smallgames.autoFight.core.entity.base.IScene;
 	import smallgames.autoFight.core.entity.base.IUnit;
+	import smallgames.autoFight.core.entity.data.IDataEntity;
 	
 	/**
 	 * 实体管理类
@@ -83,7 +83,7 @@ package smallgames.autoFight.core.entity
 		 * 跟新所有列表
 		 * @param timeDiff
 		 */		
-		public function updateByFrame(timeDiff:int):void
+		public function updateByTime(timeDiff:int):void
 		{
 			updateList(_listScene,timeDiff);
 			updateList(_listUnit,timeDiff);
