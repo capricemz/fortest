@@ -1,6 +1,6 @@
 package smallgames.autoFight.core.plot
 {
-	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.core.common.ManagerBase;
 	
 	public class ManagerPlot extends ManagerBase
 	{

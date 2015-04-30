@@ -1,4 +1,4 @@
-package smallgames.autoFight.common
+package smallgames.autoFight.core.common
 {
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.HandleEntityCreate;

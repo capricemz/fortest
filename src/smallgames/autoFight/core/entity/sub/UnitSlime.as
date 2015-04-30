@@ -7,7 +7,7 @@ package smallgames.autoFight.core.entity.sub
 	{
 		override public function get name():String
 		{
-			return StringEntity.UNIT_SLIME;
+			return StringEntity.UNIT_SLIME + data.id;
 		}
 		
 		public function UnitSlime()

@@ -1,6 +1,6 @@
 package smallgames.autoFight.core.entity.ai
 {
-	
+	import smallgames.autoFight.common.random.UtilRandom;
 
 	public class AIBase
 	{
@@ -21,7 +21,7 @@ package smallgames.autoFight.core.entity.ai
 			_timeNow += timeDiff;
 			if(_timeNow > _timeNext)
 			{
-				_timeNext = _timeNow + SPACING_INTERVAL*Math.random();
+				_timeNext = _timeNow + UtilRandom.randomWave(SPACING_INTERVAL);
 				var value:int = int(Math.random()*3);
 				_user.actionSet(value);
 			}

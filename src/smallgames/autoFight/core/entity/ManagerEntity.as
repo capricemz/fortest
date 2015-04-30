@@ -1,6 +1,6 @@
 package smallgames.autoFight.core.entity
 {
-	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.core.common.ManagerBase;
 	import smallgames.autoFight.core.entity.base.IEntity;
 	import smallgames.autoFight.core.entity.base.IScene;
 	import smallgames.autoFight.core.entity.base.IUnit;
@@ -141,15 +141,15 @@ package smallgames.autoFight.core.entity
 		public function textUnit():String
 		{
 			var text:String = "";
-			var entity:IEntity = listUnit;
-			while(entity)
+			var unit:IUnit = listUnit as IUnit;
+			while(unit)
 			{
 				if(text != "")
 				{
 					text += ",";
 				}
-				text += entity.name;
-				entity = entity.next;
+				text += unit.name;
+				unit = unit.next as IUnit;
 			}
 			return text;
 		}
@@ -157,15 +157,15 @@ package smallgames.autoFight.core.entity
 		public function textPlot():String
 		{
 			var text:String = "";
-			var entity:IEntity = listUnit;
-			while(entity)
+			var unit:IUnit = listUnit as IUnit;
+			while(unit)
 			{
 				if(text != "")
 				{
 					text += "\n";
 				}
-				text += entity.name + "执行" + (entity as IUnit).action;
-				entity = entity.next;
+				text += unit.name + unit.action;
+				unit = unit.next as IUnit;
 			}
 			return text;
 		}

@@ -3,7 +3,7 @@ package smallgames.autoFight.ui
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
 	
-	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.core.common.ManagerBase;
 	import smallgames.autoFight.ui.uibase.IUIBase;
 	import smallgames.autoFight.ui.uibase.IUIMainBase;
 	import smallgames.autoFight.ui.uibase.IUIPanelBase;

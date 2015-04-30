@@ -1,10 +1,13 @@
 package smallgames.autoFight.core.time
 {
 	import smallgames.autoFight.common.observer.IObserver;
+	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.data.DataEntity;
+	import smallgames.autoFight.core.entity.data.DataUnit;
 	import smallgames.autoFight.core.entity.data.IDataEntity;
+	import smallgames.autoFight.core.entity.data.IDataUnit;
 
 	/**
 	 * 构造世界处理类
@@ -28,15 +31,28 @@ package smallgames.autoFight.core.time
 		public function HandleWorldCreate()
 		{
 			datas = new Vector.<IDataEntity>();
-			var dataEntity:DataEntity = new DataEntity();
+			var dataEntity:IDataEntity = new DataEntity();
+			dataEntity.id = 1;
 			dataEntity.type = ConstEntity.ENTITY_SCENE_FOREST;
 			datas.push(dataEntity);
-			dataEntity = new DataEntity();
-			dataEntity.type = ConstEntity.ENTITY_UNIT_SLIME;
-			datas.push(dataEntity);
-			dataEntity = new DataEntity();
-			dataEntity.type = ConstEntity.ENTITY_UNIT_SLIME;
-			datas.push(dataEntity);
+			var dataUnit:IDataUnit = new DataUnit();
+			dataUnit.id = 1;
+			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataUnit.atk = UtilRandom.randomWave(10);
+			dataUnit.hp = UtilRandom.randomWave(100);
+			datas.push(dataUnit);
+			dataUnit = new DataUnit();
+			dataUnit.id = 2;
+			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataUnit.atk = UtilRandom.randomWave(10);
+			dataUnit.hp = UtilRandom.randomWave(100);
+			datas.push(dataUnit);
+			dataUnit = new DataUnit();
+			dataUnit.id = 3;
+			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataUnit.atk = UtilRandom.randomWave(10);
+			dataUnit.hp = UtilRandom.randomWave(100);
+			datas.push(dataUnit);
 		}
 		
 		public function update(...args):*
