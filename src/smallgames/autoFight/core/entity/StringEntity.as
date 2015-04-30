@@ -15,11 +15,11 @@ package smallgames.autoFight.core.entity
 		{
 			switch(value)
 			{
-				case 0:
+				case ConstEntity.UNIT_ACTION_01:
 					return ACTION_00;
-				case 1:
+				case ConstEntity.UNIT_ACTION_02:
 					return ACTION_01;
-				case 2:
+				case ConstEntity.UNIT_ACTION_03:
 					return ACTION_02;
 				default:
 					return ACTION_00;
