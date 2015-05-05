@@ -13,7 +13,7 @@ package smallgames.autoFight.core.entity.data
 		}
 		public function set hp(value:int):void
 		{
-			_hp = hp;
+			_hp = value;
 		}
 		
 		private var _atk:int;
@@ -23,7 +23,7 @@ package smallgames.autoFight.core.entity.data
 		}
 		public function set atk(value:int):void
 		{
-			_atk = atk;
+			_atk = value;
 		}
 		
 		public function DataUnit()

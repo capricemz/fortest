@@ -164,7 +164,8 @@ package smallgames.autoFight.core.entity
 				{
 					text += "\n";
 				}
-				text += unit.name + unit.action + (unit.target ? unit.target.name : "");
+				var target:IUnit = unit.target;
+				text += unit.name + "(" + unit.hp + ")" + unit.action + (target ? target.name + "(" + target.hp + ")" : "");
 				unit = unit.next as IUnit;
 			}
 			return text;

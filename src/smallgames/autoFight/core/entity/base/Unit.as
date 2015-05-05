@@ -10,6 +10,11 @@ package smallgames.autoFight.core.entity.base
 	{
 		private var _ai:AIBase;
 		
+		public function get hp():String
+		{
+			return (data as IDataUnit).hp + "";
+		}
+		
 		protected var _action:String = "";
 		public function get action():String
 		{
@@ -46,12 +51,21 @@ package smallgames.autoFight.core.entity.base
 			/*trace("Unit.updateByTime(timeDiff) 单位："+this);*/
 			_ai.think(timeDiff);
 			//
+			if(_beAtk)
+			{
+				beHurt();
+			}
+		}
+		
+		public function beHurt():void
+		{
 			var data:IDataUnit = dataUnit;
 			data.hp -= _beAtk;
 			if(data.hp < 0)
 			{
 				ManagerEntity.instance.destroyEntity(this);
 			}
+			_beAtk = 0;
 		}
 		
 		public function actionSet(action:int,target:IUnit):void
