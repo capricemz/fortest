@@ -39,19 +39,19 @@ package smallgames.autoFight.core.time
 			dataUnit.id = 1;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.atk = UtilRandom.randomWave(10);
-			dataUnit.hp = UtilRandom.randomWave(10);
+			dataUnit.hp = UtilRandom.randomWave(30);
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 2;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.atk = UtilRandom.randomWave(10);
-			dataUnit.hp = UtilRandom.randomWave(10);
+			dataUnit.hp = UtilRandom.randomWave(30);
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 3;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.atk = UtilRandom.randomWave(10);
-			dataUnit.hp = UtilRandom.randomWave(10);
+			dataUnit.hp = UtilRandom.randomWave(30);
 			datas.push(dataUnit);
 		}
 		

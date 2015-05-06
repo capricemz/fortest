@@ -148,7 +148,7 @@ package smallgames.autoFight.core.entity
 				{
 					text += ",";
 				}
-				text += unit.name;
+				text += unit.name + "(" + unit.hp + ")";
 				unit = unit.next as IUnit;
 			}
 			return text;
@@ -165,7 +165,7 @@ package smallgames.autoFight.core.entity
 					text += "\n";
 				}
 				var target:IUnit = unit.target;
-				text += unit.name + "(" + unit.hp + ")" + unit.action + (target ? target.name + "(" + target.hp + ")" : "");
+				text += unit.name + unit.action + (target ? target.name : "");
 				unit = unit.next as IUnit;
 			}
 			return text;
@@ -178,24 +178,24 @@ class UtilEnitySearch
 {
 	public static function entityListLast(list:IEntity):IEntity
 	{
-		var entityNext:IEntity = list;
-		while (entityNext && entityNext.next)
+		var entity:IEntity = list;
+		while (entity && entity.next)
 		{
-			entityNext = entityNext.next;
+			entity = entity.next;
 		}
-		return entityNext;
+		return entity;
 	}
 	
-	public static function entityListBefore(list:IEntity,entity:IEntity):IEntity
+	public static function entityListBefore(list:IEntity,value:IEntity):IEntity
 	{
-		var entityNext:IEntity = list;
-		while(entityNext)
+		var entity:IEntity = list;
+		while(entity)
 		{
-			entityNext = entityNext.next;
-			if(entityNext == entity)
+			if(entity == value)
 			{
-				return entityNext;
+				return entity;
 			}
+			entity = entity.next;
 		}
 		return null;
 	}
