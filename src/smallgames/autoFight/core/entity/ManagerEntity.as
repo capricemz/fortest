@@ -114,14 +114,20 @@ package smallgames.autoFight.core.entity
 			if(entity is IScene)
 			{
 				listBefore = UtilEnitySearch.entityListBefore(_listScene,entity);
+				if(!listBefore)
+				{
+					_listScene = entity.next;
+					return;
+				}
 			}
 			else if(entity is IUnit)
 			{
 				listBefore = UtilEnitySearch.entityListBefore(_listUnit,entity);
-			}
-			if(!listBefore)
-			{
-				throw new Error("销毁的对象不在列表中");
+				if(!listBefore)
+				{
+					_listUnit = entity.next;
+					return;
+				}
 			}
 			listBefore.next = entity.next;
 		}
@@ -188,16 +194,18 @@ class UtilEnitySearch
 	
 	public static function entityListBefore(list:IEntity,value:IEntity):IEntity
 	{
+		var entityBefore:IEntity = null;
 		var entity:IEntity = list;
 		while(entity)
 		{
 			if(entity == value)
 			{
-				return entity;
+				return entityBefore;
 			}
+			entityBefore = entity;
 			entity = entity.next;
 		}
-		return null;
+		throw new Error("销毁的对象不在列表中");
 	}
 	
 	public function UtilEnitySearch()
