@@ -1,4 +1,4 @@
-package smallgames.autoFight.core.entity.sub
+package smallgames.autoFight.core.entity.sub.unit
 {
 	import smallgames.autoFight.core.entity.StringEntity;
 	import smallgames.autoFight.core.entity.base.Unit;

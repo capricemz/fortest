@@ -1,4 +1,4 @@
-package smallgames.autoFight.core.entity.ai
+package smallgames.autoFight.core.entity.sub.unit.ai
 {
 	import smallgames.autoFight.core.entity.base.IUnit;
 

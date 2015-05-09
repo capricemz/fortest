@@ -2,8 +2,8 @@ package smallgames.autoFight.core.entity.base
 {
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.StringEntity;
-	import smallgames.autoFight.core.entity.ai.AIBase;
-	import smallgames.autoFight.core.entity.ai.IAIUser;
+	import smallgames.autoFight.core.entity.sub.unit.ai.AIBase;
+	import smallgames.autoFight.core.entity.sub.unit.ai.IAIUser;
 	import smallgames.autoFight.core.entity.data.IDataUnit;
 
 	public class Unit extends Entity implements IUnit,IAIUser

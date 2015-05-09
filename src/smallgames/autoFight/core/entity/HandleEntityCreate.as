@@ -3,8 +3,8 @@ package smallgames.autoFight.core.entity
 	import smallgames.autoFight.common.observer.IObserver;
 	import smallgames.autoFight.core.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.base.IEntity;
-	import smallgames.autoFight.core.entity.sub.SceneForest;
-	import smallgames.autoFight.core.entity.sub.UnitSlime;
+	import smallgames.autoFight.core.entity.sub.scene.SceneForest;
+	import smallgames.autoFight.core.entity.sub.unit.UnitSlime;
 	
 	/**
 	 * 构造实体处理类
