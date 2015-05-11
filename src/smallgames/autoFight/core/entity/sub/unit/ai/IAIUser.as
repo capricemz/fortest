@@ -4,7 +4,6 @@ package smallgames.autoFight.core.entity.sub.unit.ai
 
 	public interface IAIUser
 	{
-		function actionSet(action:int,target:IUnit):void;
-		function set beAtk(value:int):void;
+		function actionSet(action:int):void;
 	}
 }

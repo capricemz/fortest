@@ -2,9 +2,9 @@ package smallgames.autoFight.core.entity.base
 {
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.StringEntity;
+	import smallgames.autoFight.core.entity.data.IDataUnit;
 	import smallgames.autoFight.core.entity.sub.unit.ai.AIBase;
 	import smallgames.autoFight.core.entity.sub.unit.ai.IAIUser;
-	import smallgames.autoFight.core.entity.data.IDataUnit;
 
 	public class Unit extends Entity implements IUnit,IAIUser
 	{
@@ -25,6 +25,10 @@ package smallgames.autoFight.core.entity.base
 		public function get target():IUnit
 		{
 			return _target;
+		}
+		public function set target(value:IUnit):void
+		{
+			_target = value;
 		}
 		
 		protected var _beAtk:int;
@@ -68,7 +72,7 @@ package smallgames.autoFight.core.entity.base
 			_beAtk = 0;
 		}
 		
-		public function actionSet(action:int,target:IUnit):void
+		public function actionSet(action:int):void
 		{
 			_action = StringEntity.action(action);
 			_target = target;

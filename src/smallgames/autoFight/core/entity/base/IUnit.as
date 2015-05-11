@@ -5,5 +5,6 @@ package smallgames.autoFight.core.entity.base
 		function get hp():String;
 		function get action():String;
 		function get target():IUnit;
+		function set target(value:IUnit):void;
 	}
 }

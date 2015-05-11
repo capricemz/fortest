@@ -4,7 +4,6 @@ package smallgames.autoFight.core.entity.sub.unit.ai
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.base.IUnit;
-	import smallgames.autoFight.core.entity.data.IDataUnit;
 
 	public class AIBase
 	{
@@ -49,15 +48,10 @@ package smallgames.autoFight.core.entity.sub.unit.ai
 					}
 					if(target)
 					{
-						_user.actionSet(value,target);
-						var atk:int = ((_user as IUnit).data as IDataUnit).atk;
-						(target as IAIUser).beAtk = atk;
+						(_user as IUnit).target = target;
 					}
 				}
-				else
-				{
-					_user.actionSet(value,null);
-				}
+				_user.actionSet(value);
 			}
 		}
 	}
