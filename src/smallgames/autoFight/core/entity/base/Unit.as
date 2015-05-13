@@ -1,10 +1,11 @@
 package smallgames.autoFight.core.entity.base
 {
 	import smallgames.autoFight.core.entity.ManagerEntity;
-	import smallgames.autoFight.core.entity.StringEntity;
 	import smallgames.autoFight.core.entity.data.IDataUnit;
 	import smallgames.autoFight.core.entity.sub.unit.ai.AIBase;
 	import smallgames.autoFight.core.entity.sub.unit.ai.IAIUser;
+	import smallgames.autoFight.data.configs.ManagerConfig;
+	import smallgames.autoFight.data.configs.subs.ConfigAction;
 
 	public class Unit extends Entity implements IUnit,IAIUser
 	{
@@ -15,10 +16,15 @@ package smallgames.autoFight.core.entity.base
 			return (data as IDataUnit).hp + "";
 		}
 		
-		protected var _action:String = "";
+		private var _actionId:int;
 		public function get action():String
 		{
-			return _action;
+			var configAction:ConfigAction = ManagerConfig.instance.configAction(_actionId);
+			if(!configAction)
+			{
+				throw new Error("ConfigAction配置错误");
+			}
+			return configAction.action;
 		}
 		
 		protected var _target:IUnit;
@@ -72,10 +78,9 @@ package smallgames.autoFight.core.entity.base
 			_beAtk = 0;
 		}
 		
-		public function actionSet(action:int):void
+		public function actionSet(actionId:int):void
 		{
-			_action = StringEntity.action(action);
-			_target = target;
+			_actionId = actionId;
 		}
 	}
 }

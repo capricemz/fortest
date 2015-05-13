@@ -25,7 +25,7 @@ package smallgames.autoFight.data
 			initialize();
 		}
 		
-		override protected function initialize():void
+		private function initialize():void
 		{
 			
 		}

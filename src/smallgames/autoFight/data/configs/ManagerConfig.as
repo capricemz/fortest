@@ -6,6 +6,7 @@ package smallgames.autoFight.data.configs
 	import mx.core.ByteArrayAsset;
 	
 	import smallgames.autoFight.common.ManagerBase;
+	import smallgames.autoFight.data.configs.subs.ConfigAction;
 	
 	public class ManagerConfig extends ManagerBase
 	{
@@ -113,23 +114,44 @@ package smallgames.autoFight.data.configs
 			}
 			_dictionary[dicKey] = dictionary;
 		}
-		/**
-		 * 在多层字典中搜索获取配置数据类（防报空）
-		 * @param vars 键值数组，后入先出
-		 * @param object 顶层字典
-		 * @return
-		 */
-		private function searchGetCfgDt(vars:Vector.<int>, object:Object):Object
+		
+		public function configAction(id:int):ConfigAction
 		{
-			while (vars.length)
+			var config:ConfigAction;
+			for each(config in _dictionary[ConstConfig.TYPE_ACTOIN])
 			{
-				object = object[vars.pop()];
-				if (!object)
+				if(config.id == id)
 				{
-					return null;
+					return config;
 				}
 			}
-			return object;
+			return null;
 		}
+	}
+}
+class UtilDicSearch
+{
+	/**
+	 * 在多层字典中搜索获取配置数据类（防报空）
+	 * @param vars 键值数组，后入先出
+	 * @param object 顶层字典
+	 * @return
+	 */
+	public static function searchGetCfgDt(vars:Vector.<int>, object:Object):Object
+	{
+		while (vars.length)
+		{
+			object = object[vars.pop()];
+			if (!object)
+			{
+				return null;
+			}
+		}
+		return object;
+	}
+	
+	public function UtilDicSearch()
+	{
+		
 	}
 }
