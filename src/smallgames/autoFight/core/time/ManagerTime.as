@@ -4,7 +4,7 @@ package smallgames.autoFight.core.time
 	import flash.events.IEventDispatcher;
 	import flash.utils.getTimer;
 	
-	import smallgames.autoFight.core.common.ManagerBase;
+	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.ui.ConstUI;
 

@@ -1,6 +1,6 @@
 package smallgames.autoFight.data
 {
-	import smallgames.autoFight.core.common.ManagerBase;
+	import smallgames.autoFight.common.ManagerBase;
 	
 	/**
 	 * 游戏数据管理类

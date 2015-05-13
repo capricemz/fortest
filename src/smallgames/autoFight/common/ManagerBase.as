@@ -1,4 +1,4 @@
-package smallgames.autoFight.core.common
+package smallgames.autoFight.common
 {
 	import smallgames.autoFight.common.observer.Subject;
 

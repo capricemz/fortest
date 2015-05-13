@@ -6,7 +6,7 @@ package smallgames.autoFight
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	
-	import smallgames.autoFight.core.common.MediatorHandle;
+	import smallgames.autoFight.common.MediatorHandle;
 	import smallgames.autoFight.core.time.ManagerTime;
 	import smallgames.autoFight.data.configs.ManagerConfig;
 	import smallgames.autoFight.ui.ConstUI;

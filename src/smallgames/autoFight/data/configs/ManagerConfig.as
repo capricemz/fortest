@@ -5,7 +5,7 @@ package smallgames.autoFight.data.configs
 	
 	import mx.core.ByteArrayAsset;
 	
-	import smallgames.autoFight.core.common.ManagerBase;
+	import smallgames.autoFight.common.ManagerBase;
 	
 	public class ManagerConfig extends ManagerBase
 	{
