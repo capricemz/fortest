@@ -17,14 +17,10 @@ package smallgames.autoFight.core.entity.base
 		}
 		
 		private var _actionId:int;
+		private var _configAction:ConfigAction;
 		public function get action():String
 		{
-			var configAction:ConfigAction = ManagerConfig.instance.configAction(_actionId);
-			if(!configAction)
-			{
-				throw new Error("ConfigAction配置错误");
-			}
-			return configAction.action;
+			return _configAction.action;
 		}
 		
 		protected var _target:IUnit;
@@ -38,6 +34,7 @@ package smallgames.autoFight.core.entity.base
 		}
 		
 		protected var _beAtk:int;
+
 		public function set beAtk(value:int):void
 		{
 			_beAtk = value;
@@ -81,6 +78,11 @@ package smallgames.autoFight.core.entity.base
 		public function actionSet(actionId:int):void
 		{
 			_actionId = actionId;
+			_configAction = ManagerConfig.instance.configAction(_actionId);
+			if(!_configAction)
+			{
+				throw new Error("ConfigAction配置错误");
+			}
 		}
 	}
 }
