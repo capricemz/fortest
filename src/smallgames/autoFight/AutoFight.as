@@ -8,6 +8,7 @@ package smallgames.autoFight
 	
 	import smallgames.autoFight.core.common.MediatorHandle;
 	import smallgames.autoFight.core.time.ManagerTime;
+	import smallgames.autoFight.data.configs.ManagerConfig;
 	import smallgames.autoFight.ui.ConstUI;
 	import smallgames.autoFight.ui.ManagerUI;
 	
@@ -37,6 +38,8 @@ package smallgames.autoFight
 		private function initialize():void
 		{
 			MediatorHandle.instance.attachAll();
+			//
+			ManagerConfig.instance.initData();
 			//
 			ManagerTime.instance.addFrame(stage);
 			//

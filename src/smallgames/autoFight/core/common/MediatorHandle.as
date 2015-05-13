@@ -4,6 +4,8 @@ package smallgames.autoFight.core.common
 	import smallgames.autoFight.core.entity.HandleEntityCreate;
 	import smallgames.autoFight.core.time.ConstTime;
 	import smallgames.autoFight.core.time.HandleWorldCreate;
+	import smallgames.autoFight.data.configs.ConstConfig;
+	import smallgames.autoFight.data.configs.HandleConfigEmbed;
 	import smallgames.autoFight.ui.ConstUI;
 	import smallgames.autoFight.ui.HandleUICreate;
 
@@ -27,6 +29,9 @@ package smallgames.autoFight.core.common
 		
 		public function attachAll():void
 		{
+			var handleConfigEmbed:HandleConfigEmbed = new HandleConfigEmbed();
+			handleConfigEmbed.id = ConstConfig.HANDLE_EMBED;
+			//
 			var handleEntityCreate:HandleEntityCreate = new HandleEntityCreate();
 			handleEntityCreate.id = ConstEntity.HANDLE_CREATE;
 			//
