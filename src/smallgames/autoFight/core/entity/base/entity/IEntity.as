@@ -1,6 +1,6 @@
-package smallgames.autoFight.core.entity.base
+package smallgames.autoFight.core.entity.base.entity
 {
-	import smallgames.autoFight.core.entity.data.IDataEntity;
+	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 
 	public interface IEntity
 	{

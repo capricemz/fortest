@@ -1,5 +1,6 @@
-package smallgames.autoFight.core.entity.data
+package smallgames.autoFight.core.entity.base.entity.data
 {
+
 	/**
 	 * 实体数据类
 	 * @author Administrator

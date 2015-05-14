@@ -4,10 +4,10 @@ package smallgames.autoFight.core.time
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
-	import smallgames.autoFight.core.entity.data.DataEntity;
-	import smallgames.autoFight.core.entity.data.DataUnit;
-	import smallgames.autoFight.core.entity.data.IDataEntity;
-	import smallgames.autoFight.core.entity.data.IDataUnit;
+	import smallgames.autoFight.core.entity.base.entity.data.DataEntity;
+	import smallgames.autoFight.core.entity.base.unit.data.DataUnit;
+	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
+	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
 
 	/**
 	 * 构造世界处理类

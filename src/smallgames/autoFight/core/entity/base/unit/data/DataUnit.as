@@ -1,5 +1,7 @@
-package smallgames.autoFight.core.entity.data
+package smallgames.autoFight.core.entity.base.unit.data
 {
+	import smallgames.autoFight.core.entity.base.entity.data.DataEntity;
+
 	/**
 	 * 单位数据类
 	 * @author Administrator

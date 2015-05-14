@@ -1,8 +1,8 @@
 package smallgames.autoFight.core.entity
 {
 	import smallgames.autoFight.common.observer.IObserver;
-	import smallgames.autoFight.core.entity.data.IDataEntity;
-	import smallgames.autoFight.core.entity.base.IEntity;
+	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
+	import smallgames.autoFight.core.entity.base.entity.IEntity;
 	import smallgames.autoFight.core.entity.sub.scene.SceneForest;
 	import smallgames.autoFight.core.entity.sub.unit.UnitSlime;
 	

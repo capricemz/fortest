@@ -1,9 +1,9 @@
-package smallgames.autoFight.core.entity.sub.unit.ai
+package smallgames.autoFight.core.entity.base.unit.ai
 {
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
-	import smallgames.autoFight.core.entity.base.IUnit;
+	import smallgames.autoFight.core.entity.base.unit.IUnit;
 
 	public class AIBase
 	{

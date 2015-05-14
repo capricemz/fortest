@@ -1,4 +1,4 @@
-package smallgames.autoFight.core.entity.data
+package smallgames.autoFight.core.entity.base.entity.data
 {
 	public interface IDataEntity
 	{

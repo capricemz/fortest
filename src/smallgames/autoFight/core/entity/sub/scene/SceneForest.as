@@ -1,7 +1,7 @@
 package smallgames.autoFight.core.entity.sub.scene
 {
 	import smallgames.autoFight.core.entity.StringEntity;
-	import smallgames.autoFight.core.entity.base.Scene;
+	import smallgames.autoFight.core.entity.base.scene.Scene;
 	
 	/**
 	 * 森林场景类
