@@ -12,11 +12,6 @@ package smallgames.autoFight.core.entity.base.unit
 	{
 		private var _ai:AIBase;
 		
-		public function get hp():String
-		{
-			return (data as IDataUnit).hp + "";
-		}
-		
 		private var _actionId:int;
 		private var _configAction:ConfigAction;
 		public function get action():String

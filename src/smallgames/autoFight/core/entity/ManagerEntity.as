@@ -2,9 +2,10 @@ package smallgames.autoFight.core.entity
 {
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.base.entity.IEntity;
+	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.base.scene.IScene;
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
-	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
+	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
 	
 	/**
 	 * 实体管理类
@@ -154,7 +155,7 @@ package smallgames.autoFight.core.entity
 				{
 					text += ",";
 				}
-				text += unit.name + "(" + unit.hp + ")";
+				text += unit.name + "(" + (unit.data as IDataUnit).hp + ")";
 				unit = unit.next as IUnit;
 			}
 			return text;
