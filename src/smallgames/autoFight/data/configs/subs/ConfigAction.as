@@ -16,14 +16,14 @@ package smallgames.autoFight.data.configs.subs
 		{
 			switch(id)
 			{
+				case ConstEntity.UNIT_ACTION_00:
+					return StringEntity.UNIT_ACTION_00;
 				case ConstEntity.UNIT_ACTION_01:
-					return StringEntity.ACTION_01;
+					return StringEntity.UNIT_ACTION_01;
 				case ConstEntity.UNIT_ACTION_02:
-					return StringEntity.ACTION_02;
-				case ConstEntity.UNIT_ACTION_03:
-					return StringEntity.ACTION_03;
+					return StringEntity.UNIT_ACTION_02;
 				default:
-					return StringEntity.ACTION_01;
+					return StringEntity.UNIT_ACTION_00;
 			}
 		}
 		

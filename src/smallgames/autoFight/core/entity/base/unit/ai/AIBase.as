@@ -32,7 +32,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			{
 				_timeNext = _timeNow + UtilRandom.randomWave(SPACING_INTERVAL);
 				var value:int = int(Math.random()*ConstEntity.UNIT_ACTION_TOTAL);
-				if(value == ConstEntity.UNIT_ACTION_03)
+				if(value == ConstEntity.UNIT_ACTION_02)
 				{
 					var target:IUnit;
 					var targets:IUnit = ManagerEntity.instance.listUnit as IUnit;
