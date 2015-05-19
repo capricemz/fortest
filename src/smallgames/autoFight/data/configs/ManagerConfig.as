@@ -18,6 +18,10 @@ package smallgames.autoFight.data.configs
 		private static function privateFunc():void{}
 		
 		private var _dictionary:Dictionary;
+		internal function get dictionary():Dictionary
+		{
+			return _dictionary;
+		}
 		
 		public function ManagerConfig(func:Function)
 		{
@@ -113,19 +117,6 @@ package smallgames.autoFight.data.configs
 				}
 			}
 			_dictionary[dicKey] = dictionary;
-		}
-		
-		public function configAction(id:int):ConfigAction
-		{
-			var config:ConfigAction;
-			for each(config in _dictionary[ConstConfig.TYPE_ACTOIN])
-			{
-				if(config.id == id)
-				{
-					return config;
-				}
-			}
-			return null;
 		}
 	}
 }

@@ -25,7 +25,7 @@ package smallgames.autoFight.core.entity
 		/**死亡*/
 		public static const UNIT_ACTION_07:int = 7;
 		
-		public static const UNIT_ACTION_TOTAL:int = 7;
+		public static const UNIT_ACTION_TOTAL:int = 8;
 		
 		public function ConstEntity()
 		{

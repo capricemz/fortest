@@ -1,30 +1,27 @@
 package smallgames.autoFight.core.entity.base.unit
 {
+	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.base.entity.Entity;
 	import smallgames.autoFight.core.entity.base.unit.action.ActionBase;
 	import smallgames.autoFight.core.entity.base.unit.ai.AIBase;
-	import smallgames.autoFight.core.entity.base.unit.ai.IAIUser;
 	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
-	import smallgames.autoFight.data.configs.ManagerConfig;
-	import smallgames.autoFight.data.configs.subs.ConfigAction;
 
-	public class Unit extends Entity implements IUnit,IAIUser
+	public class Unit extends Entity implements IUnit
 	{
-		private var _ai:AIBase;
-		private var _actoin:ActionBase;
+		private var _aiBase:AIBase;
+		private var _actoinBase:ActionBase;
 		
-		private var _actionId:int;
-		public function get action():String
+		private var _actionId:int = ConstEntity.UNIT_ACTION_00;
+		public function get actionId():int
 		{
-			var configAction:ConfigAction = ManagerConfig.instance.configAction(_actionId);
-			if(!configAction)
-			{
-				throw new Error("ConfigAction配置错误");
-			}
-			return configAction.action;
+			return _actionId;
+		}
+		public function set actionId(value:int):void
+		{
+			_actionId = value;
 		}
 		
-		protected var _target:IUnit;
+		protected var _target:IUnit = null;
 		public function get target():IUnit
 		{
 			return _target;
@@ -42,21 +39,16 @@ package smallgames.autoFight.core.entity.base.unit
 		public function Unit()
 		{
 			super();
-			_ai = new AIBase(this);
-			_actoin = new ActionBase(this);
+			_aiBase = new AIBase(this);
+			_actoinBase = new ActionBase(this);
 		}
 		
 		override public function updateByTime(timeDiff:int):void
 		{
 			super.updateByTime(timeDiff);
 			/*trace("Unit.updateByTime(timeDiff) 单位："+this);*/
-			_ai.think(timeDiff);
-			_actoin.execute(_actionId);
-		}
-		
-		public function actionSet(actionId:int):void
-		{
-			_actionId = actionId;
+			_aiBase.think(timeDiff);
+			_actoinBase.execute(_actionId);
 		}
 	}
 }

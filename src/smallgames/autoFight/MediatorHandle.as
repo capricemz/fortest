@@ -1,4 +1,4 @@
-package smallgames.autoFight.common
+package smallgames.autoFight
 {
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.HandleEntityCreate;
@@ -6,6 +6,7 @@ package smallgames.autoFight.common
 	import smallgames.autoFight.core.time.HandleWorldCreate;
 	import smallgames.autoFight.data.configs.ConstConfig;
 	import smallgames.autoFight.data.configs.HandleConfigEmbed;
+	import smallgames.autoFight.data.configs.HandleConfigGet;
 	import smallgames.autoFight.ui.ConstUI;
 	import smallgames.autoFight.ui.HandleUICreate;
 
@@ -31,6 +32,8 @@ package smallgames.autoFight.common
 		{
 			var handleConfigEmbed:HandleConfigEmbed = new HandleConfigEmbed();
 			handleConfigEmbed.id = ConstConfig.HANDLE_EMBED;
+			var handleConfigGet:HandleConfigGet = new HandleConfigGet();
+			handleConfigGet.id = ConstConfig.HANDLE_GET;
 			//
 			var handleEntityCreate:HandleEntityCreate = new HandleEntityCreate();
 			handleEntityCreate.id = ConstEntity.HANDLE_CREATE;

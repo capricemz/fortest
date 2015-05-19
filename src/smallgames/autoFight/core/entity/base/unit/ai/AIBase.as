@@ -12,7 +12,8 @@ package smallgames.autoFight.core.entity.base.unit.ai
 		
 		private var _timeNow:int;
 		private var _timeNext:int = -SPACING_INTERVAL;
-		private var _user:IAIUser;
+		
+		private var _unit:IUnit;
 		
 		private var _beAtk:int;
 		public function set beAtk(value:int):void
@@ -20,9 +21,9 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			_beAtk = value;
 		}
 		
-		public function AIBase(user:IAIUser)
+		public function AIBase(user:IUnit)
 		{
-			_user = user;
+			_unit = user;
 		}
 		
 		public function think(timeDiff:int):void
@@ -31,6 +32,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			if(_timeNow > _timeNext)
 			{
 				_timeNext = _timeNow + UtilRandom.randomWave(SPACING_INTERVAL);
+				
 				var value:int = int(Math.random()*ConstEntity.UNIT_ACTION_TOTAL);
 				if(value == ConstEntity.UNIT_ACTION_02)
 				{
@@ -40,7 +42,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 					{
 						var targetTemp:IUnit = targets as IUnit;
 						targets = targets.next as IUnit;
-						if(targetTemp != _user && Math.random() < .5)
+						if(targetTemp != _unit && Math.random() < .5)
 						{
 							target = targetTemp;
 							break;
@@ -48,10 +50,10 @@ package smallgames.autoFight.core.entity.base.unit.ai
 					}
 					if(target)
 					{
-						(_user as IUnit).target = target;
+						_unit.target = target;
 					}
 				}
-				_user.actionSet(value);
+				_unit.actionId = value;
 			}
 		}
 	}
