@@ -82,7 +82,6 @@ package smallgames.autoFight.data.configs
 			{
 				split2.shift();
 			}
-			varNames = new Vector.<String>();
 			varNames = Vector.<String>(split2[0].split("\t"));
 			//数据赋值
 			split = Vector.<String>(split[1].split("\r\n"));

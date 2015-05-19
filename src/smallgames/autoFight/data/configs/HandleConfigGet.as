@@ -27,7 +27,7 @@ package smallgames.autoFight.data.configs
 		
 		public function update(...args):*
 		{
-			if(_dictionary)
+			if(!_dictionary)
 			{
 				_dictionary = ManagerConfig.instance.dictionary;
 			}
