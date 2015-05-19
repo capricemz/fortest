@@ -1,6 +1,5 @@
 package smallgames.autoFight.core.entity.base.unit
 {
-	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.base.entity.Entity;
 	import smallgames.autoFight.core.entity.base.unit.action.ActionBase;
 	import smallgames.autoFight.core.entity.base.unit.ai.AIBase;
@@ -35,15 +34,7 @@ package smallgames.autoFight.core.entity.base.unit
 			_target = value;
 		}
 		
-		protected var _beAtk:int;
-
-		public function set beAtk(value:int):void
-		{
-			_beAtk = value;
-			_ai.beAtk = value;
-		}
-		
-		private function get dataUnit():IDataUnit
+		public function get dataUnit():IDataUnit
 		{
 			return data as IDataUnit;
 		}
@@ -61,22 +52,6 @@ package smallgames.autoFight.core.entity.base.unit
 			/*trace("Unit.updateByTime(timeDiff) 单位："+this);*/
 			_ai.think(timeDiff);
 			_actoin.execute(_actionId);
-			//
-			if(_beAtk)
-			{
-				beHurt();
-			}
-		}
-		
-		public function beHurt():void
-		{
-			var data:IDataUnit = dataUnit;
-			data.hp -= _beAtk;
-			if(data.hp < 0)
-			{
-				ManagerEntity.instance.destroyEntity(this);
-			}
-			_beAtk = 0;
 		}
 		
 		public function actionSet(actionId:int):void

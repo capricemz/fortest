@@ -3,6 +3,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.core.entity.ConstEntity;
+	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
 
 	/**
@@ -73,12 +74,15 @@ package smallgames.autoFight.core.entity.base.unit.action
 		
 		private function hurt():void
 		{
-			
+			_unit.dataUnit.hp;
 		}
 		
 		private function die():void
 		{
-			
+			if(_unit.dataUnit.hp < 0)
+			{
+				ManagerEntity.instance.destroyEntity(_unit);
+			}
 		}
 	}
 }
