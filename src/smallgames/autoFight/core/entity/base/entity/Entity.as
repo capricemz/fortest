@@ -1,5 +1,7 @@
 package smallgames.autoFight.core.entity.base.entity
 {
+	import flash.display.BitmapData;
+	
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 
 	public class Entity implements IEntity
@@ -34,7 +36,18 @@ package smallgames.autoFight.core.entity.base.entity
 			/*throw new Error("该类不能初始化，请使用子类");*/
 		}
 		
-		public function updateByTime(timeDiff:int):void
+		public final function updateByTime(timeDiff:int,layer:BitmapData):void
+		{
+			updateData(timeDiff);
+			updateLoaction(layer);
+		}
+		
+		protected function updateData(timeDiff:int):void
+		{
+			
+		}
+		
+		protected function updateLoaction(layer:BitmapData):void
 		{
 			
 		}

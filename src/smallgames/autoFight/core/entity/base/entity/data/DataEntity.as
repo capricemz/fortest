@@ -27,6 +27,26 @@ package smallgames.autoFight.core.entity.base.entity.data
 			_type = value;
 		}
 		
+		private var _x:int;
+		public function get x():int
+		{
+			return _x;
+		}
+		public function set x(value:int):void
+		{
+			_x = value;
+		}
+		
+		private var _y:int;
+		public function get y():int
+		{
+			return _y;
+		}
+		public function set y(value:int):void
+		{
+			_y = value;
+		}
+		
 		public function DataEntity()
 		{
 			

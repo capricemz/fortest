@@ -32,9 +32,9 @@ package smallgames.autoFight.ui
 			_instance = this;
 		}
 		
-		public function initialize(layer:Sprite):void
+		public function initialize(value:Sprite):void
 		{
-			_layer = layer;
+			_layer = value;
 			_layerUIMain = new Sprite();
 			_layerUIMain.mouseEnabled = false;
 			_layer.addChild(_layerUIMain);

@@ -1,5 +1,7 @@
 package smallgames.autoFight.core.entity
 {
+	import flash.display.BitmapData;
+	
 	import smallgames.autoFight.common.ManagerBase;
 	import smallgames.autoFight.core.entity.base.entity.IEntity;
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
@@ -23,12 +25,14 @@ package smallgames.autoFight.core.entity
 		}
 		private static function privateFunc():void{}
 		
+		private var _layer:BitmapData;
+		/**场景列表*/
 		private var _listScene:IEntity;
 		public function get listScene():IEntity
 		{
 			return _listScene;
 		}
-		
+		/**单位列表*/
 		private var _listUnit:IEntity;
 		public function get listUnit():IEntity
 		{
@@ -42,12 +46,11 @@ package smallgames.autoFight.core.entity
 				throw new Error("该类使用单例模式");
 			}
 			_instance = this;
-			initialize();
 		}
 		
-		private function initialize():void
+		public function initialize(value:BitmapData):void
 		{
-			
+			_layer = value;
 		}
 		/**
 		 * 添加实体
@@ -105,7 +108,7 @@ package smallgames.autoFight.core.entity
 			{
 				entity = entityNext;
 				entityNext = entityNext.next;
-				entity.updateByTime(timeDiff);
+				entity.updateByTime(timeDiff,_layer);
 			}
 		}
 		/**

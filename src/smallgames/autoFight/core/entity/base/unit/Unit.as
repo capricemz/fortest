@@ -1,5 +1,7 @@
 package smallgames.autoFight.core.entity.base.unit
 {
+	import flash.display.BitmapData;
+	
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.base.entity.Entity;
 	import smallgames.autoFight.core.entity.base.unit.action.ActionBase;
@@ -43,9 +45,8 @@ package smallgames.autoFight.core.entity.base.unit
 			_actoinBase = new ActionBase(this);
 		}
 		
-		override public function updateByTime(timeDiff:int):void
+		override protected function updateData(timeDiff:int):void
 		{
-			super.updateByTime(timeDiff);
 			/*trace("Unit.updateByTime(timeDiff) 单位："+this);*/
 			_aiBase.think(timeDiff);
 			_actoinBase.execute(_actionId);

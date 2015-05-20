@@ -9,9 +9,8 @@ package smallgames.autoFight.core.entity.base.scene
 			
 		}
 		
-		override public function updateByTime(timeDiff:int):void
+		override protected function updateData(timeDiff:int):void
 		{
-			super.updateByTime(timeDiff);
 			/*trace("Scene.updateByTime(timeDiff)场景："+this);*/
 		}
 	}
