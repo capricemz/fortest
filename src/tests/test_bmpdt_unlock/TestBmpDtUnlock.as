@@ -7,14 +7,16 @@ package tests.test_bmpdt_unlock
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.TimerEvent;
+	import flash.geom.Matrix;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
 	
 	/**
-	 * 位图区域解锁重绘区域测试类
+	 * 位图区域解锁重绘区域测试类<br>使用copyPixels方式时仅重绘拷贝区域<br>使用draw方式时结合bitmapData的lock()、unlock()方法也可以时间仅重绘绘制对象的区域
 	 * @author Administrator
 	 */	
 	public class TestBmpDtUnlock extends Sprite
@@ -120,16 +122,51 @@ package tests.test_bmpdt_unlock
 			if(isChange)
 			{
 				isChange = false;
-				var mDiff:Number = timeDiff*stage.frameRate*(1/1000)/4;
-				var mX:Number = 4,mY:Number = 4;
-				winLct.x += lrDrct*mX*mDiff;
-				winLct.y += udDrct*mY*mDiff;
-				trace("TestBmpDtUnlock.refresh(timeDiff) winLct.x:"+winLct.x+",winLct.y:"+winLct.y);
-				_layer.bitmapData.copyPixels(bmpDtBg,bmpDtBg.rect,winLct,null,null,true);
-				/*_layer.bitmapData.fillRect(_layer.bitmapData.rect,0xff000000);
-				var matrix:Matrix = new Matrix(1,0,0,1,winLct.x,winLct.y);
-				_layer.bitmapData.draw(bmpDtBg,matrix);*/
+				if(false)
+				{
+					waycopyPixels(timeDiff);
+				}
+				else
+				{
+					wayDraw(timeDiff);
+				}
 			}
+		}
+		
+		private function waycopyPixels(timeDiff:int):void
+		{
+			var rectangle:Rectangle = new Rectangle();
+			rectangle.x = winLct.x;
+			rectangle.y = winLct.y;
+			rectangle.width = bmpDtBg.width;
+			rectangle.height = bmpDtBg.height;
+			_layer.bitmapData.fillRect(rectangle,0xff000000);
+			var mDiff:Number = timeDiff*stage.frameRate*(1/1000)/4;
+			var mX:Number = 4,mY:Number = 4;
+			winLct.x += Math.round(lrDrct*mX*mDiff);
+			winLct.y += Math.round(udDrct*mY*mDiff);
+			/*trace("TestBmpDtUnlock.refresh(timeDiff) winLct.x:"+winLct.x+",winLct.y:"+winLct.y);*/
+			_layer.bitmapData.copyPixels(bmpDtBg,bmpDtBg.rect,winLct,null,null,true);
+		}
+		
+		private function wayDraw(timeDiff:int):void
+		{
+			_layer.bitmapData.lock();
+			var rectangle:Rectangle = new Rectangle();
+			rectangle.x = winLct.x;
+			rectangle.y = winLct.y;
+			rectangle.width = bmpDtBg.width;
+			rectangle.height = bmpDtBg.height;
+			_layer.bitmapData.fillRect(rectangle,0xff000000);
+			var mDiff:Number = timeDiff*stage.frameRate*(1/1000)/4;
+			var mX:Number = 4,mY:Number = 4;
+			winLct.x += Math.round(lrDrct*mX*mDiff);
+			winLct.y += Math.round(udDrct*mY*mDiff);
+			rectangle.x = winLct.x;
+			rectangle.y = winLct.y;
+			var matrix:Matrix = new Matrix(1,0,0,1,winLct.x,winLct.y);
+			_layer.bitmapData.draw(bmpDtBg,matrix);
+			_layer.bitmapData.unlock(rectangle);
 		}
 	}
 }
