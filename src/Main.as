@@ -11,9 +11,6 @@ package
 	
 	import smallgames.autoFight.AutoFight;
 	
-	import tests.testCpBmpWithAddBmp.TestCpBmpWithAddBmp;
-	import tests.test_bmpdt_unlock.TestBmpDtUnlock;
-	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
 	{
@@ -117,11 +114,11 @@ package
 			/*var testVectorPushSplice:TestVectorPushSplice = new TestVectorPushSplice();
 			addChild(testVectorPushSplice);*/
 			
-			var testCpBmpWithAddBmp:TestCpBmpWithAddBmp = new TestCpBmpWithAddBmp();
-			addChild(testCpBmpWithAddBmp);
+			/*var testCpBmpWithAddBmp:TestCpBmpWithAddBmp = new TestCpBmpWithAddBmp();
+			addChild(testCpBmpWithAddBmp);*/
 			
-			var testBmpDtUnlock:TestBmpDtUnlock = new TestBmpDtUnlock();
-			addChild(testBmpDtUnlock);
+			/*var testBmpDtUnlock:TestBmpDtUnlock = new TestBmpDtUnlock();
+			addChild(testBmpDtUnlock);*/
 			
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
@@ -139,7 +136,7 @@ package
 					/*testGlassBall.addBall();*/
 					/*testGreenSock.doTween();*/
 					/*testVectorPushSplice.doTest();*/
-					testCpBmpWithAddBmp.doTest();
+					/*testCpBmpWithAddBmp.doTest();*/
 				}
 			);
 			addChild(btn);
