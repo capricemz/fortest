@@ -1,12 +1,14 @@
 package smallgames.autoFight.core.time
 {
+	import flash.geom.Point;
+	
 	import smallgames.autoFight.common.observer.IObserver;
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.base.entity.data.DataEntity;
-	import smallgames.autoFight.core.entity.base.unit.data.DataUnit;
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
+	import smallgames.autoFight.core.entity.base.unit.data.DataUnit;
 	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
 
 	/**
@@ -34,24 +36,28 @@ package smallgames.autoFight.core.time
 			var dataEntity:IDataEntity = new DataEntity();
 			dataEntity.id = 1;
 			dataEntity.type = ConstEntity.ENTITY_SCENE_FOREST;
+			dataEntity.location = new Point();
 			datas.push(dataEntity);
 			var dataUnit:IDataUnit = new DataUnit();
 			dataUnit.id = 1;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.atk = UtilRandom.randomWave(10);
 			dataUnit.hp = UtilRandom.randomWave(30);
+			dataUnit.location = new Point();
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 2;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.atk = UtilRandom.randomWave(10);
 			dataUnit.hp = UtilRandom.randomWave(30);
+			dataUnit.location = new Point();
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 3;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.atk = UtilRandom.randomWave(10);
 			dataUnit.hp = UtilRandom.randomWave(30);
+			dataUnit.location = new Point();
 			datas.push(dataUnit);
 		}
 		

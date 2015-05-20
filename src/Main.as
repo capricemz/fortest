@@ -12,7 +12,7 @@ package
 	import smallgames.autoFight.AutoFight;
 	
 	import tests.testCpBmpWithAddBmp.TestCpBmpWithAddBmp;
-	import tests.testUseWeakReference.TestUseWeakReference;
+	import tests.test_bmpdt_unlock.TestBmpDtUnlock;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
@@ -105,10 +105,10 @@ package
 			/*var testCleanGlass:TestCleanGlass = new TestCleanGlass();
 			addChild(testCleanGlass);*/
 			
-			var testUseWeakReference:TestUseWeakReference = new TestUseWeakReference();
+			/*var testUseWeakReference:TestUseWeakReference = new TestUseWeakReference();
 			testUseWeakReference.x = 50;
 			testUseWeakReference.y = 50;
-			addChild(testUseWeakReference);
+			addChild(testUseWeakReference);*/
 			
 			/*var testGreenSock:TestGreenSock = new TestGreenSock();
 			testGreenSock.x = _fpsW;
@@ -119,6 +119,9 @@ package
 			
 			var testCpBmpWithAddBmp:TestCpBmpWithAddBmp = new TestCpBmpWithAddBmp();
 			addChild(testCpBmpWithAddBmp);
+			
+			var testBmpDtUnlock:TestBmpDtUnlock = new TestBmpDtUnlock();
+			addChild(testBmpDtUnlock);
 			
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
