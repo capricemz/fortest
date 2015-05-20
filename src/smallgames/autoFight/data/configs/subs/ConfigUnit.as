@@ -2,16 +2,16 @@ package smallgames.autoFight.data.configs.subs
 {
 	import smallgames.autoFight.data.configs.base.ConfigBase;
 
-	public class ConfigAction extends ConfigBase
+	public class ConfigUnit extends ConfigBase
 	{
-		/**动作id*/
+		/**单位id*/
 		public var id:int;
 		/**名称*/
 		public var name:String;
-		/**持续时间*/
-		public var duration:int;
+		/**移动速度(每秒像素)*/
+		public var speed:int;
 		
-		public function ConfigAction()
+		public function ConfigUnit()
 		{
 		}
 	}

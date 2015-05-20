@@ -5,7 +5,8 @@ package smallgames.autoFight.data.configs
 		public static const HANDLE_EMBED:int = 0;
 		public static const HANDLE_GET:int = 1;
 		
-		public static const TYPE_ACTOIN:int = 1000;
+		public static const TYPE_UNIT:int = 1000;
+		public static const TYPE_ACTOIN:int = 1001;
 		
 		public function ConstConfig()
 		{

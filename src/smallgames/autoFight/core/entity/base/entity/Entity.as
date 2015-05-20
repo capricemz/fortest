@@ -28,11 +28,6 @@ package smallgames.autoFight.core.entity.base.entity
 			_data = value;
 		}
 		
-		public function get name():String
-		{
-			return "";
-		}
-		
 		private var _bitmapData:BitmapData;
 		
 		public function Entity()

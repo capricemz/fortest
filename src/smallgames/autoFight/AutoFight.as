@@ -35,6 +35,8 @@ package smallgames.autoFight
 			stage.frameRate = 60;//帧频
 			stage.stageFocusRect = false;//tab键不会出现黄色的框框
 			initialize();
+			x = (stage.stageWidth - width)*.5;
+			y = (stage.stageHeight - height)*.5;
 		}
 		
 		private function initialize():void

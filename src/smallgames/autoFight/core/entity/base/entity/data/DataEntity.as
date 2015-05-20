@@ -9,13 +9,20 @@ package smallgames.autoFight.core.entity.base.entity.data
 	public class DataEntity implements IDataEntity
 	{
 		private var _id:int;
+		/**唯一标识id*/
 		public function get id():int
 		{
 			return _id;
 		}
+		/**@private*/
 		public function set id(value:int):void
 		{
 			_id = value;
+		}
+		
+		public function get name():String
+		{
+			return "";
 		}
 		
 		private var _type:int;

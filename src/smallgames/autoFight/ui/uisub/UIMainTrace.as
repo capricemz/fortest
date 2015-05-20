@@ -1,6 +1,7 @@
 package smallgames.autoFight.ui.uisub
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	
 	import smallgames.autoFight.core.entity.ManagerEntity;
@@ -53,6 +54,12 @@ package smallgames.autoFight.ui.uisub
 			_skin.txtPlace.text = "";
 			_skin.txtUnit.text = "";
 			_skin.txtPlot.text = "";
+		}
+		
+		override public function setPosition(layer:DisplayObjectContainer):void
+		{
+			skin.x = 0;
+			skin.y = 0;
 		}
 	}
 }

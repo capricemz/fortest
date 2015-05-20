@@ -50,10 +50,10 @@ package smallgames.autoFight.core.entity.base.unit.ai
 					}
 					if(target)
 					{
-						_unit.target = target;
+						_unit.dataUnit.target = target;
 					}
 				}
-				_unit.actionId = value;
+				_unit.dataUnit.actionId = value;
 			}
 		}
 	}

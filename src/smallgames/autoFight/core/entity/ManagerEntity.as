@@ -8,9 +8,6 @@ package smallgames.autoFight.core.entity
 	import smallgames.autoFight.core.entity.base.scene.IScene;
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
 	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
-	import smallgames.autoFight.data.configs.ConstConfig;
-	import smallgames.autoFight.data.configs.ManagerConfig;
-	import smallgames.autoFight.data.configs.subs.ConfigAction;
 	
 	/**
 	 * 实体管理类
@@ -177,9 +174,9 @@ package smallgames.autoFight.core.entity
 				{
 					text += "\n";
 				}
-				var target:IUnit = unit.target;
-				var configAction:ConfigAction = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_ACTOIN,unit.actionId) as ConfigAction;
-				text += unit.name + configAction.name + (target ? target.name : "");
+				var dataUnit:IDataUnit = unit.dataUnit;
+				var target:IUnit = dataUnit.target;
+				text += unit.name + dataUnit.configAction.name + (target ? target.name : "");
 				unit = unit.next as IUnit;
 			}
 			return text;

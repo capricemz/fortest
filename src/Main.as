@@ -149,7 +149,6 @@ package
 			addChild(the2048);*/
 			
 			var autoFight:AutoFight = new AutoFight();
-			autoFight.x = _fpsW;
 			addChild(autoFight);
 		}
 	}

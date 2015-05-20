@@ -3,7 +3,6 @@ package smallgames.autoFight.data.configs
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.common.observer.IObserver;
-	import smallgames.autoFight.data.configs.subs.ConfigAction;
 	
 	public class HandleConfigGet implements IObserver
 	{
@@ -31,23 +30,15 @@ package smallgames.autoFight.data.configs
 			{
 				_dictionary = ManagerConfig.instance.dictionary;
 			}
-			if(args[0] == ConstConfig.TYPE_ACTOIN)
+			switch(args[0])
 			{
-				return configAction(args[1]);
+				case ConstConfig.TYPE_UNIT:
+					return _dictionary[ConstConfig.TYPE_UNIT][id];
+				case ConstConfig.TYPE_ACTOIN:
+					return _dictionary[ConstConfig.TYPE_ACTOIN][id];
+				default:
+					return null;
 			}
-		}
-		
-		private function configAction(id:int):ConfigAction
-		{
-			var config:ConfigAction;
-			for each(config in _dictionary[ConstConfig.TYPE_ACTOIN])
-			{
-				if(config.id == id)
-				{
-					return config;
-				}
-			}
-			return null;
 		}
 	}
 }

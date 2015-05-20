@@ -1,8 +1,5 @@
 package smallgames.autoFight.core.entity.base.unit
 {
-	import flash.display.BitmapData;
-	
-	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.base.entity.Entity;
 	import smallgames.autoFight.core.entity.base.unit.action.ActionBase;
 	import smallgames.autoFight.core.entity.base.unit.ai.AIBase;
@@ -12,26 +9,6 @@ package smallgames.autoFight.core.entity.base.unit
 	{
 		private var _aiBase:AIBase;
 		private var _actoinBase:ActionBase;
-		
-		private var _actionId:int = ConstEntity.UNIT_ACTION_00;
-		public function get actionId():int
-		{
-			return _actionId;
-		}
-		public function set actionId(value:int):void
-		{
-			_actionId = value;
-		}
-		
-		protected var _target:IUnit = null;
-		public function get target():IUnit
-		{
-			return _target;
-		}
-		public function set target(value:IUnit):void
-		{
-			_target = value;
-		}
 		
 		public function get dataUnit():IDataUnit
 		{
@@ -49,7 +26,7 @@ package smallgames.autoFight.core.entity.base.unit
 		{
 			/*trace("Unit.updateByTime(timeDiff) 单位："+this);*/
 			_aiBase.think(timeDiff);
-			_actoinBase.execute(_actionId);
+			_actoinBase.execute(dataUnit.actionId);
 		}
 	}
 }
