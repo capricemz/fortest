@@ -1,4 +1,4 @@
-package tests.copypixels
+package tests.testcopypixels
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
