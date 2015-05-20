@@ -1,6 +1,8 @@
 package smallgames.autoFight.core.entity.base.entity
 {
 	import flash.display.BitmapData;
+	import flash.display.Shape;
+	import flash.geom.Rectangle;
 	
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 
@@ -31,6 +33,8 @@ package smallgames.autoFight.core.entity.base.entity
 			return "";
 		}
 		
+		private var _bitmapData:BitmapData;
+		
 		public function Entity()
 		{
 			/*throw new Error("该类不能初始化，请使用子类");*/
@@ -49,7 +53,24 @@ package smallgames.autoFight.core.entity.base.entity
 		
 		protected function updateLoaction(layer:BitmapData):void
 		{
-			
+			layer.lock();
+			var sourceBitmapData:BitmapData = sourceBitmapData();
+			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.location);
+			layer.unlock(new Rectangle(data.location.x,data.location.y,sourceBitmapData.width,sourceBitmapData.height));
+		}
+		
+		protected function sourceBitmapData():BitmapData
+		{
+			if(!_bitmapData)
+			{
+				var shape:Shape = new Shape();
+				shape.graphics.beginFill(0x00ff00);
+				shape.graphics.drawCircle(0,0,10);
+				shape.graphics.endFill();
+				_bitmapData = new BitmapData(20,20,true,0);
+				_bitmapData.draw(shape);
+			}
+			return _bitmapData;
 		}
 	}
 }
