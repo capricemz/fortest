@@ -21,8 +21,8 @@ package smallgames.autoFight.core.time
 		}
 		private static function privateFunc():void{}
 		
+		public var stageFrameRate:int;
 		private var _timeLast:int;
-
 		private var _date:Date;
 		
 		public function ManagerTime(func:Function)

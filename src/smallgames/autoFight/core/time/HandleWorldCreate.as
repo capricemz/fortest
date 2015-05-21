@@ -1,7 +1,5 @@
 package smallgames.autoFight.core.time
 {
-	import flash.geom.Point;
-	
 	import smallgames.autoFight.common.observer.IObserver;
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
@@ -37,28 +35,28 @@ package smallgames.autoFight.core.time
 			var dataScene:IDataScene = new DataScene();
 			dataScene.id = 1;
 			dataScene.type = ConstEntity.ENTITY_SCENE_FOREST;
-			dataScene.location = new Point();
+			dataScene.locationOffset(0,0);
 			datas.push(dataScene);
 			var dataUnit:IDataUnit = new DataUnit();
 			dataUnit.id = 1;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.attrAtk = UtilRandom.randomWave(10);
 			dataUnit.attrHp = UtilRandom.randomWave(30);
-			dataUnit.location = new Point();
+			dataUnit.locationOffset(200,150);
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 2;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.attrAtk = UtilRandom.randomWave(10);
 			dataUnit.attrHp = UtilRandom.randomWave(30);
-			dataUnit.location = new Point();
+			dataUnit.locationOffset(200,150);
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 3;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.attrAtk = UtilRandom.randomWave(10);
 			dataUnit.attrHp = UtilRandom.randomWave(30);
-			dataUnit.location = new Point();
+			dataUnit.locationOffset(200,150);
 			datas.push(dataUnit);
 		}
 		

@@ -7,15 +7,12 @@ package smallgames.autoFight.core.entity.base.unit.ai
 
 	public class AIBase
 	{
-		/**思考时间间隔*/		
-		private const SPACING_INTERVAL:int = 3000;
-		
-		private var _timeNow:int;
-		private var _timeNext:int = -SPACING_INTERVAL;
-		
 		private var _unit:IUnit;
+		private var _timeNow:int;
+		private var _timeNext:int;
 		
 		private var _beAtk:int;
+		
 		public function set beAtk(value:int):void
 		{
 			_beAtk = value;
@@ -31,10 +28,15 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			_timeNow += timeDiff;
 			if(_timeNow > _timeNext)
 			{
-				_timeNext = _timeNow + UtilRandom.randomWave(SPACING_INTERVAL);
+				var interval:int = _unit.dataUnit.configUnit.interval;
+				_timeNext = _timeNow + UtilRandom.randomWave(interval);
 				
 				var value:int = int(Math.random()*ConstEntity.UNIT_ACTION_TOTAL);
-				if(value == ConstEntity.UNIT_ACTION_02)
+				if (value == ConstEntity.UNIT_ACTION_01)
+				{
+					_unit.dataUnit.dirctoin = -Math.PI + 2*Math.PI*Math.random();
+				}
+				else if (value == ConstEntity.UNIT_ACTION_02)
 				{
 					var target:IUnit;
 					var targets:IUnit = ManagerEntity.instance.listUnit as IUnit;

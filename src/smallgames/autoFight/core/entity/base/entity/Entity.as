@@ -50,8 +50,13 @@ package smallgames.autoFight.core.entity.base.entity
 		{
 			layer.lock();
 			var sourceBitmapData:BitmapData = sourceBitmapData();
+			var rectangle:Rectangle = new Rectangle();
+			rectangle.copyFrom(sourceBitmapData.rect);
+			rectangle.offsetPoint(data.loactionLast);
+			layer.fillRect(rectangle,0);
 			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.location);
-			layer.unlock(new Rectangle(data.location.x,data.location.y,sourceBitmapData.width,sourceBitmapData.height));
+			rectangle.offsetPoint(data.location);
+			layer.unlock(rectangle);
 		}
 		
 		protected function sourceBitmapData():BitmapData
@@ -60,7 +65,7 @@ package smallgames.autoFight.core.entity.base.entity
 			{
 				var shape:Shape = new Shape();
 				shape.graphics.beginFill(0x00ff00);
-				shape.graphics.drawCircle(0,0,10);
+				shape.graphics.drawCircle(10,10,10);
 				shape.graphics.endFill();
 				_bitmapData = new BitmapData(20,20,true,0);
 				_bitmapData.draw(shape);

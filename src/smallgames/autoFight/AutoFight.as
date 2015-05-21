@@ -45,6 +45,7 @@ package smallgames.autoFight
 			//
 			ManagerConfig.instance.initData();
 			//
+			ManagerTime.instance.stageFrameRate = stage.frameRate;
 			ManagerTime.instance.addFrame(stage);
 			//
 			var layerEntity:BitmapData = new BitmapData(400,300,true,0);

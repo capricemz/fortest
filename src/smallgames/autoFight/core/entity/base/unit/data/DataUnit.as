@@ -56,6 +56,16 @@ package smallgames.autoFight.core.entity.base.unit.data
 			_attrAtk = value;
 		}
 		//
+		private var _dirctoin:int;
+		public function get dirctoin():int
+		{
+			return _dirctoin;
+		}
+		public function set dirctoin(value:int):void
+		{
+			_dirctoin = value;
+		}
+		//
 		private var _target:IUnit = null;
 		public function get target():IUnit
 		{

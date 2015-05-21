@@ -13,6 +13,8 @@ package smallgames.autoFight.core.entity.base.unit.data
 		function get configAction():ConfigAction;
 		function get attrHp():int;
 		function set attrHp(value:int):void;
+		function get dirctoin():int;
+		function set dirctoin(value:int):void;
 		function get target():IUnit;
 		function set target(value:IUnit):void;
 		function get attrAtk():int;

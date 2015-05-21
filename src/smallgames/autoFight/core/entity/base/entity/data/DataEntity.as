@@ -35,14 +35,21 @@ package smallgames.autoFight.core.entity.base.entity.data
 		{
 			return _location;
 		}
-		public function set location(value:Point):void
+		public function locationOffset(dx:Number, dy:Number):void
 		{
-			_location = value;
+			_locationLast.copyFrom(_location);
+			_location.offset(dx,dy);
+		}
+		private var _locationLast:Point
+		public function get loactionLast():Point
+		{
+			return _locationLast;
 		}
 		
 		public function DataEntity()
 		{
-			
+			_location = new Point();
+			_locationLast = new Point();
 		}
 	}
 }

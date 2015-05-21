@@ -9,6 +9,7 @@ package smallgames.autoFight.core.entity.base.entity.data
 		function get type():int;
 		function set type(value:int):void;
 		function get location():Point;
-		function set location(value:Point):void;
+		function locationOffset(dx:Number, dy:Number):void;
+		function get loactionLast():Point;
 	}
 }

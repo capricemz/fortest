@@ -5,6 +5,8 @@ package smallgames.autoFight.core.entity.base.unit.action
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
+	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
+	import smallgames.autoFight.core.time.ManagerTime;
 
 	/**
 	 * 基础动作类
@@ -49,7 +51,13 @@ package smallgames.autoFight.core.entity.base.unit.action
 		
 		private function move():void
 		{
-			
+			var dataUnit:IDataUnit = _unit.dataUnit;
+			var speed:int = dataUnit.configUnit.speed;
+			var stageFrameRate:int = ManagerTime.instance.stageFrameRate;
+			var speedPerFrame:Number = speed/stageFrameRate;
+			var sin:Number = Math.sin(dataUnit.dirctoin);
+			var cos:Number = Math.cos(dataUnit.dirctoin);
+			_unit.dataUnit.locationOffset(sin*speedPerFrame,cos*speedPerFrame);
 		}
 		
 		private function observe():void
