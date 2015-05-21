@@ -30,15 +30,14 @@ package smallgames.autoFight.data.configs
 			{
 				_dictionary = ManagerConfig.instance.dictionary;
 			}
-			switch(args[0])
+			var object:Object = _dictionary;
+			var length:uint = args.length;
+			while(length--)
 			{
-				case ConstConfig.TYPE_UNIT:
-					return _dictionary[ConstConfig.TYPE_UNIT][id];
-				case ConstConfig.TYPE_ACTOIN:
-					return _dictionary[ConstConfig.TYPE_ACTOIN][id];
-				default:
-					return null;
+				var key:* = args.shift();
+				object = object[key];
 			}
+			return object;
 		}
 	}
 }

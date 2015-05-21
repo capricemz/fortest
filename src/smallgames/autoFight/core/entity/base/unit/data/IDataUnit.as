@@ -7,17 +7,15 @@ package smallgames.autoFight.core.entity.base.unit.data
 
 	public interface IDataUnit extends IDataEntity
 	{
-		function get unitId():int;
-		function set unitId(value:int):void;
 		function get configUnit():ConfigUnit;
-		function get actionId():int;
-		function set actionId(value:int):void;
+		function get idAction():int;
+		function set idAction(value:int):void;
 		function get configAction():ConfigAction;
-		function get hp():int;
-		function set hp(value:int):void;
+		function get attrHp():int;
+		function set attrHp(value:int):void;
 		function get target():IUnit;
 		function set target(value:IUnit):void;
-		function get atk():int;
-		function set atk(value:int):void;
+		function get attrAtk():int;
+		function set attrAtk(value:int):void;
 	}
 }

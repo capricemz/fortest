@@ -74,12 +74,12 @@ package smallgames.autoFight.core.entity.base.unit.action
 		
 		private function hurt():void
 		{
-			_unit.dataUnit.hp;
+			_unit.dataUnit.attrHp;
 		}
 		
 		private function die():void
 		{
-			if(_unit.dataUnit.hp < 0)
+			if(_unit.dataUnit.attrHp < 0)
 			{
 				ManagerEntity.instance.destroyEntity(_unit);
 			}

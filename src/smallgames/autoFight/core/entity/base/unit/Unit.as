@@ -26,7 +26,7 @@ package smallgames.autoFight.core.entity.base.unit
 		{
 			/*trace("Unit.updateByTime(timeDiff) 单位："+this);*/
 			_aiBase.think(timeDiff);
-			_actoinBase.execute(dataUnit.actionId);
+			_actoinBase.execute(dataUnit.idAction);
 		}
 	}
 }

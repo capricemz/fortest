@@ -6,8 +6,9 @@ package smallgames.autoFight.core.time
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.ManagerEntity;
-	import smallgames.autoFight.core.entity.base.entity.data.DataEntity;
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
+	import smallgames.autoFight.core.entity.base.scene.data.DataScene;
+	import smallgames.autoFight.core.entity.base.scene.data.IDataScene;
 	import smallgames.autoFight.core.entity.base.unit.data.DataUnit;
 	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
 
@@ -33,30 +34,30 @@ package smallgames.autoFight.core.time
 		public function HandleWorldCreate()
 		{
 			datas = new Vector.<IDataEntity>();
-			var dataEntity:IDataEntity = new DataEntity();
-			dataEntity.id = 1;
-			dataEntity.type = ConstEntity.ENTITY_SCENE_FOREST;
-			dataEntity.location = new Point();
-			datas.push(dataEntity);
+			var dataScene:IDataScene = new DataScene();
+			dataScene.id = 1;
+			dataScene.type = ConstEntity.ENTITY_SCENE_FOREST;
+			dataScene.location = new Point();
+			datas.push(dataScene);
 			var dataUnit:IDataUnit = new DataUnit();
 			dataUnit.id = 1;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.atk = UtilRandom.randomWave(10);
-			dataUnit.hp = UtilRandom.randomWave(30);
+			dataUnit.attrAtk = UtilRandom.randomWave(10);
+			dataUnit.attrHp = UtilRandom.randomWave(30);
 			dataUnit.location = new Point();
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 2;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.atk = UtilRandom.randomWave(10);
-			dataUnit.hp = UtilRandom.randomWave(30);
+			dataUnit.attrAtk = UtilRandom.randomWave(10);
+			dataUnit.attrHp = UtilRandom.randomWave(30);
 			dataUnit.location = new Point();
 			datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 3;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.atk = UtilRandom.randomWave(10);
-			dataUnit.hp = UtilRandom.randomWave(30);
+			dataUnit.attrAtk = UtilRandom.randomWave(10);
+			dataUnit.attrHp = UtilRandom.randomWave(30);
 			dataUnit.location = new Point();
 			datas.push(dataUnit);
 		}

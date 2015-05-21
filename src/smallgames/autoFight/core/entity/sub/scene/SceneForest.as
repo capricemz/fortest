@@ -9,11 +9,6 @@ package smallgames.autoFight.core.entity.sub.scene
 	 */	
 	public class SceneForest extends Scene implements ISceneForest
 	{
-		override public function get name():String
-		{
-			return StringEntity.SCENE_FOREST;
-		}
-		
 		public function SceneForest()
 		{
 			super();

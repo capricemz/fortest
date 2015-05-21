@@ -20,11 +20,6 @@ package smallgames.autoFight.core.entity.base.entity.data
 			_id = value;
 		}
 		
-		public function get name():String
-		{
-			return "";
-		}
-		
 		private var _type:int;
 		public function get type():int
 		{

@@ -53,7 +53,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 						_unit.dataUnit.target = target;
 					}
 				}
-				_unit.dataUnit.actionId = value;
+				_unit.dataUnit.idAction = value;
 			}
 		}
 	}

@@ -14,46 +14,46 @@ package smallgames.autoFight.core.entity.base.unit.data
 	 */	
 	public class DataUnit extends DataEntity implements IDataUnit
 	{
-		private var _unitId:int;
-		public function get unitId():int
-		{
-			return _unitId;
-		}
-		public function set unitId(value:int):void
-		{
-			_unitId = value;
-		}
-		
 		public function get configUnit():ConfigUnit
 		{
-			var config:ConfigUnit = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_UNIT,_unitId) as ConfigUnit;
+			var config:ConfigUnit = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_UNIT,type) as ConfigUnit;
 			return config;
 		}
 		//
-		private var _actionId:int = ConstEntity.UNIT_ACTION_00;
-		public function get actionId():int
+		private var _idAction:int = ConstEntity.UNIT_ACTION_00;
+		public function get idAction():int
 		{
-			return _actionId;
+			return _idAction;
 		}
-		public function set actionId(value:int):void
+		public function set idAction(value:int):void
 		{
-			_actionId = value;
+			_idAction = value;
 		}
 		
 		public function get configAction():ConfigAction
 		{
-			var config:ConfigAction = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_ACTOIN,_actionId) as ConfigAction;
+			var config:ConfigAction = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_ACTOIN,_idAction) as ConfigAction;
 			return config;
 		}
 		//
-		private var _hp:int;
-		public function get hp():int
+		private var _attrHp:int;
+		public function get attrHp():int
 		{
-			return _hp;
+			return _attrHp;
 		}
-		public function set hp(value:int):void
+		public function set attrHp(value:int):void
 		{
-			_hp = value;
+			_attrHp = value;
+		}
+		//
+		private var _attrAtk:int;
+		public function get attrAtk():int
+		{
+			return _attrAtk;
+		}
+		public function set attrAtk(value:int):void
+		{
+			_attrAtk = value;
 		}
 		//
 		private var _target:IUnit = null;
@@ -64,16 +64,6 @@ package smallgames.autoFight.core.entity.base.unit.data
 		public function set target(value:IUnit):void
 		{
 			_target = value;
-		}
-		//
-		private var _atk:int;
-		public function get atk():int
-		{
-			return _atk;
-		}
-		public function set atk(value:int):void
-		{
-			_atk = value;
 		}
 		
 		public function DataUnit()

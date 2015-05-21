@@ -139,11 +139,11 @@ package smallgames.autoFight.core.entity
 		public function textPlace():String
 		{
 			var text:String = "";
-			var entity:IEntity = listScene;
-			while(entity)
+			var scene:IScene = listScene as IScene;
+			while(scene)
 			{
-				text += entity.name;
-				entity = entity.next;
+				text += scene.dataScene.configScene.name;
+				scene = scene.next as IScene;
 			}
 			return text;
 		}
@@ -158,7 +158,8 @@ package smallgames.autoFight.core.entity
 				{
 					text += ",";
 				}
-				text += unit.name + "(" + (unit.data as IDataUnit).hp + ")";
+				var dataUnit:IDataUnit = unit.dataUnit;
+				text += dataUnit.configUnit.name + "(" + dataUnit.attrHp + ")";
 				unit = unit.next as IUnit;
 			}
 			return text;
@@ -175,8 +176,7 @@ package smallgames.autoFight.core.entity
 					text += "\n";
 				}
 				var dataUnit:IDataUnit = unit.dataUnit;
-				var target:IUnit = dataUnit.target;
-				text += unit.name + dataUnit.configAction.name + (target ? target.name : "");
+				text += dataUnit.configUnit.name + dataUnit.configAction.name;
 				unit = unit.next as IUnit;
 			}
 			return text;
