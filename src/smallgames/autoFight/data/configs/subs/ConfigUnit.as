@@ -4,6 +4,10 @@ package smallgames.autoFight.data.configs.subs
 	{
 		/**思考间隔*/
 		public var interval:int;
+		/**体力值*/
+		public var hp:int;
+		/**攻击力*/
+		public var atk:int;
 		/**移动速度(每秒像素)*/
 		public var speed:int;
 		

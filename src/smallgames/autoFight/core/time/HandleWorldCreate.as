@@ -40,11 +40,9 @@ package smallgames.autoFight.core.time
 			var dataUnit:IDataUnit = new DataUnit();
 			dataUnit.id = 1;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.attrAtk = UtilRandom.randomWave(10);
-			dataUnit.attrHp = UtilRandom.randomWave(30);
 			dataUnit.locationOffset(200,150);
 			datas.push(dataUnit);
-			dataUnit = new DataUnit();
+			/*dataUnit = new DataUnit();
 			dataUnit.id = 2;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.attrAtk = UtilRandom.randomWave(10);
@@ -57,7 +55,7 @@ package smallgames.autoFight.core.time
 			dataUnit.attrAtk = UtilRandom.randomWave(10);
 			dataUnit.attrHp = UtilRandom.randomWave(30);
 			dataUnit.locationOffset(200,150);
-			datas.push(dataUnit);
+			datas.push(dataUnit);*/
 		}
 		
 		public function update(...args):*

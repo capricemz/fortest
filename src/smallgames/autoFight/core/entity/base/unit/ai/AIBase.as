@@ -31,7 +31,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 				var interval:int = _unit.dataUnit.configUnit.interval;
 				_timeNext = _timeNow + UtilRandom.randomWave(interval);
 				
-				var value:int = int(Math.random()*ConstEntity.UNIT_ACTION_TOTAL);
+				var value:int = int(Math.random()*2)/*int(Math.random()*ConstEntity.UNIT_ACTION_TOTAL)*/;
 				if (value == ConstEntity.UNIT_ACTION_01)
 				{
 					_unit.dataUnit.dirctoin = -Math.PI + 2*Math.PI*Math.random();

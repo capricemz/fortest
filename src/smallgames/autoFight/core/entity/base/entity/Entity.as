@@ -1,7 +1,7 @@
 package smallgames.autoFight.core.entity.base.entity
 {
 	import flash.display.BitmapData;
-	import flash.display.Shape;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
@@ -28,11 +28,17 @@ package smallgames.autoFight.core.entity.base.entity
 			_data = value;
 		}
 		
-		private var _bitmapData:BitmapData;
+		protected var _bitmapData:BitmapData;
+		protected function get bitmapData():BitmapData
+		{
+			return null;
+		}
+		private var bitmapDataTemp:BitmapData;
 		
 		public function Entity()
 		{
 			/*throw new Error("该类不能初始化，请使用子类");*/
+			bitmapDataTemp = new BitmapData(bitmapData.width,bitmapData.height,true,0);
 		}
 		
 		public final function updateByTime(timeDiff:int,layer:BitmapData):void
@@ -48,29 +54,18 @@ package smallgames.autoFight.core.entity.base.entity
 		
 		protected function updateLoaction(layer:BitmapData):void
 		{
-			layer.lock();
-			var sourceBitmapData:BitmapData = sourceBitmapData();
-			var rectangle:Rectangle = new Rectangle();
-			rectangle.copyFrom(sourceBitmapData.rect);
-			rectangle.offsetPoint(data.loactionLast);
-			layer.fillRect(rectangle,0);
-			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.location);
-			rectangle.offsetPoint(data.location);
-			layer.unlock(rectangle);
-		}
-		
-		protected function sourceBitmapData():BitmapData
-		{
-			if(!_bitmapData)
+			if(!data.isNeedDrow)
 			{
-				var shape:Shape = new Shape();
-				shape.graphics.beginFill(0x00ff00);
-				shape.graphics.drawCircle(10,10,10);
-				shape.graphics.endFill();
-				_bitmapData = new BitmapData(20,20,true,0);
-				_bitmapData.draw(shape);
+				return;
 			}
-			return _bitmapData;
+			layer.copyPixels(bitmapDataTemp,bitmapDataTemp.rect,data.locationLast);
+			//
+			var rectangle:Rectangle = new Rectangle();
+			rectangle.copyFrom(bitmapData.rect);
+			rectangle.offsetPoint(data.location);
+			bitmapDataTemp.copyPixels(layer,rectangle,new Point());
+			//
+			layer.copyPixels(bitmapData,bitmapData.rect,data.location);
 		}
 	}
 }

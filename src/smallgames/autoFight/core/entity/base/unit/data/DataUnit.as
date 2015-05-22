@@ -1,5 +1,6 @@
 package smallgames.autoFight.core.entity.base.unit.data
 {
+	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.base.entity.data.DataEntity;
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
@@ -46,6 +47,12 @@ package smallgames.autoFight.core.entity.base.unit.data
 			_attrHp = value;
 		}
 		//
+		private var _attrHpMax:int;
+		public function get attrHpMax():int
+		{
+			return _attrHpMax;
+		}
+		//
 		private var _attrAtk:int;
 		public function get attrAtk():int
 		{
@@ -79,6 +86,8 @@ package smallgames.autoFight.core.entity.base.unit.data
 		public function DataUnit()
 		{
 			super();
+			_attrHpMax = UtilRandom.randomWave(configUnit.hp);
+			_attrAtk = UtilRandom.randomWave(configUnit.atk);
 		}
 	}
 }

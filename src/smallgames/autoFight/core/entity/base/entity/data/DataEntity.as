@@ -41,9 +41,16 @@ package smallgames.autoFight.core.entity.base.entity.data
 			_location.offset(dx,dy);
 		}
 		private var _locationLast:Point
-		public function get loactionLast():Point
+		public function get locationLast():Point
 		{
 			return _locationLast;
+		}
+		private var _isFirstDrow:Boolean;
+		public function get isNeedDrow():Boolean
+		{
+			var boolean:Boolean = !location.equals(locationLast) || !_isFirstDrow;
+			_isFirstDrow = true;
+			return boolean;
 		}
 		
 		public function DataEntity()
