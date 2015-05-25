@@ -50,6 +50,7 @@ package smallgames.autoFight
 			//
 			var layerEntity:BitmapData = new BitmapData(400,300,true,0);
 			var bitmap:Bitmap = new Bitmap(layerEntity);
+			bitmap.smoothing = true;
 			addChild(bitmap);
 			ManagerEntity.instance.initialize(layerEntity);
 			//

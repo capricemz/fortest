@@ -10,14 +10,20 @@ package smallgames.autoFight.core.entity.base.unit.data
 		function get configUnit():ConfigUnit;
 		function get idAction():int;
 		function set idAction(value:int):void;
+		function get isIdActionChange():Boolean;
 		function get configAction():ConfigAction;
-		function get attrHp():int;
-		function set attrHp(value:int):void;
-		function get dirctoin():int;
-		function set dirctoin(value:int):void;
+		function get idActionNext():int;
+		function set idActionNext(value:int):void;
+		function get dirction():Number;
+		function set dirction(value:Number):void;
+		function get dirctionTarget():Number;
+		function set dirctionTarget(value:Number):void;
 		function get target():IUnit;
 		function set target(value:IUnit):void;
-		function get attrAtk():int;
-		function set attrAtk(value:int):void;
+		function get attrHp():int;
+		function set attrHp(value:int):void;
+		function get attrHpMax():int;
+		function get attrAtkMax():int;
+		function get isAlive():Boolean;
 	}
 }

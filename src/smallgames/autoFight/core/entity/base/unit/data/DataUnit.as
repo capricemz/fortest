@@ -28,13 +28,27 @@ package smallgames.autoFight.core.entity.base.unit.data
 		}
 		public function set idAction(value:int):void
 		{
+			_idActionLast = _idAction;
 			_idAction = value;
 		}
-		
+		private var _idActionLast:int = -1;
+		public function get isIdActionChange():Boolean
+		{
+			return _idAction != _idActionLast || _idActionLast == -1;
+		}
 		public function get configAction():ConfigAction
 		{
 			var config:ConfigAction = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_ACTOIN,_idAction) as ConfigAction;
 			return config;
+		}
+		private var _idActionNext:int;
+		public function get idActionNext():int
+		{
+			return _idActionNext;
+		}
+		public function set idActionNext(value:int):void
+		{
+			_idActionNext = value;
 		}
 		//
 		private var _attrHp:int;
@@ -46,31 +60,50 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			_attrHp = value;
 		}
+		
+		public function get isAlive():Boolean
+		{
+			return _attrHp > 0;
+		}
 		//
 		private var _attrHpMax:int;
 		public function get attrHpMax():int
 		{
+			if(!_attrHpMax)
+			{
+				_attrHpMax = UtilRandom.randomWave(configUnit.hp);
+				_attrHp = _attrHpMax;
+			}
 			return _attrHpMax;
 		}
 		//
-		private var _attrAtk:int;
-		public function get attrAtk():int
+		private var _attrAtkMax:int;
+		public function get attrAtkMax():int
 		{
-			return _attrAtk;
-		}
-		public function set attrAtk(value:int):void
-		{
-			_attrAtk = value;
+			if(!_attrAtkMax)
+			{
+				_attrAtkMax = UtilRandom.randomWave(configUnit.atk);
+			}
+			return _attrAtkMax;
 		}
 		//
-		private var _dirctoin:int;
-		public function get dirctoin():int
+		private var _dirctoin:Number = 0;
+		public function get dirction():Number
 		{
 			return _dirctoin;
 		}
-		public function set dirctoin(value:int):void
+		public function set dirction(value:Number):void
 		{
 			_dirctoin = value;
+		}
+		private var _dirctionTarget:Number
+		public function get dirctionTarget():Number
+		{
+			return _dirctionTarget;
+		}
+		public function set dirctionTarget(value:Number):void
+		{
+			_dirctionTarget = value;
 		}
 		//
 		private var _target:IUnit = null;
@@ -86,8 +119,6 @@ package smallgames.autoFight.core.entity.base.unit.data
 		public function DataUnit()
 		{
 			super();
-			_attrHpMax = UtilRandom.randomWave(configUnit.hp);
-			_attrAtk = UtilRandom.randomWave(configUnit.atk);
 		}
 	}
 }

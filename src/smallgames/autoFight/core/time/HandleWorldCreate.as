@@ -27,47 +27,53 @@ package smallgames.autoFight.core.time
 			ManagerTime.instance.attach(this);
 		}
 		
-		private var datas:Vector.<IDataEntity>;
+		private var _isDatasInited:Boolean;
+		private var _datas:Vector.<IDataEntity>;
 		
 		public function HandleWorldCreate()
 		{
-			datas = new Vector.<IDataEntity>();
-			var dataScene:IDataScene = new DataScene();
-			dataScene.id = 1;
-			dataScene.type = ConstEntity.ENTITY_SCENE_FOREST;
-			dataScene.locationOffset(0,0);
-			datas.push(dataScene);
-			var dataUnit:IDataUnit = new DataUnit();
-			dataUnit.id = 1;
-			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.locationOffset(200,150);
-			datas.push(dataUnit);
-			/*dataUnit = new DataUnit();
-			dataUnit.id = 2;
-			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.attrAtk = UtilRandom.randomWave(10);
-			dataUnit.attrHp = UtilRandom.randomWave(30);
-			dataUnit.locationOffset(200,150);
-			datas.push(dataUnit);
-			dataUnit = new DataUnit();
-			dataUnit.id = 3;
-			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.attrAtk = UtilRandom.randomWave(10);
-			dataUnit.attrHp = UtilRandom.randomWave(30);
-			dataUnit.locationOffset(200,150);
-			datas.push(dataUnit);*/
+			
 		}
 		
 		public function update(...args):*
 		{
 			var timeDiff:int = args[0] as int;
-			if(datas && datas.length)
+			if(!_isDatasInited)
 			{
-				var data:IDataEntity = datas.shift();
-				ManagerEntity.instance.addEntity(data);
-				return false;
+				_isDatasInited = true;
+				initData();
+				return;
 			}
-			return true;
+			if(_datas && _datas.length)
+			{
+				var data:IDataEntity = _datas.shift();
+				ManagerEntity.instance.addEntity(data);
+			}
+		}
+		
+		private function initData():void
+		{
+			_datas = new Vector.<IDataEntity>();
+			var dataScene:IDataScene = new DataScene();
+			dataScene.id = 1;
+			dataScene.type = ConstEntity.ENTITY_SCENE_FOREST;
+			dataScene.locationOffset(0,0);
+			_datas.push(dataScene);
+			var dataUnit:IDataUnit = new DataUnit();
+			dataUnit.id = 1;
+			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
+			_datas.push(dataUnit);
+			dataUnit = new DataUnit();
+			dataUnit.id = 2;
+			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
+			_datas.push(dataUnit);
+			dataUnit = new DataUnit();
+			dataUnit.id = 3;
+			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
+			_datas.push(dataUnit);
 		}
 	}
 }

@@ -159,7 +159,7 @@ package smallgames.autoFight.core.entity
 					text += ",";
 				}
 				var dataUnit:IDataUnit = unit.dataUnit;
-				text += dataUnit.configUnit.name + "(" + dataUnit.attrHp + ")";
+				text += dataUnit.configUnit.name + "(" + dataUnit.attrHp + "/" + dataUnit.attrHpMax + ")";
 				unit = unit.next as IUnit;
 			}
 			return text;

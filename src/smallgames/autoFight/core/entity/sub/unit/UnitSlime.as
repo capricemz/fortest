@@ -12,13 +12,13 @@ package smallgames.autoFight.core.entity.sub.unit
 			if(!_bitmapData)
 			{
 				var shape:Shape = new Shape();
-				shape.graphics.beginFill(0xffffaa);
+				/*shape.graphics.beginFill(0xffffaa);
 				shape.graphics.drawEllipse(0,0,10,15);
-				shape.graphics.endFill();
+				shape.graphics.endFill();*/
 				shape.graphics.beginFill(0xffff00);
-				shape.graphics.drawCircle(5,2.5,2.5);
+				shape.graphics.drawCircle(5,5,5);
 				shape.graphics.endFill();
-				_bitmapData = new BitmapData(10,15,true,0);
+				_bitmapData = new BitmapData(10,10,true,0);
 				_bitmapData.draw(shape);
 			}
 			return _bitmapData;
