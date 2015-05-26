@@ -4,7 +4,6 @@ package tests.testBmpMatrix
 	import flash.display.BitmapData;
 	import flash.display.Shape;
 	import flash.display.Sprite;
-	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
 	
 	public class TestBmpMatrix extends Sprite
@@ -34,7 +33,7 @@ package tests.testBmpMatrix
 			_dirction += Math.PI/8;
 			var matrix:Matrix = new Matrix(1,0,0,1);
 			matrix.rotate(_dirction);
-			_bitmapData.draw(_bitmapData,matrix,null,null,true);
+			_bitmapData.draw(_bitmapData,matrix,null,null,null,true);
 		}
 	}
 }
