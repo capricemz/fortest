@@ -42,9 +42,11 @@ package smallgames.autoFight.core.entity.base.unit
 			}
 			layer.copyPixels(bitmapDataTemp,bitmapDataTemp.rect,data.locationLast);
 			//
+			var bitmapData2:BitmapData = new BitmapData();
 			var matrix:Matrix = new Matrix(1,0,0,1);
 			matrix.rotate(dataUnit.dirction);
-			bitmapData.draw(bitmapData,matrix,null,null,null,true);
+			matrix.translate(Math.sin(dataUnit.dirction),Math.cos(dataUnit.dirction));
+			bitmapData2.draw(bitmapData,matrix,null,null,null,true);
 			//
 			var rectangle:Rectangle = new Rectangle();
 			rectangle.copyFrom(bitmapData.rect);

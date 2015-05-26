@@ -5,35 +5,77 @@ package tests.testBmpMatrix
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
+	import flash.geom.Point;
 	
 	public class TestBmpMatrix extends Sprite
 	{
 		private var _bitmapData:BitmapData;
 		private var _bitmap:Bitmap;
 		private var _dirction:Number = 0;
+
+		private var _l:Number;
 		
 		public function TestBmpMatrix()
 		{
 			super();
+			var w:int = 15;
+			var h:int = 20;
+			_l = Math.sqrt(w*w+h*h);
 			var shape:Shape = new Shape();
-			shape.graphics.beginFill(0xffffaa);
-			shape.graphics.drawEllipse(0,0,10,15);
+			/*hape.graphics.beginFill(0xffffaa);
+			shape.graphics.drawEllipse(0,0,w,h);
 			shape.graphics.endFill();
 			shape.graphics.beginFill(0xffff00);
-			shape.graphics.drawCircle(5,5,5);
+			shape.graphics.drawCircle(w/2,w/2,w/2);
+			shape.graphics.endFill();*/
+			shape.graphics.beginFill(0xffff00);
+			shape.graphics.drawRect(0,0,w,h);
 			shape.graphics.endFill();
-			_bitmapData = new BitmapData(10,15,true,0);
-			_bitmapData.draw(shape);
-			_bitmap = new Bitmap(_bitmapData,"auto",true);
+			_bitmapData = new BitmapData(_l,_l,true,0);
+			_bitmapData.draw(shape,new Matrix(1,0,0,1,(_l - w)*.5,(_l - h)*.5));
+			//
+			var bitmapData:BitmapData = new BitmapData(100,100,true,0);
+			_bitmap = new Bitmap(bitmapData,"auto",true);
 			addChild(_bitmap);
+			//
+			var matrix:Matrix = new Matrix(1,0,0,1);
+			matrix.rotate(_dirction);
+			matrix.translate(50,50);
+			_bitmap.bitmapData.draw(_bitmapData,matrix);
+			/*var sin:Number = Math.sin(_dirction);
+			var cos:Number = Math.cos(_dirction);
+			var point:Point = new Point(Math.SQRT2*_l*.5*cos,Math.SQRT2*_l*.5*sin);
+			_dirction = Math.PI/4;
+			sin = Math.sin(_dirction);
+			cos = Math.cos(_dirction);
+			var point2:Point = new Point(Math.SQRT2*_l*.5*cos,Math.SQRT2*_l*.5*sin);
+			var subtract:Point = point.subtract(point2);
+			trace("TestBmpMatrix.doTest() subtract.x:"+subtract.x+",point.y:"+subtract.y);
+			matrix.identity();
+			matrix.rotate(_dirction);
+			matrix.translate(20,20);
+			_bitmap.bitmapData.draw(_bitmapData,matrix);*/
 		}
 		
 		public function doTest():void
 		{
-			_dirction += Math.PI/8;
+			var sin:Number = Math.sin(_dirction);
+			var cos:Number = Math.cos(_dirction);
+			var point:Point = new Point(Math.SQRT2*_l*.5*cos,Math.SQRT2*_l*.5*sin);
+			trace("TestBmpMatrix.doTest() cos:"+cos+",sin:"+sin);
+			trace("TestBmpMatrix.doTest() point.x:"+point.x+",point.y:"+point.y);
+			_dirction += Math.PI/4;
+			sin = Math.sin(_dirction);
+			cos = Math.cos(_dirction);
+			var point2:Point = new Point(Math.SQRT2*_l*.5*cos,Math.SQRT2*_l*.5*sin);
+			trace("TestBmpMatrix.doTest() cos:"+cos+",sin:"+sin);
+			trace("TestBmpMatrix.doTest() point2.x:"+point2.x+",point2.y:"+point2.y);
+			var subtract:Point = point.subtract(point2);
+			trace("TestBmpMatrix.doTest() subtract.x:"+subtract.x+",point.y:"+subtract.y);
 			var matrix:Matrix = new Matrix(1,0,0,1);
 			matrix.rotate(_dirction);
-			_bitmapData.draw(_bitmapData,matrix,null,null,null,true);
+			matrix.translate(50/*+ subtract.x*/,50/* + subtract.y*/);
+			_bitmap.bitmapData.draw(_bitmapData,matrix);
 		}
 	}
 }
