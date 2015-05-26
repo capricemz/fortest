@@ -31,17 +31,21 @@ package smallgames.autoFight.core.entity.base.unit.data
 			_idActionLast = _idAction;
 			_idAction = value;
 		}
-		private var _idActionLast:int = -1;
+		private var _idActionLast:int = ConstEntity.UNIT_ACTION_NULL;
 		public function get isIdActionChange():Boolean
 		{
-			return _idAction != _idActionLast || _idActionLast == -1;
+			return _idAction != _idActionLast || _idActionLast == ConstEntity.UNIT_ACTION_NULL;
+		}
+		public function get isActionOverByTime():Boolean
+		{
+			return configAction.duration != 0;
 		}
 		public function get configAction():ConfigAction
 		{
 			var config:ConfigAction = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_ACTOIN,_idAction) as ConfigAction;
 			return config;
 		}
-		private var _idActionNext:int;
+		private var _idActionNext:int = ConstEntity.UNIT_ACTION_NULL;
 		public function get idActionNext():int
 		{
 			return _idActionNext;
@@ -96,7 +100,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			_dirctoin = value;
 		}
-		private var _dirctionTarget:Number
+		private var _dirctionTarget:Number = Number.POSITIVE_INFINITY;
 		public function get dirctionTarget():Number
 		{
 			return _dirctionTarget;
@@ -109,6 +113,10 @@ package smallgames.autoFight.core.entity.base.unit.data
 		private var _target:IUnit = null;
 		public function get target():IUnit
 		{
+			if(_target && !_target.dataUnit.isAlive)
+			{
+				_target = null;
+			}
 			return _target;
 		}
 		public function set target(value:IUnit):void

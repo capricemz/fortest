@@ -11,6 +11,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		function get idAction():int;
 		function set idAction(value:int):void;
 		function get isIdActionChange():Boolean;
+		function get isActionOverByTime():Boolean;
 		function get configAction():ConfigAction;
 		function get idActionNext():int;
 		function set idActionNext(value:int):void;

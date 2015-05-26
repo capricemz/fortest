@@ -1,5 +1,10 @@
 package smallgames.autoFight.core.entity.base.unit
 {
+	import flash.display.BitmapData;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	
 	import smallgames.autoFight.core.entity.base.entity.Entity;
 	import smallgames.autoFight.core.entity.base.unit.action.ActionBase;
 	import smallgames.autoFight.core.entity.base.unit.ai.AIBase;
@@ -27,6 +32,26 @@ package smallgames.autoFight.core.entity.base.unit
 			/*trace("Unit.updateByTime(timeDiff) 单位："+this);*/
 			_aiBase.think(timeDiff);
 			_actoinBase.execute(timeDiff);
+		}
+		
+		override protected function updateBitmapData(layer:BitmapData):void
+		{
+			if(!data.isNeedDrow)
+			{
+				return;
+			}
+			layer.copyPixels(bitmapDataTemp,bitmapDataTemp.rect,data.locationLast);
+			//
+			var matrix:Matrix = new Matrix(1,0,0,1);
+			matrix.rotate(dataUnit.dirction);
+			bitmapData.draw(bitmapData,matrix,null,null,null,true);
+			//
+			var rectangle:Rectangle = new Rectangle();
+			rectangle.copyFrom(bitmapData.rect);
+			rectangle.offsetPoint(data.location);
+			bitmapDataTemp.copyPixels(layer,rectangle,new Point());
+			//
+			layer.copyPixels(bitmapData,bitmapData.rect,data.location);
 		}
 	}
 }

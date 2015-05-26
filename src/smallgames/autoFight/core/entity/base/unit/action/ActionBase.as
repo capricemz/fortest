@@ -9,6 +9,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
 	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
 	import smallgames.autoFight.core.time.ManagerTime;
+	import smallgames.autoFight.data.configs.subs.ConfigUnit;
 
 	/**
 	 * 基础动作类
@@ -19,7 +20,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 		private var _unit:IUnit;
 		private var _executes:Dictionary;
 		private var _timeNow:int;
-		private var _timeNext:int;
+		private var _timeOver:int = int.MAX_VALUE;
 		
 		public function ActionBase(unit:IUnit)
 		{
@@ -41,56 +42,74 @@ package smallgames.autoFight.core.entity.base.unit.action
 		 */		
 		public function execute(timeDiff:int):void
 		{
+			_timeNow += timeDiff;
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			var idAction:int = dataUnit.idAction;
-			if(dataUnit.isIdActionChange)
+			if(_timeOver == int.MAX_VALUE && dataUnit.isIdActionChange && dataUnit.isActionOverByTime)
 			{
 				var duration:int = dataUnit.configAction.duration;
-				_timeNext = _timeNow + UtilRandom.randomWave(duration);
+				_timeOver = _timeNow + UtilRandom.randomWave(duration);
 			}
-			var funcAction:Function = _executes[idAction] as Function;
-			if(funcAction == null)
+			if(_timeNow > _timeOver)
 			{
-				throw new Error("对应的动作不存在");
-			}
-			funcAction();
-			_timeNow += timeDiff;
-			if(_timeNow > _timeNext)
-			{
-				_timeNext = 0;
+				_timeOver = int.MAX_VALUE;
 				if(dataUnit.idActionNext != ConstEntity.UNIT_ACTION_NULL)
 				{
 					dataUnit.idAction = dataUnit.idActionNext;
 					dataUnit.idActionNext = ConstEntity.UNIT_ACTION_NULL;
 				}
 			}
+			var funcAction:Function = _executes[dataUnit.idAction] as Function;
+			if(funcAction == null)
+			{
+				throw new Error("对应的动作不存在");
+			}
+			funcAction();
 		}
 		/**休息*/
 		private function rest():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			dataUnit.target = null;
+			dataUnit.dirctionTarget = Number.POSITIVE_INFINITY;
 		}
 		/**转向*/
 		private function turn():void
 		{
-			if(dataUnit.dirctionTarget == Number.NaN)
+			var dataUnit:IDataUnit = _unit.dataUnit;
+			if(dataUnit.dirctionTarget == Number.POSITIVE_INFINITY)
 			{
 				dataUnit.dirctionTarget = -Math.PI + 2*Math.PI*Math.random();
 			}
-			var dataUnit:IDataUnit = _unit.dataUnit;
-			if(dataUnit.dirctionTarget != dataUnit.dirction)
+			var stageFrameRate:int = ManagerTime.instance.stageFrameRate;
+			var palstance:Number = dataUnit.configUnit.palstance*Math.PI/360/stageFrameRate;
+			var dirctionSub:Number = dataUnit.dirctionTarget - dataUnit.dirction;
+			var dirctoinAbs:Number = Math.abs(dirctionSub);
+			if (dirctoinAbs > palstance)
 			{
-				dataUnit.dirction = ;
+				dataUnit.dirction += dirctionSub/dirctoinAbs*palstance;
+			}
+			else
+			{
+				dataUnit.dirctionTarget = Number.POSITIVE_INFINITY;
+				dataUnit.idAction = dataUnit.target ? ConstEntity.UNIT_ACTION_02 : ConstEntity.UNIT_ACTION_00;
 			}
 		}
 		/**移动*/
 		private function move():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			var speed:int = dataUnit.configUnit.speed;
+			var configUnit:ConfigUnit = dataUnit.configUnit;
+			if(dataUnit.target)
+			{
+				var subtract:Point = dataUnit.location.subtract(dataUnit.target.dataUnit.location);
+				if(subtract.length < configUnit.atkRange)
+				{
+					dataUnit.idAction = ConstEntity.UNIT_ACTION_04;
+					return;
+				}
+			}
 			var stageFrameRate:int = ManagerTime.instance.stageFrameRate;
-			var speedPerFrame:Number = speed/stageFrameRate;
+			var speedPerFrame:Number = configUnit.speed/stageFrameRate;
 			var sin:Number = Math.sin(dataUnit.dirction);
 			var cos:Number = Math.cos(dataUnit.dirction);
 			dataUnit.locationOffset(sin*speedPerFrame,cos*speedPerFrame);
@@ -99,7 +118,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 		private function observe():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			if(dataUnit.target && dataUnit.target.dataUnit.isAlive)
+			if(dataUnit.target)
 			{
 				return;
 			}
@@ -121,7 +140,8 @@ package smallgames.autoFight.core.entity.base.unit.action
 				dataUnit.target = target;
 				var subtract:Point = dataUnit.location.subtract(target.dataUnit.location);
 				var dirctoin:Number = Math.atan2(subtract.y,subtract.x);
-				_unit.dataUnit.dirction = dirctoin;
+				dataUnit.dirctionTarget = dirctoin;
+				dataUnit.idAction = ConstEntity.UNIT_ACTION_01;
 			}
 		}
 		/**攻击*/

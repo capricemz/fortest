@@ -33,7 +33,7 @@ package smallgames.autoFight.core.entity.base.entity
 		{
 			return null;
 		}
-		private var bitmapDataTemp:BitmapData;
+		protected var bitmapDataTemp:BitmapData;
 		
 		public function Entity()
 		{
@@ -44,7 +44,7 @@ package smallgames.autoFight.core.entity.base.entity
 		public final function updateByTime(timeDiff:int,layer:BitmapData):void
 		{
 			updateData(timeDiff);
-			updateLoaction(layer);
+			updateBitmapData(layer);
 		}
 		
 		protected function updateData(timeDiff:int):void
@@ -52,7 +52,7 @@ package smallgames.autoFight.core.entity.base.entity
 			
 		}
 		
-		protected function updateLoaction(layer:BitmapData):void
+		protected function updateBitmapData(layer:BitmapData):void
 		{
 			if(!data.isNeedDrow)
 			{

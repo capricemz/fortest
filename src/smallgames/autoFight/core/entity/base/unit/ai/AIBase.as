@@ -23,8 +23,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 				var dataUnit:IDataUnit = _unit.dataUnit;
 				var interval:int = dataUnit.configUnit.interval;
 				_timeNext = _timeNow + UtilRandom.randomWave(interval);
-				
-				var value:int = int(Math.random()*3)/*int(Math.random()*ConstEntity.UNIT_ACTION_TOTAL)*/;
+				var value:int = int(Math.random()*4);
 				_unit.dataUnit.idAction = value;
 			}
 		}
