@@ -100,6 +100,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			_dirctoin = value;
 		}
+		private var _dirctionLast:Number;
 		private var _dirctionTarget:Number = Number.POSITIVE_INFINITY;
 		public function get dirctionTarget():Number
 		{
@@ -108,6 +109,16 @@ package smallgames.autoFight.core.entity.base.unit.data
 		public function set dirctionTarget(value:Number):void
 		{
 			_dirctionTarget = value;
+		}
+		
+		override public function get isNeedDrow():Boolean
+		{
+			return super.isNeedDrow || isNeedRotate;
+		}
+		/**是否需要旋转*/
+		public function get isNeedRotate():Boolean
+		{
+			return _dirctionTarget != Number.POSITIVE_INFINITY && Math.abs(_dirctionTarget - _dirctoin) > .1;
 		}
 		//
 		private var _target:IUnit = null;
@@ -128,5 +139,6 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			super();
 		}
+		
 	}
 }

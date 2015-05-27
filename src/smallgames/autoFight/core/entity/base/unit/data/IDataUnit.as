@@ -19,6 +19,8 @@ package smallgames.autoFight.core.entity.base.unit.data
 		function set dirction(value:Number):void;
 		function get dirctionTarget():Number;
 		function set dirctionTarget(value:Number):void;
+		/**是否需要旋转*/
+		function get isNeedRotate():Boolean;
 		function get target():IUnit;
 		function set target(value:IUnit):void;
 		function get attrHp():int;

@@ -60,10 +60,9 @@ package smallgames.autoFight.core.entity.base.entity
 			}
 			layer.copyPixels(bitmapDataTemp,bitmapDataTemp.rect,data.locationLast);
 			//
-			var rectangle:Rectangle = new Rectangle();
-			rectangle.copyFrom(bitmapData.rect);
-			rectangle.offsetPoint(data.location);
-			bitmapDataTemp.copyPixels(layer,rectangle,new Point());
+			var rectangleClone:Rectangle = bitmapDataTemp.rect.clone();
+			rectangleClone.offsetPoint(data.location);
+			bitmapDataTemp.copyPixels(layer,rectangleClone,new Point());
 			//
 			layer.copyPixels(bitmapData,bitmapData.rect,data.location);
 		}
