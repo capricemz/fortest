@@ -22,14 +22,13 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			_timeNow += timeDiff;
 			if(dataUnit.isNeedThink)
 			{
-				dataUnit.dirctionTarget = UtilRandom.randomBetween(-Math.PI,Math.PI);
+				dataUnit.idAction = ConstEntity.UNIT_ACTION_00;
 			}
 			else if(_timeNow > _timeNext)
 			{
 				var interval:int = dataUnit.configUnit.interval;
 				_timeNext = _timeNow + UtilRandom.randomWave(interval);
 				var value:int = int(Math.random()*3);
-				value = 1;
 				dataUnit.idAction = value;
 				dataUnit.idActionNext = ConstEntity.UNIT_ACTION_00;
 				switch (value)

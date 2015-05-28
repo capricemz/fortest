@@ -83,7 +83,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		public function get isDirctionTargetReached():Boolean
 		{
 			var number:Number = _dirctionTarget - dirction;
-			return -.1 < number && number < .1;
+			return number > -.01 && number < .01;
 		}
 		//
 		private var _locationTarget:Point;
@@ -98,7 +98,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		public function get isLocationTargetReached():Boolean
 		{
 			var subtract:Point = _locationTarget.subtract(location);
-			return -.1 < subtract.x && subtract.x < .1 && -.1 < subtract.y && subtract.y < .1;
+			return (subtract.x > -.01 && subtract.x < .01) && (subtract.y > -.01 && subtract.y < .01);
 		}
 		//
 		private var _isNeedThink:Boolean;

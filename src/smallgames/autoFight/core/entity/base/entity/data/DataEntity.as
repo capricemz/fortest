@@ -44,7 +44,8 @@ package smallgames.autoFight.core.entity.base.entity.data
 		}
 		public function get isDirctionChange():Boolean
 		{
-			return Math.abs(_dirctionLast - _dirctoin) > .1;
+			var number:Number = _dirctionLast - dirction;
+			return number < -.01 || number > .01;
 		}
 		//
 		private var _location:Point;
@@ -59,7 +60,8 @@ package smallgames.autoFight.core.entity.base.entity.data
 		}
 		public function get isLoactionChange():Boolean
 		{
-			return !location.equals(locationLast);
+			var subtract:Point = locationLast.subtract(location);
+			return (subtract.x < -.01 || subtract.x > .01) && (subtract.y < -.01 || subtract.y > .01);
 		}
 		//
 		private var _isFirstDrow:Boolean = true;

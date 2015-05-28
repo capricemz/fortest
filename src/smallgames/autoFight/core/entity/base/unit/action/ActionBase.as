@@ -83,7 +83,6 @@ package smallgames.autoFight.core.entity.base.unit.action
 			}
 			if (dataUnit.isDirctionTargetReached)
 			{
-				dataUnit.dirctionOffset(dataUnit.dirctionTarget);
 				dataUnit.dirctionTarget = NaN;
 				dataUnit.isNeedThink = true;
 				return;
@@ -100,7 +99,6 @@ package smallgames.autoFight.core.entity.base.unit.action
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			if (dataUnit.locationTarget && dataUnit.isLocationTargetReached)
 			{
-				dataUnit.locationOffset(dataUnit.locationTarget.x,dataUnit.locationTarget.y);
 				dataUnit.locationTarget = null;
 				dataUnit.isNeedThink = true;
 				return;
@@ -109,7 +107,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 			var speedPerFrame:Number = dataUnit.configUnit.speed/stageFrameRate;
 			var sin:Number = Math.sin(dataUnit.dirction);
 			var cos:Number = Math.cos(dataUnit.dirction);
-			dataUnit.locationOffset(sin*speedPerFrame,cos*speedPerFrame);
+			dataUnit.locationOffset(cos*speedPerFrame,sin*speedPerFrame);
 		}
 		/**观察*/
 		private function observe():void
