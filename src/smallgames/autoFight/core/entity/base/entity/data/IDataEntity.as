@@ -23,9 +23,13 @@ package smallgames.autoFight.core.entity.base.entity.data
 		//
 		function get isFirstDrow():Boolean
 		//
-		/**按指定量偏移位置*/
-		function locationOffset(dx:Number, dy:Number):void;
 		/**按指定量偏移方向*/
 		function dirctionOffset(value:Number):void;
+		/**方向是否相等*/
+		function isDirctionEquals(value:Number):Boolean;
+		/**按指定量偏移位置*/
+		function locationOffset(dx:Number, dy:Number):void;
+		/**位置是否相等*/
+		function isLocationEquals(value:Point):Boolean;
 	}
 }

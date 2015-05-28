@@ -61,7 +61,7 @@ package smallgames.autoFight.core.entity.base.entity.data
 		public function get isLoactionChange():Boolean
 		{
 			var subtract:Point = locationLast.subtract(location);
-			return (subtract.x < -.01 || subtract.x > .01) && (subtract.y < -.01 || subtract.y > .01);
+			return (subtract.x < -.01 || subtract.x > .01) || (subtract.y < -.01 || subtract.y > .01);
 		}
 		//
 		private var _isFirstDrow:Boolean = true;
@@ -77,6 +77,25 @@ package smallgames.autoFight.core.entity.base.entity.data
 			_location = new Point();
 			_dirctoin = 0;
 		}
+		/**按指定量偏移方向*/
+		public function dirctionOffset(value:Number):void
+		{
+			if(isNaN(_dirctionLast))
+			{
+				_dirctionLast = value;
+			}
+			else
+			{
+				_dirctionLast = _dirctoin;
+			}
+			_dirctoin += value;
+		}
+		/**方向是否相等*/
+		public function isDirctionEquals(value:Number):Boolean
+		{
+			var number:Number = _dirctoin - value;
+			return number > -.01 && number < .01;
+		}
 		/**按指定量偏移位置*/
 		public function locationOffset(dx:Number, dy:Number):void
 		{
@@ -90,18 +109,11 @@ package smallgames.autoFight.core.entity.base.entity.data
 			}
 			_location.offset(dx,dy);
 		}
-		/**按指定量偏移方向*/
-		public function dirctionOffset(value:Number):void
+		/**位置是否相等*/
+		public function isLocationEquals(value:Point):Boolean
 		{
-			if(isNaN(_dirctionLast))
-			{
-				_dirctionLast = value;
-			}
-			else
-			{
-				_dirctionLast = _dirctoin;
-			}
-			_dirctoin += value;
+			var subtract:Point = _location.subtract(value);
+			return (subtract.x > -.01 && subtract.x < .01) && (subtract.y > -.01 && subtract.y < .01);
 		}
 	}
 }

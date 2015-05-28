@@ -1,6 +1,5 @@
 package smallgames.autoFight.core.entity.base.unit.action
 {
-	import flash.geom.Point;
 	import flash.utils.Dictionary;
 	
 	import smallgames.autoFight.common.random.UtilRandom;
@@ -133,10 +132,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 			if(target)
 			{
 				dataUnit.target = target;
-				var subtract:Point = dataUnit.location.subtract(target.dataUnit.location);
-				var dirctoin:Number = Math.atan2(subtract.y,subtract.x);
-				dataUnit.dirctionTarget = dirctoin;
-				dataUnit.idAction = ConstEntity.UNIT_ACTION_01;
+				dataUnit.isNeedThink = true;
 			}
 		}
 		/**攻击*/
