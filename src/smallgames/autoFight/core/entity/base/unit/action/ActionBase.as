@@ -9,7 +9,6 @@ package smallgames.autoFight.core.entity.base.unit.action
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
 	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
 	import smallgames.autoFight.core.time.ManagerTime;
-	import smallgames.autoFight.data.configs.subs.ConfigUnit;
 
 	/**
 	 * 基础动作类
@@ -44,12 +43,12 @@ package smallgames.autoFight.core.entity.base.unit.action
 		{
 			_timeNow += timeDiff;
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			if(_timeOver == int.MAX_VALUE && dataUnit.isIdActionChange && dataUnit.isActionOverByTime)
+			if (_timeOver == int.MAX_VALUE && dataUnit.isIdActionChange && dataUnit.isActionOverByTime)
 			{
 				var duration:int = dataUnit.configAction.duration;
 				_timeOver = _timeNow + UtilRandom.randomWave(duration);
 			}
-			if(_timeNow > _timeOver)
+			if (_timeNow > _timeOver)
 			{
 				_timeOver = int.MAX_VALUE;
 				if(dataUnit.idActionNext != ConstEntity.UNIT_ACTION_NULL)
@@ -59,7 +58,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 				}
 			}
 			var funcAction:Function = _executes[dataUnit.idAction] as Function;
-			if(funcAction == null)
+			if (funcAction == null)
 			{
 				throw new Error("对应的动作不存在");
 			}
@@ -70,46 +69,44 @@ package smallgames.autoFight.core.entity.base.unit.action
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			dataUnit.target = null;
-			dataUnit.dirctionTarget = Number.POSITIVE_INFINITY;
+			dataUnit.dirctionTarget = NaN;
+			dataUnit.locationTarget = null;
 		}
 		/**转向*/
 		private function turn():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			if(dataUnit.dirctionTarget == Number.POSITIVE_INFINITY)
+			if (isNaN(dataUnit.dirctionTarget))
 			{
-				dataUnit.dirctionTarget = -Math.PI + 2*Math.PI*Math.random();
+				dataUnit.isNeedThink = true;
+				return;
+			}
+			if (dataUnit.isDirctionTargetReached)
+			{
+				dataUnit.dirctionOffset(dataUnit.dirctionTarget);
+				dataUnit.dirctionTarget = NaN;
+				dataUnit.isNeedThink = true;
+				return;
 			}
 			var stageFrameRate:int = ManagerTime.instance.stageFrameRate;
-			var palstance:Number = dataUnit.configUnit.palstance*Math.PI/360/stageFrameRate;
+			var palstance:Number = dataUnit.configUnit.palstance*Math.PI/180/stageFrameRate;
 			var dirctionSub:Number = dataUnit.dirctionTarget - dataUnit.dirction;
-			var dirctoinAbs:Number = Math.abs(dirctionSub);
-			if (dirctoinAbs > palstance)
-			{
-				dataUnit.dirction += dirctionSub/dirctoinAbs*palstance;
-			}
-			else
-			{
-				dataUnit.dirctionTarget = Number.POSITIVE_INFINITY;
-				dataUnit.idAction = dataUnit.target ? ConstEntity.UNIT_ACTION_02 : ConstEntity.UNIT_ACTION_00;
-			}
+			palstance = dirctionSub < 0 ? -palstance : palstance; 
+			dataUnit.dirctionOffset(palstance);
 		}
 		/**移动*/
 		private function move():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			var configUnit:ConfigUnit = dataUnit.configUnit;
-			if(dataUnit.target)
+			if (dataUnit.locationTarget && dataUnit.isLocationTargetReached)
 			{
-				var subtract:Point = dataUnit.location.subtract(dataUnit.target.dataUnit.location);
-				if(subtract.length < configUnit.atkRange)
-				{
-					dataUnit.idAction = ConstEntity.UNIT_ACTION_04;
-					return;
-				}
+				dataUnit.locationOffset(dataUnit.locationTarget.x,dataUnit.locationTarget.y);
+				dataUnit.locationTarget = null;
+				dataUnit.isNeedThink = true;
+				return;
 			}
 			var stageFrameRate:int = ManagerTime.instance.stageFrameRate;
-			var speedPerFrame:Number = configUnit.speed/stageFrameRate;
+			var speedPerFrame:Number = dataUnit.configUnit.speed/stageFrameRate;
 			var sin:Number = Math.sin(dataUnit.dirction);
 			var cos:Number = Math.cos(dataUnit.dirction);
 			dataUnit.locationOffset(sin*speedPerFrame,cos*speedPerFrame);

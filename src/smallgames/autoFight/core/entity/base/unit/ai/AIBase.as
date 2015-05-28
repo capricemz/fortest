@@ -1,6 +1,7 @@
 package smallgames.autoFight.core.entity.base.unit.ai
 {
 	import smallgames.autoFight.common.random.UtilRandom;
+	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
 	import smallgames.autoFight.core.entity.base.unit.data.IDataUnit;
 
@@ -17,14 +18,32 @@ package smallgames.autoFight.core.entity.base.unit.ai
 		
 		public function think(timeDiff:int):void
 		{
+			var dataUnit:IDataUnit = _unit.dataUnit;
 			_timeNow += timeDiff;
-			if(_timeNow > _timeNext)
+			if(dataUnit.isNeedThink)
 			{
-				var dataUnit:IDataUnit = _unit.dataUnit;
+				dataUnit.dirctionTarget = UtilRandom.randomBetween(-Math.PI,Math.PI);
+			}
+			else if(_timeNow > _timeNext)
+			{
 				var interval:int = dataUnit.configUnit.interval;
 				_timeNext = _timeNow + UtilRandom.randomWave(interval);
-				var value:int = int(Math.random()*4);
-				_unit.dataUnit.idAction = value;
+				var value:int = int(Math.random()*3);
+				value = 1;
+				dataUnit.idAction = value;
+				dataUnit.idActionNext = ConstEntity.UNIT_ACTION_00;
+				switch (value)
+				{
+					case ConstEntity.UNIT_ACTION_00:
+						break;
+					case ConstEntity.UNIT_ACTION_01:
+						dataUnit.dirctionTarget = UtilRandom.randomBetween(-Math.PI,Math.PI);
+						break;
+					case ConstEntity.UNIT_ACTION_02:
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	}

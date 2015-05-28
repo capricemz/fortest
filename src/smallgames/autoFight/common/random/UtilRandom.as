@@ -14,12 +14,30 @@ package smallgames.autoFight.common.random
 		 */	
 		public static function randomWave(value:Number,wave:Number = 0):Number
 		{
-			if(wave < 0)
+			if (value <= 0)
 			{
-				throw new Error("wave值不能小于等于0");
+				throw new Error("value值不能小于等于0");
+			}
+			if (wave < 0)
+			{
+				throw new Error("wave值不能小于0");
 			}
 			wave = wave == 0 ? GOLDE_RATIO_Y : wave;
 			return value * (1-wave+2*wave*Math.random());
+		}
+		/**
+		 * 在valueMin值至valueMax值之间获得随机值
+		 * @param valueMin 随机下限值
+		 * @param valueMax 随机上限值
+		 * @return 随机值
+		 */		
+		public static function randomBetween(valueMin:Number,valueMax:Number):Number
+		{
+			if (valueMax < valueMin)
+			{
+				throw new Error("valueMin值不能大于valueMax值");
+			}
+			return valueMin + (valueMax - valueMin)*Math.random();
 		}
 		
 		public function UtilRandom()

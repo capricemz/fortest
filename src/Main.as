@@ -156,8 +156,8 @@ package
 			the2048.x = _fpsW;
 			addChild(the2048);*/
 			
-			/*var autoFight:AutoFight = new AutoFight();
-			addChild(autoFight);*/
+			var autoFight:AutoFight = new AutoFight();
+			addChild(autoFight);
 		}
 	}
 }

@@ -32,35 +32,74 @@ package smallgames.autoFight.core.entity.base.entity.data
 			_type = value;
 		}
 		//
+		private var _dirctoin:Number;
+		public function get dirction():Number
+		{
+			return _dirctoin;
+		}
+		private var _dirctionLast:Number;
+		public function get dirctionLast():Number
+		{
+			return _dirctionLast;
+		}
+		public function get isDirctionChange():Boolean
+		{
+			return Math.abs(_dirctionLast - _dirctoin) > .1;
+		}
+		//
 		private var _location:Point;
 		public function get location():Point
 		{
 			return _location;
 		}
-		/**按指定量偏移位置*/
-		public function locationOffset(dx:Number, dy:Number):void
-		{
-			_locationLast.copyFrom(_location);
-			_location.offset(dx,dy);
-		}
-		private var _locationLast:Point
+		private var _locationLast:Point;
 		public function get locationLast():Point
 		{
 			return _locationLast;
 		}
-		private var _isFirstDrow:Boolean = true;
-		/**是否需要绘制*/
-		public function get isNeedDrow():Boolean
+		public function get isLoactionChange():Boolean
 		{
-			var boolean:Boolean = _isFirstDrow || !location.equals(locationLast);
+			return !location.equals(locationLast);
+		}
+		//
+		private var _isFirstDrow:Boolean = true;
+		public function get isFirstDrow():Boolean
+		{
+			var _isFirstDrow2:Boolean = _isFirstDrow;
 			_isFirstDrow = false;
-			return boolean;
+			return _isFirstDrow2;
 		}
 		
 		public function DataEntity()
 		{
 			_location = new Point();
-			_locationLast = new Point();
+			_dirctoin = 0;
+		}
+		/**按指定量偏移位置*/
+		public function locationOffset(dx:Number, dy:Number):void
+		{
+			if(!_locationLast)
+			{
+				_locationLast = new Point(dx,dy);
+			}
+			else
+			{
+				_locationLast.copyFrom(_location);
+			}
+			_location.offset(dx,dy);
+		}
+		/**按指定量偏移方向*/
+		public function dirctionOffset(value:Number):void
+		{
+			if(isNaN(_dirctionLast))
+			{
+				_dirctionLast = value;
+			}
+			else
+			{
+				_dirctionLast = _dirctoin;
+			}
+			_dirctoin += value;
 		}
 	}
 }

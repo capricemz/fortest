@@ -12,11 +12,20 @@ package smallgames.autoFight.core.entity.base.entity.data
 		function get type():int;
 		/**@private*/
 		function set type(value:int):void;
+		//
+		function get dirction():Number;
+		function get dirctionLast():Number;
+		function get isDirctionChange():Boolean;
+		//
 		function get location():Point;
+		function get locationLast():Point;
+		function get isLoactionChange():Boolean;
+		//
+		function get isFirstDrow():Boolean
+		//
 		/**按指定量偏移位置*/
 		function locationOffset(dx:Number, dy:Number):void;
-		function get locationLast():Point;
-		/**是否需要绘制*/
-		function get isNeedDrow():Boolean;
+		/**按指定量偏移方向*/
+		function dirctionOffset(value:Number):void;
 	}
 }

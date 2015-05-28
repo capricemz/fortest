@@ -1,6 +1,7 @@
 package smallgames.autoFight.core.entity.base.entity
 {
 	import flash.display.BitmapData;
+	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
@@ -54,17 +55,30 @@ package smallgames.autoFight.core.entity.base.entity
 		
 		protected function updateBitmapData(layer:BitmapData):void
 		{
-			if(!data.isNeedDrow)
+			if(!data.isFirstDrow && !data.isLoactionChange && !data.isDirctionChange)
 			{
 				return;
 			}
+			var sourceBitmapData:BitmapData = bitmapData.clone();
+			if(data.dirction != 0)
+			{
+				var matrix:Matrix = new Matrix(1,0,0,1);
+				matrix.rotate(data.dirction);
+				var dx:Number = Math.SQRT2*_bitmapData.width*.5*(Math.cos(Math.PI*.25) - Math.cos(data.dirction + Math.PI*.25));
+				var dy:Number = Math.SQRT2*_bitmapData.height*.5*(Math.sin(Math.PI*.25) - Math.sin(data.dirction + Math.PI*.25));
+				matrix.translate(dx,dy);
+				sourceBitmapData.fillRect(_bitmapData.rect,0);
+				sourceBitmapData.draw(_bitmapData,matrix,null,null,null,true);
+			}
+			//
 			layer.copyPixels(bitmapDataTemp,bitmapDataTemp.rect,data.locationLast);
 			//
 			var rectangleClone:Rectangle = bitmapDataTemp.rect.clone();
 			rectangleClone.offsetPoint(data.location);
 			bitmapDataTemp.copyPixels(layer,rectangleClone,new Point());
 			//
-			layer.copyPixels(bitmapData,bitmapData.rect,data.location);
+			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.location);
+			sourceBitmapData.dispose();
 		}
 	}
 }

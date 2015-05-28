@@ -64,7 +64,7 @@ package smallgames.autoFight.core.time
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
 			_datas.push(dataUnit);
-			dataUnit = new DataUnit();
+			/*dataUnit = new DataUnit();
 			dataUnit.id = 2;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
@@ -73,7 +73,7 @@ package smallgames.autoFight.core.time
 			dataUnit.id = 3;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
 			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
-			_datas.push(dataUnit);
+			_datas.push(dataUnit);*/
 		}
 	}
 }

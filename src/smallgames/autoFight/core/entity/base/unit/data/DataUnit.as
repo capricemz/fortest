@@ -1,5 +1,7 @@
 package smallgames.autoFight.core.entity.base.unit.data
 {
+	import flash.geom.Point;
+	
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.base.entity.data.DataEntity;
@@ -55,72 +57,6 @@ package smallgames.autoFight.core.entity.base.unit.data
 			_idActionNext = value;
 		}
 		//
-		private var _attrHp:int;
-		public function get attrHp():int
-		{
-			return _attrHp;
-		}
-		public function set attrHp(value:int):void
-		{
-			_attrHp = value;
-		}
-		
-		public function get isAlive():Boolean
-		{
-			return _attrHp > 0;
-		}
-		//
-		private var _attrHpMax:int;
-		public function get attrHpMax():int
-		{
-			if(!_attrHpMax)
-			{
-				_attrHpMax = UtilRandom.randomWave(configUnit.hp);
-				_attrHp = _attrHpMax;
-			}
-			return _attrHpMax;
-		}
-		//
-		private var _attrAtkMax:int;
-		public function get attrAtkMax():int
-		{
-			if(!_attrAtkMax)
-			{
-				_attrAtkMax = UtilRandom.randomWave(configUnit.atk);
-			}
-			return _attrAtkMax;
-		}
-		//
-		private var _dirctoin:Number = 0;
-		public function get dirction():Number
-		{
-			return _dirctoin;
-		}
-		public function set dirction(value:Number):void
-		{
-			_dirctoin = value;
-		}
-		private var _dirctionLast:Number;
-		private var _dirctionTarget:Number = Number.POSITIVE_INFINITY;
-		public function get dirctionTarget():Number
-		{
-			return _dirctionTarget;
-		}
-		public function set dirctionTarget(value:Number):void
-		{
-			_dirctionTarget = value;
-		}
-		
-		override public function get isNeedDrow():Boolean
-		{
-			return super.isNeedDrow || isNeedRotate;
-		}
-		/**是否需要旋转*/
-		public function get isNeedRotate():Boolean
-		{
-			return _dirctionTarget != Number.POSITIVE_INFINITY && Math.abs(_dirctionTarget - _dirctoin) > .1;
-		}
-		//
 		private var _target:IUnit = null;
 		public function get target():IUnit
 		{
@@ -134,11 +70,85 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			_target = value;
 		}
+		//
+		private var _dirctionTarget:Number;
+		public function get dirctionTarget():Number
+		{
+			return _dirctionTarget;
+		}
+		public function set dirctionTarget(value:Number):void
+		{
+			_dirctionTarget = value;
+		}
+		public function get isDirctionTargetReached():Boolean
+		{
+			var number:Number = _dirctionTarget - dirction;
+			return -.1 < number && number < .1;
+		}
+		//
+		private var _locationTarget:Point;
+		public function get locationTarget():Point
+		{
+			return _locationTarget;
+		}
+		public function set locationTarget(value:Point):void
+		{
+			_locationTarget = value;
+		}
+		public function get isLocationTargetReached():Boolean
+		{
+			var subtract:Point = _locationTarget.subtract(location);
+			return -.1 < subtract.x && subtract.x < .1 && -.1 < subtract.y && subtract.y < .1;
+		}
+		//
+		private var _isNeedThink:Boolean;
+		public function get isNeedThink():Boolean
+		{
+			var _isNeedThink2:Boolean = _isNeedThink;
+			_isNeedThink = false;
+			return _isNeedThink2;
+		}
+		public function set isNeedThink(value:Boolean):void
+		{
+			_isNeedThink = value;
+		}
+		//
+		private var _attrHp:int;
+		public function get attrHp():int
+		{
+			return _attrHp;
+		}
+		public function set attrHp(value:int):void
+		{
+			_attrHp = value;
+		}
+		private var _attrHpMax:int;
+		public function get attrHpMax():int
+		{
+			if(!_attrHpMax)
+			{
+				_attrHpMax = UtilRandom.randomWave(configUnit.hp);
+				_attrHp = _attrHpMax;
+			}
+			return _attrHpMax;
+		}
+		private var _attrAtkMax:int;
+		public function get attrAtkMax():int
+		{
+			if(!_attrAtkMax)
+			{
+				_attrAtkMax = UtilRandom.randomWave(configUnit.atk);
+			}
+			return _attrAtkMax;
+		}
+		public function get isAlive():Boolean
+		{
+			return _attrHp > 0;
+		}
 		
 		public function DataUnit()
 		{
 			super();
 		}
-		
 	}
 }
