@@ -89,15 +89,32 @@ package smallgames.autoFight.core.entity
 		 */		
 		public function updateByTime(timeDiff:int):void
 		{
-			updateList(_listScene,timeDiff);
-			updateList(_listUnit,timeDiff);
+			updateListCopy(_listScene);
+			updateListCopy(_listUnit);
+			updateListByTime(_listScene,timeDiff);
+			updateListByTime(_listUnit,timeDiff);
+		}
+		/**
+		 * 将缓存区域的像素拷贝回位图
+		 * @param list 对应的列表
+		 */		
+		private function updateListCopy(list:IEntity):void
+		{
+			var entity:IEntity;
+			var entityNext:IEntity = list;
+			while(entityNext)
+			{
+				entity = entityNext;
+				entityNext = entityNext.next;
+				entity.copyTempPixels(_layer);
+			}
 		}
 		/**
 		 * 跟新列表
 		 * @param list 对应的列表
 		 * @param timeDiff
 		 */		
-		private function updateList(list:IEntity,timeDiff:int):void
+		private function updateListByTime(list:IEntity,timeDiff:int):void
 		{
 			var entity:IEntity;
 			var entityNext:IEntity = list;

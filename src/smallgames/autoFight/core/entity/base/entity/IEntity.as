@@ -9,7 +9,8 @@ package smallgames.autoFight.core.entity.base.entity
 		function get next():IEntity;
 		function set next(value:IEntity):void;
 		function get data():IDataEntity;
-		function set data(value:IDataEntity):void;
+		/**将缓存区域的像素拷贝回位图*/
+		function copyTempPixels(layer:BitmapData):void;
 		function updateByTime(timeDiff:int,layer:BitmapData):void;
 	}
 }

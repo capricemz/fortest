@@ -24,22 +24,29 @@ package smallgames.autoFight.core.entity.base.entity
 		{
 			return _data;
 		}
-		public function set data(value:IDataEntity):void
-		{
-			_data = value;
-		}
-		
+		//
 		protected var _bitmapData:BitmapData;
-		protected function get bitmapData():BitmapData
-		{
-			return null;
-		}
-		protected var bitmapDataTemp:BitmapData;
+		protected var _bitmapDataTemp:BitmapData;
 		
-		public function Entity()
+		public function Entity(value:IDataEntity)
 		{
 			/*throw new Error("该类不能初始化，请使用子类");*/
-			bitmapDataTemp = new BitmapData(bitmapData.width,bitmapData.height,true,0);
+			_data = value;
+			createBitmapData();
+		}
+		
+		protected function createBitmapData():void
+		{
+			
+		}
+		/**将缓存区域的像素拷贝回位图*/
+		public final function copyTempPixels(layer:BitmapData):void
+		{
+			if(!_bitmapDataTemp || (!data.isLoactionChange && !data.isDirctionChange))
+			{
+				return;
+			}
+			layer.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,data.locationLast);
 		}
 		
 		public final function updateByTime(timeDiff:int,layer:BitmapData):void
@@ -53,13 +60,13 @@ package smallgames.autoFight.core.entity.base.entity
 			
 		}
 		
-		protected function updateBitmapData(layer:BitmapData):void
+		private function updateBitmapData(layer:BitmapData):void
 		{
 			if(!data.isFirstDrow && !data.isLoactionChange && !data.isDirctionChange)
 			{
 				return;
 			}
-			var sourceBitmapData:BitmapData = bitmapData.clone();
+			var sourceBitmapData:BitmapData = _bitmapData.clone();
 			if(data.dirction != 0)
 			{
 				var matrix:Matrix = new Matrix(1,0,0,1);
@@ -71,11 +78,13 @@ package smallgames.autoFight.core.entity.base.entity
 				sourceBitmapData.draw(_bitmapData,matrix,null,null,null,true);
 			}
 			//
-			layer.copyPixels(bitmapDataTemp,bitmapDataTemp.rect,data.locationLast);
-			//
-			var rectangleClone:Rectangle = bitmapDataTemp.rect.clone();
+			if(!_bitmapDataTemp)
+			{
+				_bitmapDataTemp = new BitmapData(_bitmapData.width,_bitmapData.height,true,0);
+			}
+			var rectangleClone:Rectangle = _bitmapDataTemp.rect.clone();
 			rectangleClone.offsetPoint(data.location);
-			bitmapDataTemp.copyPixels(layer,rectangleClone,new Point());
+			_bitmapDataTemp.copyPixels(layer,rectangleClone,new Point());
 			//
 			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.location);
 			sourceBitmapData.dispose();

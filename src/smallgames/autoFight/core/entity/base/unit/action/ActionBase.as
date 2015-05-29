@@ -138,7 +138,14 @@ package smallgames.autoFight.core.entity.base.unit.action
 		/**攻击*/
 		private function attack():void
 		{
-			
+			var dataUnit:IDataUnit = _unit.dataUnit;
+			var target:IUnit = dataUnit.target;
+			if(target)
+			{
+				return;
+			}
+			var randomBetween:Number = UtilRandom.randomBetween(0,dataUnit.attrAtkMax);
+			target.dataUnit.attrAtkImport = randomBetween;
 		}
 		/**闪躲*/
 		private function dodge():void
@@ -153,7 +160,9 @@ package smallgames.autoFight.core.entity.base.unit.action
 		/**受伤*/
 		private function hurt():void
 		{
-			_unit.dataUnit.attrHp;
+			var dataUnit:IDataUnit = _unit.dataUnit;
+			_unit.dataUnit.attrHp -= dataUnit.attrAtkImport;
+			dataUnit.attrAtkImport = 0;
 		}
 		/**死亡*/
 		private function die():void

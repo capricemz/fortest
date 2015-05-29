@@ -22,25 +22,28 @@ package smallgames.autoFight.core.entity.base.unit.ai
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			_timeNow += timeDiff;
-			if(dataUnit.isNeedThink)
+			if (_timeNow > _timeNext)
 			{
-				thinkByTrigger();
+				interval = dataUnit.configUnit.interval;
+				_timeNext = _timeNow + UtilRandom.randomWave(interval);
+				thinkByTime();
 			}
-			else if(_timeNow > _timeNext)
+			else if (dataUnit.isNeedThink)
 			{
 				var interval:int = dataUnit.configUnit.interval;
 				_timeNext = _timeNow + UtilRandom.randomWave(interval);
-				thinkByTime();
+				thinkByTrigger();
 			}
 		}
 		
 		public function thinkByTime():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			var value:int = int(Math.random()*4);
-			dataUnit.idAction = value;
-			dataUnit.idActionNext = ConstEntity.UNIT_ACTION_00;
-			switch (value)
+			var values:Vector.<int> = new <int>[ConstEntity.UNIT_ACTION_00,ConstEntity.UNIT_ACTION_01,ConstEntity.UNIT_ACTION_02,ConstEntity.UNIT_ACTION_03];
+			var probabilityDistribution:Vector.<Number> = new <Number>[.1,.2,.2,.5];
+			var idActionRandomPitchUpon:Number = UtilRandom.randomPitchUpon(values,probabilityDistribution);
+			dataUnit.idAction = idActionRandomPitchUpon;
+			switch (idActionRandomPitchUpon)
 			{
 				case ConstEntity.UNIT_ACTION_00:
 					break;
@@ -58,19 +61,19 @@ package smallgames.autoFight.core.entity.base.unit.ai
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			var target:IUnit = dataUnit.target;
-			if(target)
+			if (target)
 			{
 				var subtract:Point = dataUnit.location.subtract(target.data.location);
 				var dirctoin:Number = Math.atan2(subtract.y,subtract.x);
-				if(!dataUnit.isDirctionEquals(dirctoin))
+				if (!dataUnit.isDirctionEquals(dirctoin))
 				{
 					dataUnit.dirctionTarget = dirctoin;
 					dataUnit.idAction = ConstEntity.UNIT_ACTION_01;
 				}
-				else if(!dataUnit.isLocationEquals(target.data.location))
+				else if (!dataUnit.isLocationEquals(target.data.location))
 				{
 					dataUnit.locationTarget = target.data.location;
-					dataUnit.idAction = ConstEntity.UNIT_ACTION_01;
+					dataUnit.idAction = ConstEntity.UNIT_ACTION_02;
 				}
 				else
 				{

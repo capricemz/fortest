@@ -39,6 +39,42 @@ package smallgames.autoFight.common.random
 			}
 			return valueMin + (valueMax - valueMin)*Math.random();
 		}
+		/**
+		 * 根据probabilityDistribution数组中的概率分布在values数组中获得随机值
+		 * @param values
+		 * @param probabilityDistribution
+		 * @return 随机值
+		 */		
+		public static function randomPitchUpon(values:Vector.<int>,probabilityDistribution:Vector.<Number>):Number
+		{
+			if(values.length != probabilityDistribution.length)
+			{
+				throw new Error("数据长度不等");
+			}
+			var probability:Number;
+			var probabilityTotal:Number;
+			var i:int,l:int = probabilityDistribution.length;
+			for (i=0;i<l;i++) 
+			{
+				if(i > 0)
+				{
+					probabilityDistribution[i] = probabilityDistribution[i] + probabilityDistribution[i-1]
+				}
+			}
+			if(probabilityDistribution[i-1] != 1)
+			{
+				throw new Error("概率之和不为1");
+			}
+			var random:Number = Math.random();
+			for (i=0;i<l;i++) 
+			{
+				if(random < probabilityDistribution[i])
+				{
+					break;
+				}
+			}
+			return values[i];
+		}
 		
 		public function UtilRandom()
 		{

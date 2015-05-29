@@ -141,6 +141,15 @@ package smallgames.autoFight.core.entity.base.unit.data
 			}
 			return _attrAtkMax;
 		}
+		private var _attrAtkImport:int;
+		public function get attrAtkImport():int
+		{
+			return _attrAtkImport;
+		}
+		public function set attrAtkImport(value:int):void
+		{
+			_attrAtkImport = value;
+		}
 		public function get isAlive():Boolean
 		{
 			return _attrHp > 0;

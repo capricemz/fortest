@@ -1,6 +1,7 @@
 package smallgames.autoFight.core.entity.base.scene
 {
 	import smallgames.autoFight.core.entity.base.entity.Entity;
+	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.base.scene.data.IDataScene;
 
 	public class Scene extends Entity implements IScene
@@ -10,9 +11,9 @@ package smallgames.autoFight.core.entity.base.scene
 			return data as IDataScene;
 		}
 		
-		public function Scene()
+		public function Scene(value:IDataEntity)
 		{
-			
+			super(value);
 		}
 		
 		override protected function updateData(timeDiff:int):void
