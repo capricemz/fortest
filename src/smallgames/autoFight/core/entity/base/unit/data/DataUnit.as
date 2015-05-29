@@ -9,6 +9,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 	import smallgames.autoFight.data.configs.ConstConfig;
 	import smallgames.autoFight.data.configs.ManagerConfig;
 	import smallgames.autoFight.data.configs.subs.ConfigAction;
+	import smallgames.autoFight.data.configs.subs.ConfigEntity;
 	import smallgames.autoFight.data.configs.subs.ConfigUnit;
 
 	/**
@@ -17,6 +18,10 @@ package smallgames.autoFight.core.entity.base.unit.data
 	 */	
 	public class DataUnit extends DataEntity implements IDataUnit
 	{
+		override public function get configEntity():ConfigEntity
+		{
+			return configUnit;
+		}
 		public function get configUnit():ConfigUnit
 		{
 			var config:ConfigUnit = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_UNIT,type) as ConfigUnit;
@@ -85,6 +90,23 @@ package smallgames.autoFight.core.entity.base.unit.data
 			var number:Number = _dirctionTarget - dirction;
 			return number > -.01 && number < .01;
 		}
+		public function get dirctoinTargetByTarget():Number
+		{
+			if(!target)
+			{
+				return dirctoin;
+			}
+			var dataUnitTarget:IDataUnit = target.dataUnit;
+			var lengthTarget:Number = dataUnitTarget.configUnit.length;
+			var locationCenterTarget:Point = dataUnitTarget.location.clone();
+			locationCenterTarget.offset(lengthTarget*.5,lengthTarget*.5);
+			var length:Number = configUnit.length;
+			var locationCenter:Point = location.clone();
+			locationCenter.offset(length*.5,length*.5);
+			var subtract:Point = locationCenterTarget.subtract(locationCenter);
+			var dirctoin:Number = Math.atan2(subtract.y,subtract.x);
+			return dirctoin;
+		}
 		//
 		private var _locationTarget:Point;
 		public function get locationTarget():Point
@@ -97,8 +119,22 @@ package smallgames.autoFight.core.entity.base.unit.data
 		}
 		public function get isLocationTargetReached():Boolean
 		{
+			if(!_locationTarget)
+			{
+				return false;
+			}
 			var subtract:Point = _locationTarget.subtract(location);
 			return (subtract.x > -.01 && subtract.x < .01) && (subtract.y > -.01 && subtract.y < .01);
+		}
+		public function get isAtkRangeReached():Boolean
+		{
+			if(!_locationTarget)
+			{
+				return false;
+			}
+			var subtract:Point = _locationTarget.subtract(location);
+			var atkRange:int = configUnit.atkRange;
+			return subtract.length <= atkRange;
 		}
 		//
 		private var _isNeedThink:Boolean;

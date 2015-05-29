@@ -57,23 +57,21 @@ package smallgames.autoFight.core.time
 			var dataScene:IDataScene = new DataScene();
 			dataScene.id = 1;
 			dataScene.type = ConstEntity.ENTITY_SCENE_FOREST;
+			dataScene.dirctionOffset(0);
 			dataScene.locationOffset(0,0);
 			_datas.push(dataScene);
 			var dataUnit:IDataUnit = new DataUnit();
 			dataUnit.id = 1;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataScene.dirctionOffset(0);
 			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
 			_datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 2;
-			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
+			dataUnit.type = ConstEntity.ENTITY_UNIT_RAT;
+			dataScene.dirctionOffset(0);
 			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
 			_datas.push(dataUnit);
-			/*dataUnit = new DataUnit();
-			dataUnit.id = 3;
-			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
-			_datas.push(dataUnit);*/
 		}
 	}
 }

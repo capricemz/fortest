@@ -7,6 +7,7 @@ package smallgames.autoFight.core.entity
 		public static const ENTITY_SCENE_FOREST:int = 10000;
 		
 		public static const ENTITY_UNIT_SLIME:int = 20000;
+		public static const ENTITY_UNIT_RAT:int = 20001;
 		
 		public static const UNIT_ACTION_NULL:int = -1;
 		/**休息*/

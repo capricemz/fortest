@@ -96,7 +96,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 		private function move():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			if (dataUnit.locationTarget && dataUnit.isLocationTargetReached)
+			if (dataUnit.locationTarget && dataUnit.isAtkRangeReached)
 			{
 				dataUnit.locationTarget = null;
 				dataUnit.isNeedThink = true;
@@ -133,6 +133,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 			{
 				dataUnit.target = target;
 				dataUnit.isNeedThink = true;
+				trace("ActionBase.observe() 获得目标");
 			}
 		}
 		/**攻击*/

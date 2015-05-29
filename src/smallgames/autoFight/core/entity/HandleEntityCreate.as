@@ -4,6 +4,7 @@ package smallgames.autoFight.core.entity
 	import smallgames.autoFight.core.entity.base.entity.IEntity;
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.sub.scene.SceneForest;
+	import smallgames.autoFight.core.entity.sub.unit.UnitRat;
 	import smallgames.autoFight.core.entity.sub.unit.UnitSlime;
 	
 	/**
@@ -45,6 +46,10 @@ package smallgames.autoFight.core.entity
 					break;
 				case ConstEntity.ENTITY_UNIT_SLIME:
 					entity = new UnitSlime(data);
+					break;
+				case ConstEntity.ENTITY_UNIT_RAT:
+					entity = new UnitRat(data);
+					break;
 				default:
 					break;
 			}

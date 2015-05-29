@@ -46,7 +46,10 @@ package smallgames.autoFight.core.entity.base.entity
 			{
 				return;
 			}
-			layer.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,data.locationLast);
+			var destPoint:Point = data.locationLast.clone();
+			var length:Number = data.configEntity.length;
+			destPoint.offset(-length*.5,-length*.5);
+			layer.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,destPoint);
 		}
 		
 		public final function updateByTime(timeDiff:int,layer:BitmapData):void
@@ -78,15 +81,19 @@ package smallgames.autoFight.core.entity.base.entity
 				sourceBitmapData.draw(_bitmapData,matrix,null,null,null,true);
 			}
 			//
+			var destPoint:Point = data.location.clone();
+			var length:Number = data.configEntity.length;
+			destPoint.offset(-length*.5,-length*.5);
+			//
 			if(!_bitmapDataTemp)
 			{
 				_bitmapDataTemp = new BitmapData(_bitmapData.width,_bitmapData.height,true,0);
 			}
 			var rectangleClone:Rectangle = _bitmapDataTemp.rect.clone();
-			rectangleClone.offsetPoint(data.location);
+			rectangleClone.offsetPoint(destPoint);
 			_bitmapDataTemp.copyPixels(layer,rectangleClone,new Point());
 			//
-			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.location);
+			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,destPoint);
 			sourceBitmapData.dispose();
 		}
 	}

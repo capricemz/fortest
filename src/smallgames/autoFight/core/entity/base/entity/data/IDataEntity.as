@@ -1,6 +1,8 @@
 package smallgames.autoFight.core.entity.base.entity.data
 {
 	import flash.geom.Point;
+	
+	import smallgames.autoFight.data.configs.subs.ConfigEntity;
 
 	public interface IDataEntity
 	{
@@ -12,6 +14,7 @@ package smallgames.autoFight.core.entity.base.entity.data
 		function get type():int;
 		/**@private*/
 		function set type(value:int):void;
+		function get configEntity():ConfigEntity;
 		//
 		function get dirction():Number;
 		function get dirctionLast():Number;

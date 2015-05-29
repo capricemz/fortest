@@ -9,29 +9,12 @@ package smallgames.autoFight.core.entity.sub.unit
 	import smallgames.autoFight.common.filter.UtilFilters;
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.base.unit.Unit;
-	import smallgames.autoFight.core.entity.base.unit.action.ActionBase;
-	import smallgames.autoFight.core.entity.base.unit.ai.AIBase;
 	
-	public class UnitSlime extends Unit implements IUnitSlime
+	public class UnitRat extends Unit implements IUnitRat
 	{
-		private var _aiBase:AIBase;
-		private var _actoinBase:ActionBase;
-		
-		override protected function get aiBase():AIBase
-		{
-			return _aiBase;
-		}
-		
-		override protected function get actionBase():ActionBase
-		{
-			return _actoinBase;
-		}
-		
-		public function UnitSlime(value:IDataEntity)
+		public function UnitRat(value:IDataEntity)
 		{
 			super(value);
-			_aiBase = new AIBase(this);
-			_actoinBase = new ActionBase(this);
 		}
 		
 		override protected function createBitmapData():void
@@ -40,10 +23,10 @@ package smallgames.autoFight.core.entity.sub.unit
 			var height:int = dataUnit.configUnit.height;
 			var length:Number = dataUnit.configUnit.length;
 			var shape:Shape = new Shape();
-			shape.graphics.beginFill(0xffffaa);
+			shape.graphics.beginFill(0x660000);
 			shape.graphics.drawEllipse(0,0,width,height);
 			shape.graphics.endFill();
-			shape.graphics.beginFill(0xffff00);
+			shape.graphics.beginFill(0x666600);
 			shape.graphics.drawCircle(width-height/2,height/2,height/2);
 			shape.graphics.endFill();
 			_bitmapData = new BitmapData(length,length,true,0);

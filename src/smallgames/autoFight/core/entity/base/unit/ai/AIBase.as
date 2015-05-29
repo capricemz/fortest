@@ -1,7 +1,5 @@
 package smallgames.autoFight.core.entity.base.unit.ai
 {
-	import flash.geom.Point;
-	
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
 	import smallgames.autoFight.core.entity.base.unit.IUnit;
@@ -39,10 +37,15 @@ package smallgames.autoFight.core.entity.base.unit.ai
 		public function thinkByTime():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
+			if(dataUnit.target)
+			{
+				return;
+			}
 			var values:Vector.<int> = new <int>[ConstEntity.UNIT_ACTION_00,ConstEntity.UNIT_ACTION_01,ConstEntity.UNIT_ACTION_02,ConstEntity.UNIT_ACTION_03];
 			var probabilityDistribution:Vector.<Number> = new <Number>[.1,.2,.2,.5];
 			var idActionRandomPitchUpon:Number = UtilRandom.randomPitchUpon(values,probabilityDistribution);
 			dataUnit.idAction = idActionRandomPitchUpon;
+			dataUnit.idAction = 3;
 			switch (idActionRandomPitchUpon)
 			{
 				case ConstEntity.UNIT_ACTION_00:
@@ -63,14 +66,13 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			var target:IUnit = dataUnit.target;
 			if (target)
 			{
-				var subtract:Point = dataUnit.location.subtract(target.data.location);
-				var dirctoin:Number = Math.atan2(subtract.y,subtract.x);
+				var dirctoin:Number = dataUnit.dirctoinTargetByTarget;
 				if (!dataUnit.isDirctionEquals(dirctoin))
 				{
 					dataUnit.dirctionTarget = dirctoin;
 					dataUnit.idAction = ConstEntity.UNIT_ACTION_01;
 				}
-				else if (!dataUnit.isLocationEquals(target.data.location))
+				else if (!dataUnit.isAtkRangeReached)
 				{
 					dataUnit.locationTarget = target.data.location;
 					dataUnit.idAction = ConstEntity.UNIT_ACTION_02;
@@ -82,7 +84,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			}
 			else
 			{
-				thinkByTime();
+				/*thinkByTime();*/
 			}
 		}
 	}

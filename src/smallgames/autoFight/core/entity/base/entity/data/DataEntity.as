@@ -1,6 +1,8 @@
 package smallgames.autoFight.core.entity.base.entity.data
 {
 	import flash.geom.Point;
+	
+	import smallgames.autoFight.data.configs.subs.ConfigEntity;
 
 	/**
 	 * 实体数据类
@@ -31,6 +33,10 @@ package smallgames.autoFight.core.entity.base.entity.data
 		{
 			_type = value;
 		}
+		public function get configEntity():ConfigEntity
+		{
+			return null;
+		}
 		//
 		private var _dirctoin:Number;
 		public function get dirction():Number
@@ -44,7 +50,7 @@ package smallgames.autoFight.core.entity.base.entity.data
 		}
 		public function get isDirctionChange():Boolean
 		{
-			var number:Number = _dirctionLast - dirction;
+			var number:Number = (_dirctionLast - dirction)*180/Math.PI;
 			return number < -.01 || number > .01;
 		}
 		//
@@ -74,8 +80,6 @@ package smallgames.autoFight.core.entity.base.entity.data
 		
 		public function DataEntity()
 		{
-			_location = new Point();
-			_dirctoin = 0;
 		}
 		/**按指定量偏移方向*/
 		public function dirctionOffset(value:Number):void
@@ -87,6 +91,10 @@ package smallgames.autoFight.core.entity.base.entity.data
 			else
 			{
 				_dirctionLast = _dirctoin;
+			}
+			if(isNaN(_dirctoin))
+			{
+				_dirctoin = 0;
 			}
 			_dirctoin += value;
 		}
@@ -101,11 +109,15 @@ package smallgames.autoFight.core.entity.base.entity.data
 		{
 			if(!_locationLast)
 			{
-				_locationLast = new Point(dx,dy);
+				_locationLast = new Point(configEntity.length*.5+dx,configEntity.length*.5+dy);
 			}
 			else
 			{
 				_locationLast.copyFrom(_location);
+			}
+			if(!_location)
+			{
+				_location = new Point(configEntity.length*.5,configEntity.length*.5);
 			}
 			_location.offset(dx,dy);
 		}
