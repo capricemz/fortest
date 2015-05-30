@@ -122,10 +122,10 @@ package
 			/*var testBmpDtUnlock:TestBmpDtUnlock = new TestBmpDtUnlock();
 			addChild(testBmpDtUnlock);*/
 			
-			/*var testBmpMatrix:TestBmpMatrix = new TestBmpMatrix();
+			var testBmpMatrix:TestBmpMatrix = new TestBmpMatrix();
 			testBmpMatrix.x = 50;
 			testBmpMatrix.y = 150;
-			addChild(testBmpMatrix);*/
+			addChild(testBmpMatrix);
 			
 			var btn:Sprite = new Sprite();
 			btn.buttonMode = true;
@@ -144,7 +144,7 @@ package
 					/*testGreenSock.doTween();*/
 					/*testVectorPushSplice.doTest();*/
 					/*testCpBmpWithAddBmp.doTest();*/
-					/*testBmpMatrix.doTest();*/
+					testBmpMatrix.doTest();
 				}
 			);
 			addChild(btn);

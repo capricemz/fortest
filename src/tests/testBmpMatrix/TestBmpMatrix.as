@@ -6,13 +6,16 @@ package tests.testBmpMatrix
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	public class TestBmpMatrix extends Sprite
 	{
 		private var _bitmapData:BitmapData;
+		private var _bitmapDataTemp:BitmapData;
 		private var _bitmap:Bitmap;
 		private var _dirction:Number = 0;
 		private var _dirctionLast:Number;
+		private var _location:Point;
 
 		public function TestBmpMatrix()
 		{
@@ -34,11 +37,26 @@ package tests.testBmpMatrix
 			_bitmap = new Bitmap(bitmapData,"auto",true);
 			addChild(_bitmap);
 			//
-			_bitmap.bitmapData.copyPixels(_bitmapData,_bitmapData.rect,new Point(50,50));
+			_bitmap.bitmapData.perlinNoise(100,100,1,0,true,true);
+			//
+			_location = new Point(25,25);
+			_bitmapDataTemp = new BitmapData(_bitmapData.width,_bitmapData.height,true,0);
+			//
+			var rectangleClone:Rectangle = _bitmapDataTemp.rect.clone();
+			rectangleClone.offsetPoint(_location);
+			_bitmapDataTemp.copyPixels(_bitmap.bitmapData,rectangleClone,new Point(),null,null,true);
+			//
+			_bitmap.bitmapData.copyPixels(_bitmapData,_bitmapData.rect,_location,null,null,true);
 		}
 		
 		public function doTest():void
 		{
+			_bitmap.bitmapData.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,new Point(75,25),null,null,true);
+			var rect:Rectangle = _bitmapDataTemp.rect.clone();
+			rect.offsetPoint(_location);
+			/*_bitmap.bitmapData.fillRect(rect,0);*/
+			_bitmap.bitmapData.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,_location,null,null,true);
+			//
 			_dirctionLast = _dirction;
 			_dirction += Math.PI*.125;
 			trace("TestBmpMatrix.doTest() dirction:"+_dirction*180/Math.PI);
@@ -51,7 +69,11 @@ package tests.testBmpMatrix
 			clone.fillRect(_bitmapData.rect,0);
 			clone.draw(_bitmapData,matrix,null,null,null,true);
 			//
-			_bitmap.bitmapData.copyPixels(clone,clone.rect,new Point(50,50));
+			var rectangleClone:Rectangle = _bitmapDataTemp.rect.clone();
+			rectangleClone.offsetPoint(_location);
+			_bitmapDataTemp.copyPixels(_bitmap.bitmapData,rectangleClone,new Point(),null,null,true);
+			//
+			_bitmap.bitmapData.copyPixels(clone,clone.rect,_location,null,null,true);
 			clone.dispose();
 		}
 	}

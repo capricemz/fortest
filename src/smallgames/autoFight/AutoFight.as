@@ -49,6 +49,7 @@ package smallgames.autoFight
 			ManagerTime.instance.addFrame(stage);
 			//
 			var layerEntity:BitmapData = new BitmapData(400,300,true,0);
+			layerEntity.perlinNoise(400,300,1,0,true,true);
 			var bitmap:Bitmap = new Bitmap(layerEntity);
 			bitmap.smoothing = true;
 			addChild(bitmap);
