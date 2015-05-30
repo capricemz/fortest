@@ -49,7 +49,7 @@ package smallgames.autoFight.core.entity.base.entity
 			var destPoint:Point = data.locationLast.clone();
 			var length:Number = data.configEntity.length;
 			destPoint.offset(-length*.5,-length*.5);
-			layer.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,destPoint);
+			layer.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,destPoint,null,null,true);
 		}
 		
 		public final function updateByTime(timeDiff:int,layer:BitmapData):void
@@ -91,9 +91,9 @@ package smallgames.autoFight.core.entity.base.entity
 			}
 			var rectangleClone:Rectangle = _bitmapDataTemp.rect.clone();
 			rectangleClone.offsetPoint(destPoint);
-			_bitmapDataTemp.copyPixels(layer,rectangleClone,new Point());
+			_bitmapDataTemp.copyPixels(layer,rectangleClone,new Point(),null,null,true);
 			//
-			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,destPoint);
+			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,destPoint,null,null,true);
 			sourceBitmapData.dispose();
 		}
 	}

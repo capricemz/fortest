@@ -133,7 +133,6 @@ package smallgames.autoFight.core.entity.base.unit.action
 			{
 				dataUnit.target = target;
 				dataUnit.isNeedThink = true;
-				trace("ActionBase.observe() 获得目标");
 			}
 		}
 		/**攻击*/
@@ -141,7 +140,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			var target:IUnit = dataUnit.target;
-			if(target)
+			if(!target)
 			{
 				return;
 			}

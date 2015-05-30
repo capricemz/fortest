@@ -27,7 +27,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 			var config:ConfigUnit = ManagerConfig.instance.notify(ConstConfig.HANDLE_GET,ConstConfig.TYPE_UNIT,type) as ConfigUnit;
 			return config;
 		}
-		//
+		//动作相关
 		private var _idAction:int = ConstEntity.UNIT_ACTION_00;
 		public function get idAction():int
 		{
@@ -61,7 +61,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			_idActionNext = value;
 		}
-		//
+		//目标相关
 		private var _target:IUnit = null;
 		public function get target():IUnit
 		{
@@ -75,7 +75,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			_target = value;
 		}
-		//
+		//角度相关
 		private var _dirctionTarget:Number;
 		public function get dirctionTarget():Number
 		{
@@ -87,8 +87,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		}
 		public function get isDirctionTargetReached():Boolean
 		{
-			var number:Number = _dirctionTarget - dirction;
-			return number > -.01 && number < .01;
+			return isDirctionEquals(_dirctionTarget);
 		}
 		public function get dirctoinTargetByTarget():Number
 		{
@@ -96,18 +95,11 @@ package smallgames.autoFight.core.entity.base.unit.data
 			{
 				return dirctoin;
 			}
-			var dataUnitTarget:IDataUnit = target.dataUnit;
-			var lengthTarget:Number = dataUnitTarget.configUnit.length;
-			var locationCenterTarget:Point = dataUnitTarget.location.clone();
-			locationCenterTarget.offset(lengthTarget*.5,lengthTarget*.5);
-			var length:Number = configUnit.length;
-			var locationCenter:Point = location.clone();
-			locationCenter.offset(length*.5,length*.5);
-			var subtract:Point = locationCenterTarget.subtract(locationCenter);
+			var subtract:Point = target.dataUnit.location.subtract(location);
 			var dirctoin:Number = Math.atan2(subtract.y,subtract.x);
 			return dirctoin;
 		}
-		//
+		//位置相关
 		private var _locationTarget:Point;
 		public function get locationTarget():Point
 		{
@@ -123,20 +115,19 @@ package smallgames.autoFight.core.entity.base.unit.data
 			{
 				return false;
 			}
-			var subtract:Point = _locationTarget.subtract(location);
-			return (subtract.x > -.01 && subtract.x < .01) && (subtract.y > -.01 && subtract.y < .01);
+			return isLocationEquals(_locationTarget);
 		}
 		public function get isAtkRangeReached():Boolean
 		{
-			if(!_locationTarget)
+			if(!_target)
 			{
 				return false;
 			}
-			var subtract:Point = _locationTarget.subtract(location);
+			var subtract:Point = _target.dataUnit.location.subtract(location);
 			var atkRange:int = configUnit.atkRange;
 			return subtract.length <= atkRange;
 		}
-		//
+		//AI相关
 		private var _isNeedThink:Boolean;
 		public function get isNeedThink():Boolean
 		{
@@ -148,7 +139,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			_isNeedThink = value;
 		}
-		//
+		//属性相关
 		private var _attrHp:int;
 		public function get attrHp():int
 		{
@@ -178,13 +169,13 @@ package smallgames.autoFight.core.entity.base.unit.data
 			return _attrAtkMax;
 		}
 		private var _attrAtkImport:int;
-		public function get attrAtkImport():int
+		public function get attrAtkImport():Number
 		{
 			return _attrAtkImport;
 		}
-		public function set attrAtkImport(value:int):void
+		public function set attrAtkImport(value:Number):void
 		{
-			_attrAtkImport = value;
+			_attrAtkImport = Math.ceil(value);
 		}
 		public function get isAlive():Boolean
 		{

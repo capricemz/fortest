@@ -39,8 +39,8 @@ package smallgames.autoFight.core.entity.base.unit.data
 		function set attrHp(value:int):void;
 		function get attrHpMax():int;
 		function get attrAtkMax():int;
-		function get attrAtkImport():int;
-		function set attrAtkImport(value:int):void;
+		function get attrAtkImport():Number;
+		function set attrAtkImport(value:Number):void;
 		function get isAlive():Boolean;
 	}
 }

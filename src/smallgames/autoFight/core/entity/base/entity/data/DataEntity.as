@@ -10,6 +10,9 @@ package smallgames.autoFight.core.entity.base.entity.data
 	 */	
 	public class DataEntity implements IDataEntity
 	{
+		private static const CHECK_ANGLE:Number = .2;
+		private static const CHECK_DISTANCE:Number = .01;
+		
 		private var _id:int;
 		/**唯一标识id*/
 		public function get id():int
@@ -37,11 +40,11 @@ package smallgames.autoFight.core.entity.base.entity.data
 		{
 			return null;
 		}
-		//
-		private var _dirctoin:Number;
+		//角度相关
+		private var _dirction:Number;
 		public function get dirction():Number
 		{
-			return _dirctoin;
+			return _dirction;
 		}
 		private var _dirctionLast:Number;
 		public function get dirctionLast():Number
@@ -50,10 +53,10 @@ package smallgames.autoFight.core.entity.base.entity.data
 		}
 		public function get isDirctionChange():Boolean
 		{
-			var number:Number = (_dirctionLast - dirction)*180/Math.PI;
-			return number < -.01 || number > .01;
+			var number:Number = (_dirctionLast - _dirction)*180/Math.PI;
+			return number < -CHECK_ANGLE || number > CHECK_ANGLE;
 		}
-		//
+		//位置相关
 		private var _location:Point;
 		public function get location():Point
 		{
@@ -67,9 +70,9 @@ package smallgames.autoFight.core.entity.base.entity.data
 		public function get isLoactionChange():Boolean
 		{
 			var subtract:Point = locationLast.subtract(location);
-			return (subtract.x < -.01 || subtract.x > .01) || (subtract.y < -.01 || subtract.y > .01);
+			return (subtract.x < -CHECK_DISTANCE || subtract.x > CHECK_DISTANCE) || (subtract.y < -CHECK_DISTANCE || subtract.y > CHECK_DISTANCE);
 		}
-		//
+		//绘制相关
 		private var _isFirstDrow:Boolean = true;
 		public function get isFirstDrow():Boolean
 		{
@@ -90,19 +93,19 @@ package smallgames.autoFight.core.entity.base.entity.data
 			}
 			else
 			{
-				_dirctionLast = _dirctoin;
+				_dirctionLast = _dirction;
 			}
-			if(isNaN(_dirctoin))
+			if(isNaN(_dirction))
 			{
-				_dirctoin = 0;
+				_dirction = 0;
 			}
-			_dirctoin += value;
+			_dirction += value;
 		}
 		/**方向是否相等*/
 		public function isDirctionEquals(value:Number):Boolean
 		{
-			var number:Number = _dirctoin - value;
-			return number > -.01 && number < .01;
+			var number:Number = (_dirction - value)*180/Math.PI;
+			return number > -CHECK_ANGLE && number < CHECK_ANGLE;
 		}
 		/**按指定量偏移位置*/
 		public function locationOffset(dx:Number, dy:Number):void
@@ -125,7 +128,7 @@ package smallgames.autoFight.core.entity.base.entity.data
 		public function isLocationEquals(value:Point):Boolean
 		{
 			var subtract:Point = _location.subtract(value);
-			return (subtract.x > -.01 && subtract.x < .01) && (subtract.y > -.01 && subtract.y < .01);
+			return (subtract.x > -CHECK_DISTANCE && subtract.x < CHECK_DISTANCE) && (subtract.y > -CHECK_DISTANCE && subtract.y < CHECK_DISTANCE);
 		}
 	}
 }

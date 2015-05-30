@@ -63,13 +63,13 @@ package smallgames.autoFight.core.time
 			var dataUnit:IDataUnit = new DataUnit();
 			dataUnit.id = 1;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_SLIME;
-			dataScene.dirctionOffset(0);
+			dataUnit.dirctionOffset(0);
 			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
 			_datas.push(dataUnit);
 			dataUnit = new DataUnit();
 			dataUnit.id = 2;
 			dataUnit.type = ConstEntity.ENTITY_UNIT_RAT;
-			dataScene.dirctionOffset(0);
+			dataUnit.dirctionOffset(0);
 			dataUnit.locationOffset(UtilRandom.randomWave(200),UtilRandom.randomWave(150));
 			_datas.push(dataUnit);
 		}
