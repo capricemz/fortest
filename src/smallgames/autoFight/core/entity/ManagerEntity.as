@@ -90,8 +90,8 @@ package smallgames.autoFight.core.entity
 		public function updateByTime(timeDiff:int):void
 		{
 			updateListCopy(_listScene);
-			updateListCopy(_listUnit);
 			updateListByTime(_listScene,timeDiff);
+			updateListCopy(_listUnit);
 			updateListByTime(_listUnit,timeDiff);
 		}
 		/**

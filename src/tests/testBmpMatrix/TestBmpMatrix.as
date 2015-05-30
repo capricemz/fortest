@@ -71,7 +71,7 @@ package tests.testBmpMatrix
 			//
 			var rectangleClone:Rectangle = _bitmapDataTemp.rect.clone();
 			rectangleClone.offsetPoint(_location);
-			_bitmapDataTemp.copyPixels(_bitmap.bitmapData,rectangleClone,new Point(),null,null,true);
+			_bitmapDataTemp.copyPixels(_bitmap.bitmapData,rectangleClone,new Point());
 			//
 			_bitmap.bitmapData.copyPixels(clone,clone.rect,_location,null,null,true);
 			clone.dispose();

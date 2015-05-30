@@ -78,17 +78,19 @@ class ResUIMainTrace extends Sprite
 	
 	public function ResUIMainTrace()
 	{
+		var w:int = 100;
+		var h:int = 240;
 		var bg:Sprite = new Sprite();
 		bg.graphics.beginFill(0,.2);
-		bg.graphics.drawRect(0,0,350,240);
+		bg.graphics.drawRect(0,0,w,h);
 		bg.graphics.endFill();
 		addChild(bg);
 		//
 		var rim:Sprite = new Sprite();
 		rim.graphics.lineStyle(2);
-		rim.graphics.lineTo(350,0);
-		rim.graphics.lineTo(350,240);
-		rim.graphics.lineTo(0,240);
+		rim.graphics.lineTo(w,0);
+		rim.graphics.lineTo(w,h);
+		rim.graphics.lineTo(0,h);
 		rim.graphics.lineTo(0,0);
 		rim.graphics.endFill();
 		rim.filters = [UtilFilters.FILTER_DROP_SHADOW];
@@ -97,7 +99,7 @@ class ResUIMainTrace extends Sprite
 		txtTime = new TextField();
 		txtTime.x = 10;
 		txtTime.y = 10;
-		txtTime.width = 330;
+		txtTime.width = w - 20;
 		txtTime.height = 18;
 		txtTime.textColor = 0xffe1aa;
 		txtTime.multiline = false;
@@ -113,7 +115,7 @@ class ResUIMainTrace extends Sprite
 		txtPlace = new TextField();
 		txtPlace.x = 10;
 		txtPlace.y = 35;
-		txtPlace.width = 330;
+		txtPlace.width = w - 20;
 		txtPlace.height = 18;
 		txtPlace.textColor = 0xffe1aa;
 		txtPlace.multiline = false;
@@ -129,7 +131,7 @@ class ResUIMainTrace extends Sprite
 		txtUnit = new TextField();
 		txtUnit.x = 10;
 		txtUnit.y = 60;
-		txtUnit.width = 330;
+		txtUnit.width = w - 20;
 		txtUnit.height = 18;
 		txtUnit.textColor = 0xffe1aa;
 		txtUnit.multiline = false;
@@ -145,7 +147,7 @@ class ResUIMainTrace extends Sprite
 		txtPlot = new TextField();
 		txtPlot.x = 10;
 		txtPlot.y = 85;
-		txtPlot.width = 330;
+		txtPlot.width = w - 20;
 		txtPlot.height = 144;
 		txtPlot.textColor = 0xffe1aa;
 		txtPlot.multiline = true;

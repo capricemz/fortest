@@ -44,8 +44,8 @@ package smallgames.autoFight.core.entity.base.unit.ai
 			var values:Vector.<int> = new <int>[ConstEntity.UNIT_ACTION_00,ConstEntity.UNIT_ACTION_01,ConstEntity.UNIT_ACTION_02,ConstEntity.UNIT_ACTION_03];
 			var probabilityDistribution:Vector.<Number> = new <Number>[.1,.2,.2,.5];
 			var idActionRandomPitchUpon:Number = UtilRandom.randomPitchUpon(values,probabilityDistribution);
+			idActionRandomPitchUpon = 3;
 			dataUnit.idAction = idActionRandomPitchUpon;
-			dataUnit.idAction = 2;
 			switch (idActionRandomPitchUpon)
 			{
 				case ConstEntity.UNIT_ACTION_00:

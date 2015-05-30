@@ -10,7 +10,7 @@ package smallgames.autoFight.core.entity.base.entity.data
 	 */	
 	public class DataEntity implements IDataEntity
 	{
-		private static const CHECK_ANGLE:Number = .2;
+		private static const CHECK_ANGLE:Number = .3;
 		private static const CHECK_DISTANCE:Number = .01;
 		
 		private var _id:int;
