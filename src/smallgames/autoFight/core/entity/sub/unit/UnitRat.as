@@ -9,12 +9,29 @@ package smallgames.autoFight.core.entity.sub.unit
 	import smallgames.autoFight.common.filter.UtilFilters;
 	import smallgames.autoFight.core.entity.base.entity.data.IDataEntity;
 	import smallgames.autoFight.core.entity.base.unit.Unit;
+	import smallgames.autoFight.core.entity.base.unit.action.ActionBase;
+	import smallgames.autoFight.core.entity.base.unit.ai.AIBase;
 	
 	public class UnitRat extends Unit implements IUnitRat
 	{
+		private var _aiBase:AIBase;
+		private var _actoinBase:ActionBase;
+		
+		override protected function get aiBase():AIBase
+		{
+			return _aiBase;
+		}
+		
+		override protected function get actionBase():ActionBase
+		{
+			return _actoinBase;
+		}
+		
 		public function UnitRat(value:IDataEntity)
 		{
 			super(value);
+			_aiBase = new AIBase(this);
+			_actoinBase = new ActionBase(this);
 		}
 		
 		override protected function createBitmapData():void

@@ -78,7 +78,7 @@ class ResUIMainTrace extends Sprite
 	
 	public function ResUIMainTrace()
 	{
-		var w:int = 100;
+		var w:int = 120;
 		var h:int = 240;
 		var bg:Sprite = new Sprite();
 		bg.graphics.beginFill(0,.2);
@@ -100,10 +100,10 @@ class ResUIMainTrace extends Sprite
 		txtTime.x = 10;
 		txtTime.y = 10;
 		txtTime.width = w - 20;
-		txtTime.height = 18;
+		txtTime.height = 30;
 		txtTime.textColor = 0xffe1aa;
-		txtTime.multiline = false;
-		txtTime.wordWrap = false;
+		txtTime.multiline = true;
+		txtTime.wordWrap = true;
 		txtTime.selectable = false;
 		var defaultTextFormat:TextFormat = txtTime.defaultTextFormat;
 		defaultTextFormat.font = "SimSun";
@@ -113,8 +113,8 @@ class ResUIMainTrace extends Sprite
 		addChild(txtTime);
 		//
 		txtPlace = new TextField();
-		txtPlace.x = 10;
-		txtPlace.y = 35;
+		txtPlace.x = txtTime.x;
+		txtPlace.y = txtTime.y + txtTime.height + 7;
 		txtPlace.width = w - 20;
 		txtPlace.height = 18;
 		txtPlace.textColor = 0xffe1aa;
@@ -129,13 +129,13 @@ class ResUIMainTrace extends Sprite
 		addChild(txtPlace);
 		//
 		txtUnit = new TextField();
-		txtUnit.x = 10;
-		txtUnit.y = 60;
+		txtUnit.x = txtPlace.x;
+		txtUnit.y = txtPlace.y + txtPlace.height + 7;
 		txtUnit.width = w - 20;
-		txtUnit.height = 18;
+		txtUnit.height = 30;
 		txtUnit.textColor = 0xffe1aa;
-		txtUnit.multiline = false;
-		txtUnit.wordWrap = false;
+		txtUnit.multiline = true;
+		txtUnit.wordWrap = true;
 		txtUnit.selectable = false;
 		defaultTextFormat = txtUnit.defaultTextFormat;
 		defaultTextFormat.font = "SimSun";
@@ -145,8 +145,8 @@ class ResUIMainTrace extends Sprite
 		addChild(txtUnit);
 		//
 		txtPlot = new TextField();
-		txtPlot.x = 10;
-		txtPlot.y = 85;
+		txtPlot.x = txtUnit.x;
+		txtPlot.y = txtUnit.y + txtUnit.height + 7;
 		txtPlot.width = w - 20;
 		txtPlot.height = 144;
 		txtPlot.textColor = 0xffe1aa;

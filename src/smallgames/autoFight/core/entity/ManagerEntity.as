@@ -151,6 +151,7 @@ package smallgames.autoFight.core.entity
 				}
 			}
 			listBefore.next = entity.next;
+			entity.destroy();
 		}
 		
 		public function textPlace():String
@@ -173,7 +174,7 @@ package smallgames.autoFight.core.entity
 			{
 				if(text != "")
 				{
-					text += ",";
+					text += "\n";
 				}
 				var dataUnit:IDataUnit = unit.dataUnit;
 				text += dataUnit.configUnit.name + "(" + dataUnit.attrHp + "/" + dataUnit.attrHpMax + ")";

@@ -123,7 +123,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 			{
 				targetTemp = targets as IUnit;
 				targets = targets.next as IUnit;
-				if(targetTemp != _unit && Math.random() < .5)
+				if(targetTemp != _unit && Math.random() < .5)//测试代码
 				{
 					target = targetTemp;
 					break;
@@ -146,6 +146,8 @@ package smallgames.autoFight.core.entity.base.unit.action
 			}
 			var randomBetween:Number = UtilRandom.randomBetween(0,dataUnit.attrAtkMax);
 			target.dataUnit.attrAtkImport = randomBetween;
+			target.dataUnit.target = _unit;
+			target.dataUnit.isNeedThink = true;
 		}
 		/**闪躲*/
 		private function dodge():void
@@ -163,14 +165,18 @@ package smallgames.autoFight.core.entity.base.unit.action
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			_unit.dataUnit.attrHp -= dataUnit.attrAtkImport;
 			dataUnit.attrAtkImport = 0;
+			if(!dataUnit.isAlive)
+			{
+				dataUnit.isNeedThink = true;
+			}
 		}
 		/**死亡*/
 		private function die():void
 		{
-			if(_unit.dataUnit.attrHp < 0)
-			{
-				ManagerEntity.instance.destroyEntity(_unit);
-			}
+			var dataUnit:IDataUnit = _unit.dataUnit;
+			dataUnit.target.dataUnit.target = null;
+			dataUnit.target = null;
+			ManagerEntity.instance.destroyEntity(_unit);
 		}
 	}
 }

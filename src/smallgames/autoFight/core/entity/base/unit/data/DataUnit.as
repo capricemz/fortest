@@ -65,10 +65,6 @@ package smallgames.autoFight.core.entity.base.unit.data
 		private var _target:IUnit = null;
 		public function get target():IUnit
 		{
-			if(_target && !_target.dataUnit.isAlive)
-			{
-				_target = null;
-			}
 			return _target;
 		}
 		public function set target(value:IUnit):void

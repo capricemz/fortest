@@ -27,6 +27,11 @@ package smallgames.autoFight.core.entity.base.entity
 		//
 		protected var _bitmapData:BitmapData;
 		protected var _bitmapDataTemp:BitmapData;
+		//
+		protected function get isNeedDrow():Boolean
+		{
+			return data.isFirstDrow || data.isLoactionChange || data.isDirctionChange;
+		}
 		
 		public function Entity(value:IDataEntity)
 		{
@@ -75,7 +80,7 @@ package smallgames.autoFight.core.entity.base.entity
 		
 		private function updateBitmapData(layer:BitmapData):void
 		{
-			if(!data.isFirstDrow && !data.isLoactionChange && !data.isDirctionChange)
+			if(!isNeedDrow)
 			{
 				return;
 			}
@@ -94,6 +99,13 @@ package smallgames.autoFight.core.entity.base.entity
 			//
 			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.locationLastTopLeft,null,null,true);
 			sourceBitmapData.dispose();
+		}
+		
+		public function destroy():void
+		{
+			_bitmapData.dispose();
+			_bitmapDataTemp.dispose();
+			_next = null;
 		}
 	}
 }

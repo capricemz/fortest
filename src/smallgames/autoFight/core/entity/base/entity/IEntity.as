@@ -12,5 +12,6 @@ package smallgames.autoFight.core.entity.base.entity
 		/**将缓存区域的像素拷贝回位图*/
 		function copyTempPixels(layer:BitmapData):void;
 		function updateByTime(timeDiff:int,layer:BitmapData):void;
+		function destroy():void;
 	}
 }
