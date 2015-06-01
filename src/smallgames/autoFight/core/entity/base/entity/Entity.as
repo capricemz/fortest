@@ -49,23 +49,17 @@ package smallgames.autoFight.core.entity.base.entity
 			var length:Number = data.configEntity.length;
 			if(_bitmapDataTemp)
 			{
-				var destPointLast:Point = data.locationLast.clone();
-				destPointLast.offset(-length*.5,-length*.5);
-				trace("Entity.copyTempPixels(layer) this:"+this+",destPointLast.x:"+destPointLast.x+",destPointLast.y:"+destPointLast.y);
-				layer.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,destPointLast,null,null,true);
+				layer.copyPixels(_bitmapDataTemp,_bitmapDataTemp.rect,data.locationLastTopLeft,null,null,true);
 			}
 			if(!_bitmapDataTemp)
 			{
 				_bitmapDataTemp = new BitmapData(_bitmapData.width,_bitmapData.height,true,0);
 			}
 			//
-			var destPoint:Point = data.location.clone();
-			destPoint.offset(-length*.5,-length*.5);
-			trace("Entity.copyTempPixels(layer) this:"+this+",destPoint.x:"+destPoint.x+",destPoint.y:"+destPoint.y);
-			_bitmapDataTemp.fillRect(_bitmapDataTemp.rect,0);
+			var destPoint:Point = data.locationTopLeft;
 			var sourceRect:Rectangle = _bitmapDataTemp.rect.clone();
 			sourceRect.offsetPoint(destPoint);
-			_bitmapDataTemp.copyPixels(layer,sourceRect,new Point(),null,null,true);
+			_bitmapDataTemp.copyPixels(layer,sourceRect,new Point());
 		}
 		
 		public final function updateByTime(timeDiff:int,layer:BitmapData):void
@@ -86,21 +80,19 @@ package smallgames.autoFight.core.entity.base.entity
 				return;
 			}
 			var sourceBitmapData:BitmapData = _bitmapData.clone();
-			if(data.dirction != 0)
+			var locationFloorDiffer:Point = data.locationFloorDiffer;
+			if(data.dirction != 0 || locationFloorDiffer.length != 0)
 			{
 				var matrix:Matrix = new Matrix(1,0,0,1);
 				matrix.rotate(data.dirction);
 				var dx:Number = Math.SQRT2*_bitmapData.width*.5*(Math.cos(Math.PI*.25) - Math.cos(data.dirction + Math.PI*.25));
 				var dy:Number = Math.SQRT2*_bitmapData.height*.5*(Math.sin(Math.PI*.25) - Math.sin(data.dirction + Math.PI*.25));
-				matrix.translate(dx,dy);
+				matrix.translate(dx + locationFloorDiffer.x,dy + locationFloorDiffer.y);
 				sourceBitmapData.fillRect(_bitmapData.rect,0);
 				sourceBitmapData.draw(_bitmapData,matrix,null,null,null,true);
 			}
 			//
-			var destPoint:Point = data.location.clone();
-			var length:Number = data.configEntity.length;
-			destPoint.offset(-length*.5,-length*.5);
-			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,destPoint,null,null,true);
+			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.locationLastTopLeft,null,null,true);
 			sourceBitmapData.dispose();
 		}
 	}

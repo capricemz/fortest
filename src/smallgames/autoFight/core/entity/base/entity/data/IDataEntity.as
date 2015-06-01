@@ -21,7 +21,10 @@ package smallgames.autoFight.core.entity.base.entity.data
 		function get isDirctionChange():Boolean;
 		//
 		function get location():Point;
+		function get locationTopLeft():Point;
+		function get locationFloorDiffer():Point;
 		function get locationLast():Point;
+		function get locationLastTopLeft():Point;
 		function get isLoactionChange():Boolean;
 		//
 		function get isFirstDrow():Boolean

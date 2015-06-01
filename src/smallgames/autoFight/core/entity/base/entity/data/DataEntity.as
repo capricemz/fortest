@@ -62,10 +62,28 @@ package smallgames.autoFight.core.entity.base.entity.data
 		{
 			return _location;
 		}
+		public function get locationTopLeft():Point
+		{
+			var clone:Point = _location.clone();
+			clone.offset(-configEntity.length*.5,-configEntity.length*.5);
+			clone.setTo(Math.floor(clone.x),Math.floor(clone.y));
+			return clone;
+		}
+		public function get locationFloorDiffer():Point
+		{
+			return new Point(_location.x - Math.floor(_location.x),_location.y - Math.floor(_location.y));
+		}
 		private var _locationLast:Point;
 		public function get locationLast():Point
 		{
 			return _locationLast;
+		}
+		public function get locationLastTopLeft():Point
+		{
+			var clone:Point = _locationLast.clone();
+			clone.offset(-configEntity.length*.5,-configEntity.length*.5);
+			clone.setTo(Math.floor(clone.x),Math.floor(clone.y));
+			return clone;
 		}
 		public function get isLoactionChange():Boolean
 		{
