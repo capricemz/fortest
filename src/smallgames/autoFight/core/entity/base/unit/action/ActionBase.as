@@ -1,6 +1,7 @@
 package smallgames.autoFight.core.entity.base.unit.action
 {
 	import flash.utils.Dictionary;
+	import flash.utils.getTimer;
 	
 	import smallgames.autoFight.common.random.UtilRandom;
 	import smallgames.autoFight.core.entity.ConstEntity;
@@ -44,17 +45,12 @@ package smallgames.autoFight.core.entity.base.unit.action
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			if (_timeOver == int.MAX_VALUE && dataUnit.isIdActionChange && dataUnit.isActionOverByTime)
 			{
-				var duration:int = dataUnit.configAction.duration;
-				_timeOver = _timeNow + UtilRandom.randomWave(duration);
+				_timeOver = _timeNow + dataUnit.configAction.duration*1000;
 			}
 			if (_timeNow > _timeOver)
 			{
 				_timeOver = int.MAX_VALUE;
-				if(dataUnit.idActionNext != ConstEntity.UNIT_ACTION_NULL)
-				{
-					dataUnit.idAction = dataUnit.idActionNext;
-					dataUnit.idActionNext = ConstEntity.UNIT_ACTION_NULL;
-				}
+				dataUnit.isNeedThink = true;
 			}
 			var funcAction:Function = _executes[dataUnit.idAction] as Function;
 			if (funcAction == null)
@@ -144,6 +140,15 @@ package smallgames.autoFight.core.entity.base.unit.action
 			{
 				return;
 			}
+			if(target.dataUnit.attrAtkImport)
+			{
+				return;
+			}
+			if(_timeOver != int.MAX_VALUE)
+			{
+				return;
+			}
+			trace("ActionBase.attack() 单位："+_unit+"执行一次攻击，time："+getTimer());
 			var randomBetween:Number = UtilRandom.randomBetween(0,dataUnit.attrAtkMax);
 			target.dataUnit.attrAtkImport = randomBetween;
 			target.dataUnit.target = _unit;
@@ -162,21 +167,26 @@ package smallgames.autoFight.core.entity.base.unit.action
 		/**受伤*/
 		private function hurt():void
 		{
+			if(_timeOver != int.MAX_VALUE)
+			{
+				return;
+			}
+			trace("ActionBase.attack() 单位："+_unit+"受到一次伤害，time："+getTimer());
 			var dataUnit:IDataUnit = _unit.dataUnit;
 			_unit.dataUnit.attrHp -= dataUnit.attrAtkImport;
 			dataUnit.attrAtkImport = 0;
-			if(!dataUnit.isAlive)
-			{
-				dataUnit.isNeedThink = true;
-			}
 		}
 		/**死亡*/
 		private function die():void
 		{
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			dataUnit.target.dataUnit.target = null;
+			dataUnit.target && dataUnit.target.dataUnit.target == this ? dataUnit.target.dataUnit.target = null : null;
 			dataUnit.target = null;
-			ManagerEntity.instance.destroyEntity(_unit);
+			dataUnit.alpha -= 1/60;
+			if(dataUnit.alpha == 0)
+			{
+				ManagerEntity.instance.destroyEntity(_unit);
+			}
 		}
 	}
 }

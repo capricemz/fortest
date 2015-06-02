@@ -121,7 +121,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 			}
 			var subtract:Point = _target.dataUnit.location.subtract(location);
 			var atkRange:int = configUnit.atkRange;
-			return subtract.length <= atkRange;
+			return subtract.length <= atkRange + configUnit.height*.5 + _target.dataUnit.configUnit.height*.5;
 		}
 		//AI相关
 		private var _isNeedThink:Boolean;

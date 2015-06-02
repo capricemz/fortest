@@ -27,6 +27,14 @@ package smallgames.autoFight.core.entity.base.entity.data
 		function get locationLastTopLeft():Point;
 		function get isLoactionChange():Boolean;
 		//
+		function get alpha():Number;
+		/**
+		 * 设置透明度
+		 * @param value 0至1之间的值
+		 */		
+		function set alpha(value:Number):void;
+		function get isAplphaChange():Boolean;
+		//
 		function get isFirstDrow():Boolean
 		//
 		/**按指定量偏移方向*/

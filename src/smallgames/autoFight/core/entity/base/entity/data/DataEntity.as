@@ -90,6 +90,23 @@ package smallgames.autoFight.core.entity.base.entity.data
 			var subtract:Point = locationLast.subtract(location);
 			return (subtract.x < -CHECK_DISTANCE || subtract.x > CHECK_DISTANCE) || (subtract.y < -CHECK_DISTANCE || subtract.y > CHECK_DISTANCE);
 		}
+		//透明度相关
+		private var _alpha:Number = 1;
+		public function get alpha():Number
+		{
+			return _alpha;
+		}
+		public function set alpha(value:Number):void
+		{
+			value = value < 0 ? 0 : value > 1 ? 1 : value;
+			_isAlphaChange = _alpha != value;
+			_alpha = value;
+		}
+		private var _isAlphaChange:Boolean;
+		public function get isAplphaChange():Boolean
+		{
+			return _isAlphaChange;
+		}
 		//绘制相关
 		private var _isFirstDrow:Boolean = true;
 		public function get isFirstDrow():Boolean

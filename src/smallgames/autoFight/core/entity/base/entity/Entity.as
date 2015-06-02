@@ -1,6 +1,7 @@
 package smallgames.autoFight.core.entity.base.entity
 {
 	import flash.display.BitmapData;
+	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -30,8 +31,10 @@ package smallgames.autoFight.core.entity.base.entity
 		//
 		protected function get isNeedDrow():Boolean
 		{
-			return data.isFirstDrow || data.isLoactionChange || data.isDirctionChange;
+			return !_isDestroyed && (data.isFirstDrow || data.isLoactionChange || data.isDirctionChange || data.isAplphaChange);
 		}
+		
+		private var _isDestroyed:Boolean;
 		
 		public function Entity(value:IDataEntity)
 		{
@@ -42,7 +45,7 @@ package smallgames.autoFight.core.entity.base.entity
 		
 		protected function createBitmapData():void
 		{
-			
+			//在子类中重写该方法，以构造_bitmapData对象
 		}
 		/**将缓存区域的像素拷贝回位图*/
 		public final function copyTempPixels(layer:BitmapData):void
@@ -97,12 +100,18 @@ package smallgames.autoFight.core.entity.base.entity
 				sourceBitmapData.draw(_bitmapData,matrix,null,null,null,true);
 			}
 			//
+			if(data.isAplphaChange)
+			{
+				sourceBitmapData.colorTransform(sourceBitmapData.rect,new ColorTransform(1,1,1,data.alpha));
+			}
+			//
 			layer.copyPixels(sourceBitmapData,sourceBitmapData.rect,data.locationLastTopLeft,null,null,true);
 			sourceBitmapData.dispose();
 		}
 		
 		public function destroy():void
 		{
+			_isDestroyed = true;
 			_bitmapData.dispose();
 			_bitmapDataTemp.dispose();
 			_next = null;

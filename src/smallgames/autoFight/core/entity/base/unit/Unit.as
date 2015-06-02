@@ -13,11 +13,6 @@ package smallgames.autoFight.core.entity.base.unit
 			return data as IDataUnit;
 		}
 		
-		override protected function get isNeedDrow():Boolean
-		{
-			return dataUnit.isAlive && super.isNeedDrow;
-		}
-		
 		protected function get aiBase():AIBase
 		{
 			return null;

@@ -8,7 +8,7 @@ package smallgames.autoFight.data.configs.subs
 		public var id:int;
 		/**名称*/
 		public var name:String;
-		/**持续时间*/
+		/**持续时间(秒)*/
 		public var duration:int;
 		
 		public function ConfigAction()
