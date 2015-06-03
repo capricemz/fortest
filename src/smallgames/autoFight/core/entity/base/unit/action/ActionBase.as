@@ -43,7 +43,7 @@ package smallgames.autoFight.core.entity.base.unit.action
 		{
 			_timeNow += timeDiff;
 			var dataUnit:IDataUnit = _unit.dataUnit;
-			if (_timeOver == int.MAX_VALUE && dataUnit.isIdActionChange && dataUnit.isActionOverByTime)
+			if (_timeOver == int.MAX_VALUE && dataUnit.isActionOverByTime)
 			{
 				_timeOver = _timeNow + dataUnit.configAction.duration*1000;
 			}
