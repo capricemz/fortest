@@ -9,7 +9,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
-	import smallgames.autoFight.AutoFight;
+	import smallgames.ccchong.Ccchong;
 	
 	[SWF (width="1024", height="768", frameRate="60")]
 	public class Main extends Sprite
@@ -154,8 +154,11 @@ package
 			the2048.x = _fpsW;
 			addChild(the2048);*/
 			
-			var autoFight:AutoFight = new AutoFight();
-			addChild(autoFight);
+			/*var autoFight:AutoFight = new AutoFight();
+			addChild(autoFight);*/
+			
+			var ccchong:Ccchong = new Ccchong();
+			addChild(ccchong);
 		}
 	}
 }

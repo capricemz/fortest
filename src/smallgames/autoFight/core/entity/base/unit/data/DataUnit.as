@@ -85,15 +85,15 @@ package smallgames.autoFight.core.entity.base.unit.data
 		{
 			return isDirctionEquals(_dirctionTarget);
 		}
-		public function get dirctoinTargetByTarget():Number
+		public function get dirctionTargetByTarget():Number
 		{
 			if(!target)
 			{
-				return dirctoin;
+				return dirction;
 			}
 			var subtract:Point = target.dataUnit.location.subtract(location);
-			var dirctoin:Number = Math.atan2(subtract.y,subtract.x);
-			return dirctoin;
+			var dirction:Number = Math.atan2(subtract.y,subtract.x);
+			return dirction;
 		}
 		//位置相关
 		private var _locationTarget:Point;

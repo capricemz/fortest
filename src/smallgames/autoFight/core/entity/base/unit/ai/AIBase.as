@@ -77,7 +77,7 @@ package smallgames.autoFight.core.entity.base.unit.ai
 					dataUnit.idAction = ConstEntity.UNIT_ACTION_07;
 					return;
 				}
-				var dirctoin:Number = dataUnit.dirctoinTargetByTarget;
+				var dirctoin:Number = dataUnit.dirctionTargetByTarget;
 				if (!dataUnit.isDirctionEquals(dirctoin))
 				{
 					dataUnit.dirctionTarget = dirctoin;

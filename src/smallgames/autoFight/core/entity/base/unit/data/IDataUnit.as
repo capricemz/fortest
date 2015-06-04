@@ -25,7 +25,7 @@ package smallgames.autoFight.core.entity.base.unit.data
 		function get dirctionTarget():Number;
 		function set dirctionTarget(value:Number):void;
 		function get isDirctionTargetReached():Boolean;
-		function get dirctoinTargetByTarget():Number;
+		function get dirctionTargetByTarget():Number;
 		//
 		function get locationTarget():Point;
 		function set locationTarget(value:Point):void;
