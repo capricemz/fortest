@@ -43,18 +43,18 @@ package smallgames.ccchong
 		
 		private function initialize():void
 		{
-			addEventListener(MouseEvent.CLICK,onClick);
-			//
+			addEventListener(MouseEvent.MOUSE_MOVE,onMouseMove);
 			addEventListener(Event.ENTER_FRAME,onEnterFrame);
+			addEventListener(MouseEvent.CLICK,onClick);
 			//
 			createScene();
 			//
 			createMe();
 		}
 		
-		protected function onClick(event:MouseEvent):void
+		protected function onMouseMove(event:MouseEvent):void
 		{
-			_unitMe.targetCharge = new Point(mouseX,mouseY);
+			_unitMe.target.setTo(mouseX,mouseY);
 		}
 		
 		protected function onEnterFrame(event:Event):void
@@ -63,9 +63,13 @@ package smallgames.ccchong
 			var timeDiff:int = timeNow - _timeLast;
 			_timeLast = timeNow;
 			//
-			_unitMe.target = new Point(mouseX,mouseY);
 			_unitMe.move();
 		}
+		protected function onClick(event:MouseEvent):void
+		{
+			_unitMe.charge();
+		}
+		
 		
 		private function createScene():void
 		{
@@ -78,12 +82,14 @@ package smallgames.ccchong
 			_unitMe = new Unit();
 			_unitMe.x = _scene.width*.5;
 			_unitMe.y = _scene.height*.5;
+			_unitMe.target = new Point(mouseX,mouseY);
 			addChild(_unitMe);
 		}
 	}
 }
 import flash.display.Sprite;
 import flash.geom.Point;
+import flash.utils.getTimer;
 
 class Entity extends Sprite
 {
@@ -104,44 +110,51 @@ class Scene extends Entity
 class Unit extends Entity
 {
 	public var target:Point;
-	public var targetCharge:Point;
+	private var _dirction:Number = 0;
 	
-	private var radius:Number = 30;
+	private var _dirctionCharge:Number = 0;
+	private var _timeChargeOver:int;
 	
+	private var _radius:Number = 30;
+
 	public function Unit()
 	{
 		graphics.beginFill(0xff0000);
-		graphics.drawCircle(0,0,radius);
+		graphics.drawCircle(0,0,_radius);
 		graphics.endFill();
 	}
 	
 	public function move():void
 	{
-		var distance:Number;
-		var dirction:Number;
-		if(targetCharge)
+		var timeNow:int = getTimer();
+		var speedPerFrame:Number;
+		if(timeNow < _timeChargeOver)
 		{
-			var ydTargetCharge:Number = targetCharge.y - y;
-			var xdTargetCharge:Number = targetCharge.x - x;
-			distance = Math.sqrt(xdTargetCharge * xdTargetCharge + ydTargetCharge * ydTargetCharge);
-			dirction = Math.atan2(ydTargetCharge,xdTargetCharge);
-			if(distance < radius)
-			{
-				targetCharge = null;
-			}
+			_dirction = _dirctionCharge;
+			speedPerFrame = 2000/stage.frameRate;
 		}
 		else
 		{
 			var ydTarget:Number = target.y - y;
 			var xdTarget:Number = target.x - x;
-			distance = Math.sqrt(xdTarget * xdTarget + ydTarget * ydTarget);
-			dirction = Math.atan2(ydTarget,xdTarget);
+			var distance:Number = Math.sqrt(ydTarget * ydTarget + xdTarget * xdTarget);
+			_dirction = Math.atan2(ydTarget,xdTarget);
+			speedPerFrame = distance > _radius ? 400/stage.frameRate : 0;
 		}
 		//
-		var speedPerFrame:Number = /*(-(targetCharge ? 4 : 1)/(distance-2))**/200/stage.frameRate;
-		var sin:Number = Math.sin(dirction);
-		var cos:Number = Math.cos(dirction);
+		var sin:Number = Math.sin(_dirction);
+		var cos:Number = Math.cos(_dirction);
 		x += cos*speedPerFrame;
 		y += sin*speedPerFrame;
+	}
+	
+	public function charge():void
+	{
+		var timeNow:int = getTimer();
+		if(timeNow > _timeChargeOver)
+		{
+			_dirctionCharge = _dirction;
+			_timeChargeOver = timeNow + 150;
+		}
 	}
 }
