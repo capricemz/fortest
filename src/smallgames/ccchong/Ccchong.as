@@ -102,9 +102,36 @@ class Scene extends Entity
 {
 	public function Scene()
 	{
-		graphics.beginFill(0x000000);
-		graphics.drawRect(0,0,1024,768);
-		graphics.endFill();
+	}
+}
+class Region extends Scene
+{
+	public var subs:Vector.<Scene>
+	
+	public function Region()
+	{
+		subs = new Vector.<Scene>();
+	}
+}
+class Groud extends Region
+{
+	public function Groud()
+	{
+		/*graphics.beginFill();*/
+	}
+}
+class Stone extends Region
+{
+	public function Stone()
+	{
+		
+	}
+}
+class Tree extends Region
+{
+	public function Tree()
+	{
+		
 	}
 }
 class Unit extends Entity
